@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
+import { DatesService } from 'src/app/services/dates.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     "lastyearname": new FormControl("dd/mm/yyyy", Validators.required),
   });
 
-  constructor() {
+  constructor(private _dates:DatesService) {
     this.year1=[];
     this.year2=[];
    }
@@ -34,18 +34,13 @@ export class HomeComponent implements OnInit {
 
     console.log(firstyearname,lastyearname);
 
-    this.year1=this.splitYearString(firstyearname);
-    this.year2=this.splitYearString(lastyearname);
+    this.year1=this._dates.splitYearString(firstyearname);
+    this.year2=this._dates.splitYearString(lastyearname);
     console.log (this.year1, this.year2);
     
   }
 
-  //methods
-  splitYearString(pyear:string):string[]{
-
-    let newYearSplittedArray=pyear.split("-");
-    return newYearSplittedArray;
-  }
+  
 
   
 
