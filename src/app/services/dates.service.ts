@@ -183,9 +183,9 @@ export class DatesService  {
     }
       
     /*
-    TODO now we must add to DaysPassed the days of the current month;
-    because until now, we had only the days passed 
-    of entirely passed months, so we will use the "day" constant created when destructuring pdate parameter
+      now we must add to DaysPassed the days of the current month;
+      because until now, we had only the days passed 
+      of entirely passed months, so we will use the "day" constant created when destructuring pdate parameter
 
     */
 
@@ -206,9 +206,9 @@ export class DatesService  {
     return [daysPassed,daysToPass];
      
   }
-  //calculate days between 2 given dates
+  //TODO calculate days between the years of 2 given dates
   /*
-    año 1 must be next one to older date, and año 2 the prior one to most recent date
+    año 1 must be next one to older date (its year), and año 2 the prior one to most recent date (its year)
     and taking into account if it is leap year or not
   */
   calcDaysBetweenYears(pyear1:number,pyear2:number){
