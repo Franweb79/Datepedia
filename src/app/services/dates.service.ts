@@ -206,4 +206,12 @@ export class DatesService  {
     return [daysPassed,daysToPass];
      
   }
+  //calculate days between 2 given dates
+  /*
+    año 1 must be next one to older date, and año 2 the prior one to most recent date
+    and taking into account if it is leap year or not
+  */
+  calcDaysBetweenYears(pyear1:number,pyear2:number){
+
+  }
 }
