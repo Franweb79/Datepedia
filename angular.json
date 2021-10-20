@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "formularios": {
+    "days-between-dates-calculator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/formularios",
+            "outputPath": "dist/days-between-dates-calculator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "formularios:build:production"
+              "browserTarget": "days-between-dates-calculator:build:production"
             },
             "development": {
-              "browserTarget": "formularios:build:development"
+              "browserTarget": "days-between-dates-calculator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "formularios:build"
+            "browserTarget": "days-between-dates-calculator:build"
           }
         },
         "test": {
@@ -106,5 +106,5 @@
       }
     }
   },
-  "defaultProject": "formularios"
+  "defaultProject": "days-between-dates-calculator"
 }

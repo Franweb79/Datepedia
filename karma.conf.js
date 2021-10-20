@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/formularios'),
+      dir: require('path').join(__dirname, './coverage/days-between-dates-calculator'),
       subdir: '.',
       reporters: [
         { type: 'html' },

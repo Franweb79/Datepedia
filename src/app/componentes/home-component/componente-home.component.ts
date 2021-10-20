@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-componente-home',
@@ -7,11 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'ejercicio-trasteo';
+  title:string = 'Days between dates calculator';
 
-  constructor() { }
+  public year1:string[];
+  public year2:string[];
+
+  myDatesForm:FormGroup=new FormGroup({
+    "firstyearname": new FormControl("dd/mm/yyyy", Validators.required),
+    "lastyearname": new FormControl("dd/mm/yyyy", Validators.required),
+  });
+
+  constructor() {
+    this.year1=[];
+    this.year2=[];
+   }
 
   ngOnInit(): void {
   }
+
+  onSubmit(){
+    console.log(this.myDatesForm);
+    const {firstyearname, lastyearname}=this.myDatesForm.value;
+
+    console.log(firstyearname,lastyearname);
+
+    this.year1=this.splitYearString(firstyearname);
+    this.year2=this.splitYearString(lastyearname);
+    console.log (this.year1, this.year2);
+    
+  }
+
+  //methods
+  splitYearString(pyear:string):string[]{
+
+    let newYearSplittedArray=pyear.split("-");
+    return newYearSplittedArray;
+  }
+
+  
 
 }
