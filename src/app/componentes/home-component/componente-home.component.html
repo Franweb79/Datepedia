@@ -1,12 +1,12 @@
 <form [formGroup]="myDatesForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Date 1</label>
-      <input type="date" formControlName="firstyearname" class="form-control" id="date-1" aria-describedby="emailHelp">
+      <input type="date" formControlName="firstYearToCheckDateString" class="form-control" id="date-1" aria-describedby="emailHelp" >
      
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Date 2</label>
-      <input type="date" formControlName="lastyearname" class="form-control" id="date-2" >
+      <input type="date" formControlName="lastYearToCheckDateString" class="form-control" id="date-2" >
     </div>
     
     <button type="submit" [disabled]="!myDatesForm.valid">Calculate</button>
