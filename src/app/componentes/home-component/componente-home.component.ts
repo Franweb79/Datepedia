@@ -12,8 +12,7 @@ export class HomeComponent implements OnInit {
 
   title:string = 'Days between dates calculator';
 
-  public date1:number[];
-  public date2:number[];
+  
 
   myDatesForm:FormGroup=new FormGroup({
     "firstYearToCheckDateString": new FormControl("2004-06-04", Validators.required),
@@ -24,10 +23,8 @@ export class HomeComponent implements OnInit {
   
 
   constructor(private _dates:DatesService) {
-    this.date1=[];
-    this.date2=[];
+   
 
-    this.myDatesForm.patchValue
    }
 
   ngOnInit(): void {
@@ -39,19 +36,20 @@ export class HomeComponent implements OnInit {
     const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
     //date1 receives the date correctly splitted into a number array with year, month, and day 
-    this.date1=this._dates.splitYearToCheckString(firstYearToCheckDateString);
+    this._dates.date1=this._dates.splitYearToCheckString(firstYearToCheckDateString);
 
     //detructuring the string array with date year, month and day
-    const [date1Year, date1Month, date1Day]=this.date1;
+    const [date1Year, date1Month, date1Day]=this._dates.date1;
     
 
-    
+
     //we do same steps for date 2
-    this.date2=this._dates.splitYearToCheckString(lastYearToCheckDateString);
+    this._dates.date2=this._dates.splitYearToCheckString(lastYearToCheckDateString);
 
-    const  [date2Year, date2Month, date2Day]=this.date2;
+    const  [date2Year, date2Month, date2Day]=this._dates.date2;
+
+    console.log(this._dates.isLeapYearToCheck(date2Year))
     
-    console.log (this._dates.isLeapYearToCheck(date1Year));
   }
 
   

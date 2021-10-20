@@ -5,7 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class DatesService {
 
-  constructor() { }
+  public date1:number[];
+  public date2:number[];
+
+  constructor() {
+
+    this.date1=[];
+    this.date2=[];
+   }
 
   //splits date and maps it to number array
   splitYearToCheckString(ppyearToCheck:string):number[]{
@@ -26,6 +33,20 @@ export class DatesService {
     }else{
       return false;
     }
+
+  }
+
+  /* 
+    
+  PARAMETERES will be 
+  
+  will return an array with thwo number:
+    -days from 01/01 to given value
+    -days from given value to 31/12
+    -If year is leap, we will add one day to the result
+    which frebruary is involved
+  */
+  calcCurrentYearDays(pdata:number[]){
 
   }
 }
