@@ -32,30 +32,19 @@ export class HomeComponent implements OnInit {
 
   onSubmit(){
 
+    //set totalDays to 0
+
+    this._dates.totalDays=0;
+
     //detrucutring the object with dates values into const, more usable
     const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
-    //date1 receives the date correctly splitted into a number array with year, month, and day 
-    this._dates.date1=this._dates.splitYearToCheckString(firstYearToCheckDateString);
 
-    //TODO is this detructuring neccessary?
-    //detructuring the string array with date year, month and day
-    const [date1Year, date1Month, date1Day]=this._dates.date1;
-    
-    //console.log(this._dates.calcCurrentYearDays(this._dates.date1));
+  this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
-    //we do same steps for date 2
-    this._dates.date2=this._dates.splitYearToCheckString(lastYearToCheckDateString);
-
-    const  [date2Year, date2Month, date2Day]=this._dates.date2;
+    console.log (this._dates.totalDays);
 
     
-
-    //console.log(this._dates.calcDaysBetweenYears(date1Year,date2Year));
-
-   // console.log(this._dates.isLeapYearToCheck(date2Year))
-
-   //console.log (this._dates.arrayMonths);
 
    //TODO we could calc now days of date 1, days of bdate 2, days between years if so
    //and add all of them.

@@ -1,3 +1,4 @@
+import { SafeMethodCall } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
 interface month{
@@ -14,6 +15,18 @@ export class DatesService  {
 
   public date1:number[];
   public date2:number[];
+
+  public totalDays:number;
+
+  /*
+    to order them. It could happen user sets the second date is lower
+    (e.g. first date 2018 and second date 2004).
+    Ordering them would be easier to calculate before forcing user 
+    to set dates in a "correct" order (e.g "2nd date must be higher than 1st" I dont like that)
+
+    As dates will be an wrray of numbers with year, month and day separated, we must declare this way
+  */
+  public datesArray:number[][];
   
   public arrayMonths:month[]=[
     {
@@ -85,6 +98,10 @@ export class DatesService  {
 
     this.date1=[];
     this.date2=[];
+
+    this.totalDays=0;
+
+    this.datesArray=[];
    }
 
   //splits date and maps it to number array
@@ -212,49 +229,55 @@ export class DatesService  {
   */
   calcDaysBetweenYears(pyear1:number,pyear2:number):number{
 
-   //this variable will only change if parameteres (years) are different 
-    let totalDays:number=0;
+   /*
+      this variable will only change if parameteres (years) are different
+      the name localTotalDays is to clarify between that and the totalDays property,
+      naming the same could give problems and is better not making the method rely on a property
+      which could not exist on another project, this way is more reusable 
+
+  */
+    let localTotalDays=0;
 
     let orderedYears:number[]=[pyear1,pyear2];
-    if(pyear1 !== pyear2){
+   
 
-        orderedYears= this.orderNumbers(pyear1,pyear2);
+    orderedYears= this.orderNumbers(pyear1,pyear2);
 
-        /*desestr to make work easier. 
-          e.g:minorYear would be 2004 and higuest 2018
-        */
+    /*desestr to make work easier. 
+        e.g:minorYear would be 2004 and higuest 2018
+    */
 
-        const [ minorYear, highestYear]=orderedYears;
+    const [ minorYear, highestYear]=orderedYears;
 
-      /*
-        now we get the days betweeen minor year +1 and highest given year,
-        that is so because each of the given years` total days will be calculated on
-        calcCurrentYearDays() and added to the result "totalDays" from this funtcion 
+    /*
+      now we get the days betweeen minor year +1 and highest given year,
+      that is so because each of the given years` total days will be calculated on
+      calcCurrentYearDays() and added to the result "totalDays" from this funtcion 
       
-        e.g: between 2004(minorYear) and 2018 (highestYear) would iterate between 2005 and 2017
-      */
+       e.g: between 2004(minorYear) and 2018 (highestYear) would iterate between 2005 and 2017
+    */
 
         
 
-      for (let i=minorYear+1; i<highestYear;++i){
+    for (let i=minorYear+1; i<highestYear;++i){
 
-        //on each item, we calculate if it is a leap year. in that case we add 366, otherwise 365
-        let isLeap=this.isLeapYearToCheck(i);
-        console.log(i);
-        console.log(isLeap);
+      //on each item, we calculate if it is a leap year. in that case we add 366, otherwise 365
+      let isLeap=this.isLeapYearToCheck(i);
+      console.log(i);
+      console.log(isLeap);
 
-        if(isLeap===true){
-          totalDays+=366;
-        }else{
-          totalDays+=365;
-        }
-        
-
+      if(isLeap===true){
+        localTotalDays  +=366;
+      }else{
+        localTotalDays +=365;
       }
+        
 
     }
 
-    return totalDays;
+    
+
+    return localTotalDays;
 
   }
 
@@ -268,5 +291,66 @@ export class DatesService  {
       numbersArray=[pnumber1,pnumber2];
     }
     return numbersArray;
+  }
+
+  calculateTotalDaysBetweenDates(pdate1:string,pdate2:string){
+
+    //date1 receives the date correctly splitted into a number array with year, month, and day 
+
+    this.date1=this.splitYearToCheckString(pdate1);
+    //detructuring the string array with date year, month and day
+    const [date1Year, date1Month, date1Day]=this.date1;
+
+
+    //we do same steps for date 2
+    this.date2=this.splitYearToCheckString(pdate2);
+
+    const [date2Year, date2Month, date2Day]=this.date2;
+
+    //now we set the dates array, and change order if neccesary
+//TODO this orderinf could be dome in a function and probably better
+    this.datesArray=[this.date1,this.date2];
+
+    if(date1Year>date2Year){
+      this.datesArray=[this.date2,this.date1];
+
+    }else if(date1Year===date2Year){
+
+      if(date1Month>date2Month){
+        this.datesArray=[this.date2,this.date1]
+      }else if(date1Month===date2Month){
+        if(date1Day>date2Day){
+          this.datesArray=[this.date2,this.date1];
+
+        }else if(date1Day===date2Day){
+          console.log ("same date");
+        }
+      }
+    }
+
+    console.log(this.datesArray);
+
+    /*now, if year is different we will calculate days netween years and days passes on 2 fiven dates
+      and we will add to totaldays:
+        -calculated days between years
+        -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
+        -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
+
+      if year is the same, we will NOt of course calculate days netweeb years,
+      we will calcCurrentYearDays() and take 
+
+       -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
+       -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
+      -sum both results and rest it to 365 to get the difference days
+       REMEMBER DATES ARE ORDERED
+    */ 
+    if(date1Year !=date2Year){
+     
+      
+      
+      this.totalDays=this.calcDaysBetweenYears(date1Year,date2Year);
+    }
+
+
   }
 }
