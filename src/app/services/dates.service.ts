@@ -295,8 +295,23 @@ export class DatesService  {
 
   calculateTotalDaysBetweenDates(pdate1:string,pdate2:string){
 
+    /*
+      days returned by calcCurrentYearDays, 
+      will be an array with days passed and left
+      
+    */
+
+    let resultDate1:number[]=[];
+
+    let resultDate2:number[]=[];
+
+    let daysBetweenYears:number=0;
+
+    
+    
     //date1 receives the date correctly splitted into a number array with year, month, and day 
 
+    
     this.date1=this.splitYearToCheckString(pdate1);
     //detructuring the string array with date year, month and day
     const [date1Year, date1Month, date1Day]=this.date1;
@@ -308,7 +323,7 @@ export class DatesService  {
     const [date2Year, date2Month, date2Day]=this.date2;
 
     //now we set the dates array, and change order if neccesary
-//TODO this orderinf could be dome in a function and probably better
+//TODO this ordering could be dome in a function and probably better
     this.datesArray=[this.date1,this.date2];
 
     if(date1Year>date2Year){
@@ -330,25 +345,61 @@ export class DatesService  {
 
     console.log(this.datesArray);
 
-    /*now, if year is different we will calculate days netween years and days passes on 2 fiven dates
+    /*now,  we will calculate days between years and days passes on 2 fiven dates
       and we will add to totaldays:
-        -calculated days between years
+        -calculated days between years (0 if same year)
         -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
         -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
 
-      if year is the same, we will NOt of course calculate days netweeb years,
-      we will calcCurrentYearDays() and take 
-
-       -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
-       -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
-      -sum both results and rest it to 365 to get the difference days
        REMEMBER DATES ARE ORDERED
     */ 
+
+       const [minorDate, highestDate]=this.datesArray;
+
+
+
+       resultDate1=this.calcCurrentYearDays(minorDate);
+
+       const [daysPassedDate1, daysLeftDate1]=resultDate1;
+
+       console.log ("res date1 "+resultDate1);
+
+
+
+
+       resultDate2=this.calcCurrentYearDays(highestDate);
+
+       const [daysPassedDate2, daysLeftDate2]=resultDate2;
+
+       console.log ("res date2 "+resultDate2);
+
+
+       daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
+
+
+       console.log ("total"+this.totalDays);
+
+
     if(date1Year !=date2Year){
      
+      this.totalDays=daysLeftDate1+daysBetweenYears+daysPassedDate2;
+
       
-      
-      this.totalDays=this.calcDaysBetweenYears(date1Year,date2Year);
+     // this.totalDays=this.calcDaysBetweenYears(date1Year,date2Year);
+    }else{
+
+      let isLeap:boolean=false;
+      //will change if is leap to 366
+      let daysOfYear:number=365;
+
+      isLeap=this.isLeapYearToCheck(date1Year);
+
+      if(isLeap===true){
+       daysOfYear=366;
+
+      }
+
+      this.totalDays=daysOfYear-(daysPassedDate1+daysLeftDate2);
     }
 
 

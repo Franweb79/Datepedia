@@ -12,18 +12,21 @@ export class HomeComponent implements OnInit {
 
   title:string = 'Days between dates calculator';
 
+  public totalDays:number;
   
-
+  /*TODO crear mi validacion custom para que se desactive el boton de enviar
+  si son la misma fecha*/
   myDatesForm:FormGroup=new FormGroup({
-    "firstYearToCheckDateString": new FormControl("2004-06-04", Validators.required),
-    "lastYearToCheckDateString": new FormControl("2018-09-06", Validators.required),
+    "firstYearToCheckDateString": new FormControl("", Validators.required),
+    "lastYearToCheckDateString": new FormControl("", Validators.required),
   });
 
   
   
 
   constructor(private _dates:DatesService) {
-   
+    
+    this.totalDays=0;
 
    }
 
@@ -44,12 +47,24 @@ export class HomeComponent implements OnInit {
 
     console.log (this._dates.totalDays);
 
-    
+    this.getTotalDays();
 
    //TODO we could calc now days of date 1, days of bdate 2, days between years if so
    //and add all of them.
    //TODO if there is equal year, see if needed to order months or not.
     
+  }
+
+  /*
+    as service is private, we can show it on the template, so we create a property
+    calles "totaldays" here on this class to assign what the _dates.totalDays property
+    on that service has
+  */
+
+  getTotalDays(){
+
+    this.totalDays=this._dates.totalDays;
+
   }
 
   
