@@ -206,12 +206,67 @@ export class DatesService  {
     return [daysPassed,daysToPass];
      
   }
-  //TODO calculate days between the years of 2 given dates
+  // calculate days between the years of 2 given dates
   /*
-    año 1 must be next one to older date (its year), and año 2 the prior one to most recent date (its year)
-    and taking into account if it is leap year or not
+    taking into account if it is leap year or not
   */
-  calcDaysBetweenYears(pyear1:number,pyear2:number){
+  calcDaysBetweenYears(pyear1:number,pyear2:number):number{
 
+   //this variable will only change if parameteres (years) are different 
+    let totalDays:number=0;
+
+    let orderedYears:number[]=[pyear1,pyear2];
+    if(pyear1 !== pyear2){
+
+        orderedYears= this.orderNumbers(pyear1,pyear2);
+
+        /*desestr to make work easier. 
+          e.g:minorYear would be 2004 and higuest 2018
+        */
+
+        const [ minorYear, highestYear]=orderedYears;
+
+      /*
+        now we get the days betweeen minor year +1 and highest given year,
+        that is so because each of the given years` total days will be calculated on
+        calcCurrentYearDays() and added to the result "totalDays" from this funtcion 
+      
+        e.g: between 2004(minorYear) and 2018 (highestYear) would iterate between 2005 and 2017
+      */
+
+        
+
+      for (let i=minorYear+1; i<highestYear;++i){
+
+        //on each item, we calculate if it is a leap year. in that case we add 366, otherwise 365
+        let isLeap=this.isLeapYearToCheck(i);
+        console.log(i);
+        console.log(isLeap);
+
+        if(isLeap===true){
+          totalDays+=366;
+        }else{
+          totalDays+=365;
+        }
+        
+
+      }
+
+    }
+
+    return totalDays;
+
+  }
+
+  /*
+    return an array with lower number (e.g. 2004) on first position and higher (e.g.2006) on second
+  */
+  orderNumbers(pnumber1:number,pnumber2:number):number[]{
+    let numbersArray:number[]=[pnumber1,pnumber2];
+
+    if(pnumber1>pnumber2){
+      numbersArray=[pnumber1,pnumber2];
+    }
+    return numbersArray;
   }
 }

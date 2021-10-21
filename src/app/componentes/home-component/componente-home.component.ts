@@ -42,16 +42,24 @@ export class HomeComponent implements OnInit {
     //detructuring the string array with date year, month and day
     const [date1Year, date1Month, date1Day]=this._dates.date1;
     
-    console.log(this._dates.calcCurrentYearDays(this._dates.date1));
+    //console.log(this._dates.calcCurrentYearDays(this._dates.date1));
 
     //we do same steps for date 2
     this._dates.date2=this._dates.splitYearToCheckString(lastYearToCheckDateString);
 
     const  [date2Year, date2Month, date2Day]=this._dates.date2;
 
+    
+
+    //console.log(this._dates.calcDaysBetweenYears(date1Year,date2Year));
+
    // console.log(this._dates.isLeapYearToCheck(date2Year))
 
    //console.log (this._dates.arrayMonths);
+
+   //TODO we could calc now days of date 1, days of bdate 2, days between years if so
+   //and add all of them.
+   //TODO if there is equal year, see if needed to order months or not.
     
   }
 
