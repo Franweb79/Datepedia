@@ -49,7 +49,7 @@ export class DatesService  {
     {
       id:7,
       name:"july",
-      days:30
+      days:31
     },
     {
       id:8,
