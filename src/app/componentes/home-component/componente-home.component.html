@@ -9,7 +9,7 @@
       <input type="date" formControlName="lastYearToCheckDateString" class="form-control" id="date-2" >
     </div>
     
-    <button type="submit" [disabled]="myDatesForm.invalid">Calculate</button>
+    <button type="submit" id="submitDatesButton" [disabled]="myDatesForm.invalid">Calculate</button>
   </form>
 
   <p *ngIf="totalDays>0;else choose" id="total-results">{{totalDays}}</p>

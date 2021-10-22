@@ -115,6 +115,7 @@ export class DatesService  {
     return newDateNumber;
   }
 
+  //TODO TEST, hoe to test a service
   //returns true or false
   isLeapYearToCheck(pyearToCheck:number):boolean{
     
@@ -185,7 +186,7 @@ export class DatesService  {
       this.arrayMonths[1].days = 28;
       totalYearDays=365;
     }
-    console.log (month);
+   // console.log (month);
 
     /*
       Month -1 is because we want it to ierate, fopr example, 
@@ -195,7 +196,7 @@ export class DatesService  {
     */
 
     for(let i=0;i<(month-1);++i){
-      console.log ("mes"+this.arrayMonths[i].name);
+      //console.log ("mes"+this.arrayMonths[i].name);
       daysPassed+=this.arrayMonths[i].days;
     }
       
@@ -212,13 +213,13 @@ export class DatesService  {
 
     daysToPass=totalYearDays-daysPassed;
 
-    console.log ('año '+year);
+   /* console.log ('año '+year);
     console.log("dias transcurridos "+daysPassed);
     console.log("dias año "+totalYearDays);
 
     console.log("dias que quedan "+daysToPass);
     
-
+*/
 
     return [daysPassed,daysToPass];
      
@@ -244,8 +245,10 @@ export class DatesService  {
     orderedYears= this.orderNumbers(pyear1,pyear2);
 
     /*desestr to make work easier. 
-        e.g:minorYear would be 2004 and higuest 2018
+        e.g:minorYear would be 2004 and higest 2018
     */
+
+        console.log (orderedYears);
 
     const [ minorYear, highestYear]=orderedYears;
 
@@ -284,11 +287,13 @@ export class DatesService  {
   /*
     return an array with lower number (e.g. 2004) on first position and higher (e.g.2006) on second
   */
+
+    //TODO TEST
   orderNumbers(pnumber1:number,pnumber2:number):number[]{
     let numbersArray:number[]=[pnumber1,pnumber2];
 
     if(pnumber1>pnumber2){
-      numbersArray=[pnumber1,pnumber2];
+      numbersArray=[pnumber2,pnumber1];
     }
     return numbersArray;
   }
@@ -373,14 +378,14 @@ export class DatesService  {
 
        console.log ("res date2 "+resultDate2);
 
-
+      console.log (date1Year);
        daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
 
        console.log ("total"+this.totalDays);
 
 
-    if(date1Year !=date2Year){
+    if(date1Year != date2Year){
      
       this.totalDays=daysLeftDate1+daysBetweenYears+daysPassedDate2;
 

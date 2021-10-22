@@ -33,25 +33,27 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit():void{
 
-    //set totalDays to 0
+    
 
-    this._dates.totalDays=0;
+      //set totalDays to 0
 
-    //detrucutring the object with dates values into const, more usable
-    const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
+      this._dates.totalDays=0;
+
+      //detrucutring the object with dates values into const, more usable
+      const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
 
-  this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
+      this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
-    console.log (this._dates.totalDays);
+      console.log (this._dates.totalDays);
 
-    this.getTotalDays();
+      this.getTotalDays();
 
-   //TODO we could calc now days of date 1, days of bdate 2, days between years if so
-   //and add all of them.
-   //TODO if there is equal year, see if needed to order months or not.
+
+    
+    
     
   }
 
@@ -61,14 +63,13 @@ export class HomeComponent implements OnInit {
     on that service has
   */
 
-  getTotalDays(){
+  getTotalDays():number{
 
     this.totalDays=this._dates.totalDays;
 
+    return this.totalDays;//for testing on spec
+
   }
-
-  
-
   
 
 }
