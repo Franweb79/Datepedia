@@ -1,0 +1,21 @@
+<p>show-days works!</p>
+
+<div>
+    <!--TODO si se elimina alguna fecha, debería ir a choose 
+    de valores actuales, es mas reactivo asi, y ponle estilos que funcione bien a este div de total result
+que solo se activan al pulsar-->
+    <div  *ngIf="valueTotalDays>0;else choose" id="total-results">
+        
+        <p>{{valueTotalDays}}</p>
+
+        <button type="submit" class="btn btn-warning" id="didYouKnowButton">Did you know that...?</button>
+
+
+    </div>
+
+    <div id="background-div"></div>
+
+    <ng-template #choose>
+     <p> Please, choose two dates </p>
+    </ng-template>
+</div>
