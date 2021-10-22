@@ -115,7 +115,7 @@ export class DatesService  {
     return newDateNumber;
   }
 
-  //TODO TEST, hoe to test a service
+  //TODO TEST, how to test a service
   //returns true or false
   isLeapYearToCheck(pyearToCheck:number):boolean{
     
