@@ -1,16 +1,31 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostBinding } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-show-days',
   templateUrl: './show-days.component.html',
-  styleUrls: ['./show-days.component.css']
+  styleUrls: ['./show-days.component.css'],
+  animations:[
+
+  ]
 })
 export class ShowDaysComponent implements OnInit {
 
   @Input() valueTotalDays: number;
+
+  @Input() isDivFlipped:boolean;
+  
   constructor() {
 
     this.valueTotalDays=0;
+    this.isDivFlipped=false;
    }
 
   ngOnInit(): void {

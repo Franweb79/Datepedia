@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   title:string = 'Days between dates calculator';
 
   public totalDays:number;
+
+  public isFlipped:boolean;
   
   /*TODO crear mi validacion custom para que se desactive el boton de enviar
   si son la misma fecha*/
@@ -27,6 +29,8 @@ export class HomeComponent implements OnInit {
   constructor(private _dates:DatesService) {
     
     this.totalDays=0;
+
+    this.isFlipped=false;
 
    }
 
@@ -52,7 +56,7 @@ export class HomeComponent implements OnInit {
       this.getTotalDays();
 
 
-    
+      this.flip()
     
     
   }
@@ -69,6 +73,11 @@ export class HomeComponent implements OnInit {
 
     return this.totalDays;//for testing on spec
 
+  }
+
+  //will be triggered when push calculñate along with ngsubmit
+  flip(){
+    this.isFlipped=!this.isFlipped;
   }
   
 
