@@ -1,12 +1,15 @@
 #background-div{
     background-color: #000;
+    position:absolute;
+    z-index:0;
 
     width:300px;
     height:200px;
 }
 
-#total-results{
-
+#total-results,#choose-div{
+    position:absolute;
+    z-index:1;
     width:300px;
     height:200px;
     background-color: yellow;

@@ -1,19 +1,38 @@
-<form [formGroup]="myDatesForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Date 1</label>
-      <input type="date" formControlName="firstYearToCheckDateString" class="form-control" id="date-1" aria-describedby="emailHelp" >
-     
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Date 2</label>
-      <input type="date" formControlName="lastYearToCheckDateString" class="form-control" id="date-2" >
-    </div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col">
+
+    </div><!--col1-->
+
+    <div class="col">
+
+      <form [formGroup]="myDatesForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Date 1</label>
+          <input type="date" formControlName="firstYearToCheckDateString" class="form-control" id="date-1" aria-describedby="emailHelp" >
+         
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Date 2</label>
+          <input type="date" formControlName="lastYearToCheckDateString" class="form-control" id="date-2" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary" id="submitDatesButton" [disabled]="myDatesForm.invalid">Calculate</button>
+      </form>
     
-    <button type="submit" id="submitDatesButton" [disabled]="myDatesForm.invalid">Calculate</button>
-  </form>
+      <app-show-days [valueTotalDays]=totalDays></app-show-days>
 
-  <p *ngIf="totalDays>0;else choose" id="total-results">{{totalDays}}</p>
+    </div><!--col2-->
 
-  <ng-template #choose>
-    Please, choose two dates
-  </ng-template>
+    <div class="col">
+
+    </div><!--col3-->
+  </div><!--row-->
+
+
+</div><!--container-->
+
+
+ 
