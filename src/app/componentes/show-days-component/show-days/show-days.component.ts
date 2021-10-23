@@ -14,7 +14,18 @@ import {
   styleUrls: ['./show-days.component.css'],
   animations:[
 
-  ]
+    trigger('flipUnflip',[
+
+        state('flipped',style({
+          backgroundColor:"red"
+        })),
+        state('notFlipped',style({
+          backgroundColor:"aquamarine"
+        }))
+      ]
+
+    )
+  ] 
 })
 export class ShowDaysComponent implements OnInit {
 
