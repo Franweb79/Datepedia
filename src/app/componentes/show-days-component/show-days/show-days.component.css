@@ -1,3 +1,11 @@
+#results-wrapper{
+    width:100%;
+}
+
+/* TODO como hacer estas position absoluten que hagan match bien a la columna
+
+https://stackoverflow.com/questions/49034877/absolute-child-same-width-as-column-container
+*/
 #background-div{
     background-color: #000;
     position:absolute;
@@ -16,3 +24,4 @@
     /*background-color: yellow;*/
 
 }
+
