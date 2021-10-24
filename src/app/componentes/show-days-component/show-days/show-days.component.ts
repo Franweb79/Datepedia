@@ -17,11 +17,15 @@ import {
     trigger('flipUnflip',[
 
         state('flipped',style({
-          backgroundColor:"red"
+          
+          transform: "rotateY(360deg)"
         })),
         state('notFlipped',style({
-          backgroundColor:"aquamarine"
-        }))
+          //backgroundColor:"aquamarine"
+        })),
+        transition('* => *', [
+          animate('1s')
+        ]),
       ]
 
     )

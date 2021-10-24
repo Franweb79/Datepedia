@@ -4,7 +4,7 @@
     {{isDivFlipped}}
     <!--TODO si se elimina alguna fecha, debería ir a choose 
     de valores actuales, es mas reactivo asi, y ponle estilos que funcione bien a este div de total result
-que solo se activan al pulsar-->
+que solo se activan al pulsar, y en la condicion ngif a ver que pasa con ===0 que no va ni el truthy o flase que me interesa-->
     <div [@flipUnflip]="isDivFlipped ? 'flipped' : 'notFlipped' " *ngIf="valueTotalDays>0;else choose" id="total-results">
         
         <p>{{valueTotalDays}}</p>
