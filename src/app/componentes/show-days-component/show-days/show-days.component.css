@@ -1,24 +1,24 @@
 #results-wrapper{
-    width:100%;
+    position: relative; 
 }
 
-/* TODO como hacer estas position absoluten que hagan match bien a la columna
-
-https://stackoverflow.com/questions/49034877/absolute-child-same-width-as-column-container
+/* TODO a ver como coño he hecho que vaya bien la posicion de los divds animados. con un relative del results-wrapper,
+y luego en absolute solo el que muestra los resultados, pero hay que quitar el absolute del background
+y por alguna razon asi se ajusta bien a la columna y todo...
 */
 #background-div{
     background-color: #000;
-    position:absolute;
+    /*position:absolute;*/
     z-index:0;
 
-    width:300px;
+    width:100%;
     height:200px;
 }
 
 #total-results,#choose-div{
-    position:absolute;
+   position:absolute;
     z-index:1;
-    width:300px;
+    width:100%;
     height:200px;
     background-color: white;
     /*background-color: yellow;*/
