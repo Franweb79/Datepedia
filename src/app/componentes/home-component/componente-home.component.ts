@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       this.getTotalDays();
 
 
-      this.flip()
+      this.flip();
     
     
   }
