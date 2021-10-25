@@ -1,5 +1,8 @@
 import { SafeMethodCall } from '@angular/compiler';
-import { Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 interface month{
   id:number,
@@ -298,7 +301,7 @@ export class DatesService  {
     return numbersArray;
   }
 
-  calculateTotalDaysBetweenDates(pdate1:string,pdate2:string){
+  calculateTotalDaysBetweenDates(pdate1:string,pdate2:string):void{
 
     /*
       days returned by calcCurrentYearDays, 
@@ -409,4 +412,63 @@ export class DatesService  {
 
 
   }
+
+  /*
+    custom validator to add to Validators on the FormGroup oncomponente-home.ts
+    if date fields are the same, we set form to invalid then the submit button
+    is disabled
+
+    //TODO TEST
+  */
+  validatorTest1(control1: AbstractControl):{[key: string]: boolean} | null{
+
+    console.log(control1.value);
+    return {'result':false};
+
+  }
+
+  //TODO TEST, Y HAZLO BIEN, Y POR QUE SE EJECUTA EL SON IGUSALES AUNQUE NO LO SEA?
+  //TODO FUNCIONA, FUNCIONA, REPASALO BIEN!!!! Y CON ESTOS LINKS
+
+  /*
+
+  https://www.freecodecamp.org/news/how-to-validate-angular-reactive-forms/
+
+  https://ngrefs.com/forms/abstractcontrol
+
+  https://nishugoel.medium.com/custom-validation-for-your-reactive-forms-29ff68bc00cd
+
+  */
+  validatorFields(): ValidatorFn  | null{
+
+    return function myValFn(control:AbstractControl):{[key: string]: boolean} | null{
+      console.log (control.value);
+
+
+      const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
+      console.log(firstYearToCheckDateString);
+      if(firstYearToCheckDateString===lastYearToCheckDateString){
+
+        console.log ("son iguales");
+     
+
+        //o sea que este objeto es el que hace que sea invaLIDO EL FORM, el null no hace nada
+       return {'areEqual':false}
+
+      }else{
+
+        return null;
+        
+        
+
+      }
+     /* console.log ("el control es");
+      console.log(control);
+      return {'areEqual':true}*/
+    }
+    
+
+  }
+
+
 }

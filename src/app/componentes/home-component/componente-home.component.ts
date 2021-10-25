@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { DatesService } from 'src/app/services/dates.service';
+import { DatesService } from 'src/app/services/dates-service/dates.service';
 
 
 @Component({
@@ -17,11 +17,15 @@ export class HomeComponent implements OnInit {
   public isFlipped:boolean;
   
   /*TODO crear mi validacion custom para que se desactive el boton de enviar
-  si son la misma fecha*/
+  si son la misma fecha
+  //TODO hacer igual que si es la misma fecha vuelva a 2select two different dates"
+  
+  If want to set a date here, must be following format string: 'yyyy-mm-dd'
+  */
   myDatesForm:FormGroup=new FormGroup({
-    "firstYearToCheckDateString": new FormControl("", Validators.required),
+    "firstYearToCheckDateString": new FormControl("", Validators.compose([Validators.required]) ),
     "lastYearToCheckDateString": new FormControl("", Validators.required),
-  });
+  },this._dates.validatorFields());
 
   
   
