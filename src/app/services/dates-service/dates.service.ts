@@ -2,7 +2,6 @@ import { SafeMethodCall } from '@angular/compiler';
 import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 interface month{
   id:number,
@@ -437,6 +436,8 @@ export class DatesService  {
   https://ngrefs.com/forms/abstractcontrol
 
   https://nishugoel.medium.com/custom-validation-for-your-reactive-forms-29ff68bc00cd
+
+  https://angular.io/guide/form-validation
 
   */
   validatorFields(): ValidatorFn  | null{
