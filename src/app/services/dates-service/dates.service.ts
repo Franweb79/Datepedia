@@ -443,11 +443,10 @@ export class DatesService  {
   validatorFields(): ValidatorFn  | null{
 
     return function myValFn(control:AbstractControl):{[key: string]: boolean} | null{
-      console.log (control.value);
 
 
       const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
-      console.log(firstYearToCheckDateString);
+      
       if(firstYearToCheckDateString===lastYearToCheckDateString){
 
         console.log ("son iguales");
