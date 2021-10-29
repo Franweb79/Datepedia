@@ -10,6 +10,7 @@ import { HomeComponent } from './componentes/home-component/componente-home.comp
 import { HeaderComponent } from './componentes/header-menu-component/header-menu-component.component';
 import { ErrorComponent } from './componentes/error-component/error-component.component';
 import { ShowDaysComponent } from './componentes/show-days-component/show-days/show-days.component';
+import { ModalComponent } from './componentes/modal-component/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ShowDaysComponent } from './componentes/show-days-component/show-days/s
     HeaderComponent,
     HomeComponent,
     ErrorComponent,
-    ShowDaysComponent
+    ShowDaysComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
