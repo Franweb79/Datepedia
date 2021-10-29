@@ -1,0 +1,5 @@
+
+/*to avid the styles specified on styles.css for other buttons*/
+.modal button{
+    margin:3px !important;
+}
