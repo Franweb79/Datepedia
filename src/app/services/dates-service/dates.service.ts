@@ -123,14 +123,14 @@ export class DatesService  {
       so we reverse the dates as array of numbers we have operated with, and revert back
       to strings.
 
-    //TODO 
+    
     
       I realised it would have been a better idea to have the string
       dates we get from the form at home-component, as service properties
       and not as home-component-properties. Now this would not have been maybe neccessary,
       and would be a better designed app. But I am here to learn :)
       Also maybe we would save some inherit of properties from parent to child components
-      
+
 
   */
   convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
@@ -445,7 +445,7 @@ export class DatesService  {
     if date fields are the same, we set form to invalid then the submit button
     is disabled
 
-    //TODO TEST
+   
   */
   validatorTest1(control1: AbstractControl):{[key: string]: boolean} | null{
 
@@ -454,18 +454,10 @@ export class DatesService  {
 
   }
 
-  //TODO TEST, Y HAZLO BIEN, Y POR QUE SE EJECUTA EL SON IGUSALES AUNQUE NO LO SEA?
-  //TODO FUNCIONA, FUNCIONA, REPASALO BIEN!!!! Y CON ESTOS LINKS
-
   /*
-
-  https://www.freecodecamp.org/news/how-to-validate-angular-reactive-forms/
-
-  https://ngrefs.com/forms/abstractcontrol
-
-  https://nishugoel.medium.com/custom-validation-for-your-reactive-forms-29ff68bc00cd
-
-  https://angular.io/guide/form-validation
+    TODO TEST esta funcion
+    //TODO cuando las fechas sean iguales, si esta mostrandose los resultados d ela op. anterior, que desaparezca el boton 
+    amarillo de sabias que y eso tb, que vuelva al "select 2 dates"
 
   */
   validatorFields(): ValidatorFn  | null{
@@ -490,9 +482,7 @@ export class DatesService  {
         
 
       }
-     /* console.log ("el control es");
-      console.log(control);
-      return {'areEqual':true}*/
+     
     }
     
 
