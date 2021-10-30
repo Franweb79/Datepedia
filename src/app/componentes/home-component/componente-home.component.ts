@@ -15,9 +15,18 @@ export class HomeComponent implements OnInit {
   public totalDays:number;
 
   public isFlipped:boolean;
+
+  /*// TODO tone of these options:
+  -dates as a service to be passed directly to modal (propierties from service called date1 and date2)
+
+  -these 2 following properties are used to send to the modal which is actually a "·grandchild", so will be passes
+  first to show-days component, then to modal component*/
+
+  public firstDateToSendToModal:string;
+
+  public lastDateToSendToModal:string;
   
-  /*TODO crear mi validacion custom para que se desactive el boton de enviar
-  si son la misma fecha
+  /*
   //TODO hacer igual que si es la misma fecha vuelva a 2select two different dates"
   
   If want to set a date here, must be following format string: 'yyyy-mm-dd'
@@ -35,6 +44,9 @@ export class HomeComponent implements OnInit {
     this.totalDays=0;
 
     this.isFlipped=false;
+
+    this.firstDateToSendToModal="";
+    this.lastDateToSendToModal="";
 
    }
 

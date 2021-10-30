@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { DatesService } from '../../../services/dates-service/dates.service';
 
 @Component({
   selector: 'app-modal',
@@ -11,16 +12,25 @@ export class ModalComponent implements OnInit {
 
   @Input() isModalOpenChild:boolean;
 
-  constructor() { 
+  @Input() date1ToShow:string;
+
+  @Input() date2ToShow:string;
+
+  constructor(private _dates:DatesService) { 
 
     this.isModalOpenChild=false;
+
+    this.date1ToShow="";
+
+    this.date2ToShow="";
   }
 
   ngOnInit(): void {
 
-    // we added this so that when the backdrop is clicked the modal is closed.
-   
+    
   }
+
+  
 
  
 }

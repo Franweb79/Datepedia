@@ -117,6 +117,34 @@ export class DatesService  {
     return newDateNumber;
   }
 
+  /*
+      this method does reverse operation of splitYearToCheckString.
+      To show on modal and properly play with datepipes we need the dates as string,
+      so we reverse the dates as array of numbers we have operated with, and revert back
+      to strings.
+
+    //TODO 
+    
+      I realised it would have been a better idea to have the string
+      dates we get from the form at home-component, as service properties
+      and not as home-component-properties. Now this would not have been maybe neccessary,
+      and would be a better designed app. But I am here to learn :)
+      Also maybe we would save some inherit of properties from parent to child components
+      
+
+  */
+  convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
+    let stringToReturn:string="";
+
+    stringToReturn+=parrayToConvert.map(function(element){
+
+      return element.toString();
+    });
+
+    return stringToReturn;
+
+  }
+
   //TODO TEST, how to test a service
   //returns true or false
   isLeapYearToCheck(pyearToCheck:number):boolean{
