@@ -278,7 +278,7 @@ export class DatesService  {
         e.g:minorYear would be 2004 and higest 2018
     */
 
-        console.log (orderedYears);
+       // console.log (orderedYears);
 
     const [ minorYear, highestYear]=orderedYears;
 
@@ -378,7 +378,7 @@ export class DatesService  {
       }
     }
 
-    console.log(this.datesArray);
+    //console.log(this.datesArray);
 
     /*now,  we will calculate days between years and days passes on 2 fiven dates
       and we will add to totaldays:
@@ -397,7 +397,7 @@ export class DatesService  {
 
        const [daysPassedDate1, daysLeftDate1]=resultDate1;
 
-       console.log ("res date1 "+resultDate1);
+       //console.log ("res date1 "+resultDate1);
 
 
 
@@ -406,13 +406,13 @@ export class DatesService  {
 
        const [daysPassedDate2, daysLeftDate2]=resultDate2;
 
-       console.log ("res date2 "+resultDate2);
+       //console.log ("res date2 "+resultDate2);
 
-      console.log (date1Year);
+      //console.log (date1Year);
        daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
 
-       console.log ("total"+this.totalDays);
+       //console.log ("total"+this.totalDays);
 
 
     if(date1Year != date2Year){

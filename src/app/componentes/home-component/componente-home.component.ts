@@ -109,9 +109,34 @@ export class HomeComponent implements OnInit {
   
         const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
         
-        if(firstYearToCheckDateString===lastYearToCheckDateString){
+    
+        /*
+        
+          the ==="" works because by some reason, if we delete some field by hand on the input,
+          -for example the days on a valid date we already introduced, control goes to "", so we checked that way
+        
+        */
+
+          /*
+          TODO ask on SO why I can access the formgroup with console.log(control) but when 
+          I try to access a property like status it fires the formcontrol´s property (for example status)
+          and not the formgroups
+
+          for example if I do now console.log (control) appears the formgroup but
+          if i do console.log(control.valid) gets the valid property of one of the inputs, which
+          also had that valid property as well as formgroup
+
+          it only seems to work with control.value with gets all the controls like shown on detructuration 
+
+                  const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
+
+                  but it doenst work with any other property. If formgroup has VALID set to false, for example,
+                  when i get control.valid it gets a valid, maybe because the controls are valid?
+                  
+          */
+        if( (firstYearToCheckDateString===lastYearToCheckDateString) || firstYearToCheckDateString==="" || lastYearToCheckDateString===""){
   
-          console.log ("son iguales");
+          console.log ("son mal");
        
           this.totalDays=0;
           this.isFlipped=false;//to be sure that animation will be triggered next time we press calculate
