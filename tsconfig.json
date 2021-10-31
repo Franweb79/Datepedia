@@ -19,7 +19,10 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {//TODO investigar esto y como usarlo con import
+      "@images/*": ["src/app/assets/images/*"] 
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

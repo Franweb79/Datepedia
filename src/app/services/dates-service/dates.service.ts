@@ -454,39 +454,7 @@ export class DatesService  {
 
   }
 
-  /*
-    TODO TEST esta funcion
-    //TODO cuando las fechas sean iguales, si esta mostrandose los resultados d ela op. anterior, que desaparezca el boton 
-    amarillo de sabias que y eso tb, que vuelva al "select 2 dates"
-
-  */
-  validatorFields(): ValidatorFn  | null{
-
-    return function myValFn(control:AbstractControl):{[key: string]: boolean} | null{
-
-
-      const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
-      
-      if(firstYearToCheckDateString===lastYearToCheckDateString){
-
-        console.log ("son iguales");
-     
-
-        //o sea que este objeto es el que hace que sea invaLIDO EL FORM, el null no hace nada
-       return {'areEqual':false}
-
-      }else{
-
-        return null;
-        
-        
-
-      }
-     
-    }
-    
-
-  }
+ 
 
 
 }

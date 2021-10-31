@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
 import { DatesService } from 'src/app/services/dates-service/dates.service';
 
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   myDatesForm:FormGroup=new FormGroup({
     "firstYearToCheckDateString": new FormControl("", Validators.compose([Validators.required]) ),
     "lastYearToCheckDateString": new FormControl("", Validators.required),
-  },this._dates.validatorFields());
+  },this.validatorFields());
 
   
   
@@ -95,6 +95,41 @@ export class HomeComponent implements OnInit {
   flip(){
     this.isFlipped=!this.isFlipped;
   }
+
+   /*
+    TODO TEST esta funcion
+    //TODO cuando las fechas sean iguales, si esta mostrandose los resultados d ela op. anterior, que desaparezca el boton 
+    amarillo de sabias que y eso tb, que vuelva al "select 2 dates"
+
+  */
+    validatorFields(): ValidatorFn  | null{
+
+      return (control:AbstractControl):{[key: string]: boolean} | null=>{
+  
+  
+        const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
+        
+        if(firstYearToCheckDateString===lastYearToCheckDateString){
+  
+          console.log ("son iguales");
+       
+          this.totalDays=0;
+          this.isFlipped=false;//to be sure that animation will be triggered next time we press calculate
+          //o sea que este objeto es el que hace que sea invaLIDO EL FORM, el null no hace nada
+         return {'areEqual':false}
+  
+        }else{
+  
+          return null;
+          
+          
+  
+        }
+       
+      }
+      
+  
+    }
   
 
 }

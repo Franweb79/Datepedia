@@ -18,6 +18,10 @@ y luego en absolute solo el que muestra los resultados, pero hay que quitar el a
 y por alguna razon asi se ajusta bien a la columna y todo...
 */
 #background-div{
+
+    /*background-image: url("../../../../assets/images/wall.jpg");
+    background-size: cover;
+    /*black color if image is not available*/
     background-color: #000;
     /*position:absolute;*/
     z-index:0;
