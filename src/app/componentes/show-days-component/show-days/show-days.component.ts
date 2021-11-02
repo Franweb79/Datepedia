@@ -178,6 +178,9 @@ export class ShowDaysComponent implements OnInit {
       -original array numbers cant be converted to Date,
       and we need them to be sent to the api to interact with it easier
       than with strings-.
+      Also using the same string class properties we have to control this logic,
+      could cause things not working fine. I am sure it can be more properly refactored, so //TODO
+      but now will let so 
       
     */
 
