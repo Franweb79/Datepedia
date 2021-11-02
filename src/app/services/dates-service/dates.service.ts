@@ -446,7 +446,7 @@ export class DatesService  {
 
     this will be called on show-days-component.ts on methods
 
-    convertDatesToString()
+    convertDatesToModal()
 
     and
 
