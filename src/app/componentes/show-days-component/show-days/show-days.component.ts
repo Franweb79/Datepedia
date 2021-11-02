@@ -71,12 +71,23 @@ export class ShowDaysComponent implements OnInit {
   showModal(){
    
     this.isModalOpen=!this.isModalOpen;
-   // alert(this.isModalOpen);
+    // alert(this.isModalOpen);
 
-   this.getDates();
+    this.convertDatesToString();
+
+    this.callAPI();
   }
 
-  /*we get the dates and convert them to string*/
+  /*
+    we will get the dates on an array of numbers format to send them to the wiki API
+    and inside convert to convertDatesToString() them to strings and manipuñate them easier once moda is shown
+  
+  */
+  getDates():number[][]{
+    return [this._dates.date1,this._dates.date2];
+  }
+
+  /*we convert the dates them to string*/
 
   /*
     to solve the problem that we could find second date 
@@ -86,35 +97,40 @@ export class ShowDaysComponent implements OnInit {
 
     https://masteringjs.io/tutorials/fundamentals/compare-dates
   */
-  getDates():void {
+  convertDatesToString():void {
+
+    /* 
+      array destructuration to make work easier
+    */
+
+      const [date1,date2]=this.getDates();
+
    
-    this.firstDateToShowOnModal=this._dates.convertArrayOfNumbersIntoString(this._dates.date1);
+      this.firstDateToShowOnModal=this._dates.convertArrayOfNumbersIntoString(date1);
 
-    this.lastDateToShowOnModal=this._dates.convertArrayOfNumbersIntoString(this._dates.date2);
-
-
-   console.log(this.firstDateToShowOnModal);
-
-   /*
-    as we cant do
-
-       this.firstDateToShowOnModal=new Date(this.firstDateToShowOnModal);
-
-    because we can´t assign as Date Type was specified as a tring variable, we would do
-    with 2 local variables, and depending which date is higher, we will reassign
-    which will be the firstDate and which will be second, in terms to be shown on modal
+      this.lastDateToShowOnModal=this._dates.convertArrayOfNumbersIntoString(date2);
 
 
-  */
+     
+
+    /*
+      as we cant do
+
+        this.firstDateToShowOnModal=new Date(this.firstDateToShowOnModal);
+
+      because we can´t assign as Date Type was specified as a tring variable, we would do
+      with 2 local variables, and depending which date is higher, we will reassign
+      which will be the firstDate and which will be second, in terms to be shown on modal
+
+
+    */
    
     const d1=new Date(this.firstDateToShowOnModal);
-    console.log("dates for modal date 1"+d1);
+   
 
     const d2=new Date(this.lastDateToShowOnModal);
 
-    console.log("dates for modal date 2"+d2);
-
-    console.log ("is first date correct order:");
+    
 
     /*
       if this is false, because second date is older, we reassing variables to be wshown on modals
@@ -127,6 +143,17 @@ export class ShowDaysComponent implements OnInit {
 
       this.lastDateToShowOnModal=aux;
     }
+  }
+
+  callAPI(){
+
+    const [date1,date2]=this.getDates();
+
+    const d1=new Date(this.firstDateToShowOnModal);
+
+    console.log (d1);
+
+
   }
 
 }

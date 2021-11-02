@@ -441,6 +441,26 @@ export class DatesService  {
   }
 
   /*
+    TODO maybe all the ways I use to order dates could be refactored 
+    in one method, check it.
+
+    this will be called on show-days-component.ts on methods
+
+    convertDatesToString()
+
+    and
+
+    callAPI()
+
+    to make available that dates can be shown chornologically despite user enters otherwise
+
+
+  */
+  orderTwoDatesObjects(pdate1:Date,pdate2:Date){
+
+  }
+
+  /*
     custom validator to add to Validators on the FormGroup oncomponente-home.ts
     if date fields are the same, we set form to invalid then the submit button
     is disabled
