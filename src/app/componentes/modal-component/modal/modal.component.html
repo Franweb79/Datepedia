@@ -11,6 +11,15 @@
           
           {{date1ToShow | date}}
           {{date2ToShow | date}}
+
+          <div *ngFor="let item of arrayOfEventsToShow">
+
+            {{item}}
+          </div>
+
+          
+
+        
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

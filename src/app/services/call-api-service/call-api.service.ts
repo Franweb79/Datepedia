@@ -11,9 +11,13 @@ export class CallApiService {
 
   public dataToShow:Object;
 
+
+
   constructor(private _http:HttpClient) { 
 
     this.dataToShow={};
+
+
   }
 
   
