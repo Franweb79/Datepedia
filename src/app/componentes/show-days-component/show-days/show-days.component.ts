@@ -234,7 +234,7 @@ export class ShowDaysComponent implements OnInit {
     const [, monthToSend1,dayToSend1]=this.arrayNumberWithFirstDateToBeSentToApi;
 
     //now we call the callAPIService
-
+//TODO toda esta mierda de promesas y eso meterlo e apuntes de javascript donde he marcado
     this._callApi.getEvents(monthToSend1, dayToSend1).then(
       ()=>{
           //make the same with second date
