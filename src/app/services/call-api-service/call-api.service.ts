@@ -51,6 +51,7 @@ export class CallApiService {
       
       let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
 
+      //TODO use an RXJS operator to catch only 5 random results*/
       this._http.get(completeURL).subscribe(data=>{
         // console.log (data);
          resolve (this.dataToShow=data);

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, HostBinding, APP_ID } from '@angular/core';
+import { Component, Input, OnInit, HostBinding, APP_ID, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { DatesService } from '../../../services/dates-service/dates.service';
 import { CallApiService } from '../../../services/call-api-service/call-api.service';
+import { ModalComponent } from '../../modal-component/modal/modal.component';
 import {
   trigger,
   state,
@@ -33,7 +34,7 @@ import {
     )
   ]
 })
-export class ShowDaysComponent implements OnInit {
+export class ShowDaysComponent implements OnInit,AfterViewInit {
 
   @Input() valueTotalDays: number;
 
@@ -64,7 +65,25 @@ export class ShowDaysComponent implements OnInit {
   public arrayNumberWithLastDateToBeSentToApi: number[];
 
 
+
   public arrayOfObjectsWithEvents:Object[];
+
+  
+
+
+  /*
+  //TODO when this works, a apuntes rxjs o angular
+  to capture when arrayOfObjectsWithEvents changes (it gets events from api),
+  then child property will also change*/
+
+  @ViewChild('myModalChild') modal!: ModalComponent;
+
+  ngAfterViewInit () {
+    // Ahora puedes utilizar el componente hijo
+
+    
+  }
+
   constructor(private _dates: DatesService, private _callApi:CallApiService) {
 
     this.valueTotalDays = 0;
@@ -80,6 +99,7 @@ export class ShowDaysComponent implements OnInit {
     this.arrayNumberWithLastDateToBeSentToApi = [];
 
     this.arrayOfObjectsWithEvents=[];
+
   }
 
   ngOnInit(): void {
@@ -148,7 +168,7 @@ export class ShowDaysComponent implements OnInit {
 
 
     /*
-      if this is false, because second date is older, we reassing variables to be wshown on modals
+      if this is false, because second date is older, we reassign variables to be wshown on modals
       with different order, the second date will be the first date and viceversa
 
       //TODO As this piece of code will be also used on callApi() to order the dates,
@@ -173,18 +193,19 @@ export class ShowDaysComponent implements OnInit {
 
     /*
     
-      here i decide to create local variables to store the string dates,
-      and not use string class properties like the ones created to show dates on modal 
-      because logic 
-      is different than on convertDatesToModal(),
-      since now we dont need to show them on a template, just be used
-      to be converted to Dates and then be ordered
-      -original array numbers cant be converted to Date,
-      and we need them to be sent to the api to interact with it easier
-      than with strings-.
-      Also using the same string class properties we have to control this logic,
-      could cause things not working fine. I am sure it can be more properly refactored, so //TODO
-      but now will let so 
+      here i decide to create local string variables to store the string dates,
+      and not use string class properties like the ones created to show dates 
+      on modal, because logic here
+      is different than on convertDatesToModal().
+
+      Here we dont need to show them on a template, just be used
+      to be converted to Dates objects and then be ordered
+      -original array numbers can`t be converted to Date objects,
+      and we need them to be numbers to be sent to the api-.
+
+      Also using the same string class properties we have to control other things,
+      could cause flow not working fine. I am sure it can be more properly refactored, so //TODO
+      but now will let this way
       
     */
 
@@ -231,29 +252,30 @@ export class ShowDaysComponent implements OnInit {
 
     console.log(this.arrayNumberWithLastDateToBeSentToApi);*/
 
-    //before sending to the api, we will destructure to get month and day easier
+    /*
+    
+      before sending to the api, 
+      we will destructure to get month and day easier
 
-    //first position will be empty because we need 2nd and 3rd values of the array number
+      first position will be empty because we need 2nd and 3rd values
+       of the array number
+
+    */
+
     const [, monthToSend1,dayToSend1]=this.arrayNumberWithFirstDateToBeSentToApi;
 
-
-    
-    //now we call the callAPIService
-//TODO toda esta mierda de promesas y eso meterlo e apuntes de javascript donde he marcado
-   /* this._callApi.getEvents(monthToSend1, dayToSend1).then(
-      ()=>{
-          //make the same with second date
-    console.log (this._callApi.dataToShow);
-      }
-    
-    );*/
       
 
-    //with promise, not with async await
+    /*
+      we use a promise to ensure we control the async request on
+       _http:get() inside service.
+
+       So, once we have 1st result and added as first element of an array, we make the 2nd request
+    */
 
     this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
       
-      //clear array first because maybe we made requests for 2 dates before
+      //clear array first because maybe we have stored results for 2 dates before
 
       this.arrayOfObjectsWithEvents=[];
       
@@ -270,6 +292,20 @@ export class ShowDaysComponent implements OnInit {
           console.log ("array");
 
           console.log (this.arrayOfObjectsWithEvents);
+
+          /*
+            now that we have the 2 values, we assign to a modal property which will be shown
+            on that modal
+            
+          */
+
+            this.modal.arrayOfEventsToShow=this.arrayOfObjectsWithEvents;
+
+          
+            
+            console.log ("modal shit");
+            console.log (this.modal.arrayOfEventsToShow);
+
 
         }
       );

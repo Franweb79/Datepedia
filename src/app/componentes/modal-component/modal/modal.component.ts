@@ -17,11 +17,22 @@ export class ModalComponent implements OnInit {
 
   @Input() date2ToShow:string;
 
-  @Input() arrayOfEventsToShow:Object[];
+ // @Input() arrayOfEventsToShow:Object[];
+
+ @Input() arrayOfEventsToShow:any;
+
 
   public events1Date:Object;
   
   public events2date:Object;
+
+  /*
+    to convert the objects inside array of objects into arrays, maybe easier 
+    to manipulate
+  */
+  public eventObjectConvertedToArray:any;
+
+  public arrayOfEventsAsArrays:any;
 
   constructor(private _dates:DatesService, private _callApi:CallApiService) { 
 
@@ -33,6 +44,15 @@ export class ModalComponent implements OnInit {
 
     this.arrayOfEventsToShow=[];
 
+    this.eventObjectConvertedToArray=[];
+
+    this.arrayOfEventsAsArrays=[];
+
+
+
+
+    
+
     //destructure
 
      [this.events1Date,this.events2date]=this.arrayOfEventsToShow;
@@ -41,7 +61,6 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log (this.arrayOfEventsToShow);
 
 
   }

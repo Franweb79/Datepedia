@@ -8,7 +8,7 @@ que solo se activan al pulsar, y en la condicion ngif a ver que pasa con ===0 qu
         
         <p>{{valueTotalDays}}</p>
 
-        <button type="button" (click)="showModal()" class="btn btn-warning" id="didYouKnowButton" data-bs-toggle="modal" data-bs-target="#dataModal">Did you know that...?</button>
+        <button type="button" (click)="showModal()" class="btn btn-warning" id="didYouKnowButton" data-bs-toggle="modal" data-bs-target="#dataModal">Did you know what happened on these dates?</button>
 
 
     </div>
@@ -23,7 +23,7 @@ que solo se activan al pulsar, y en la condicion ngif a ver que pasa con ===0 qu
      
     </ng-template>
 </div>
-<app-modal [isModalOpenChild]="isModalOpen" [date1ToShow]="firstDateToShowOnModal" [date2ToShow]="lastDateToShowOnModal" [arrayOfEventsToShow]="arrayOfObjectsWithEvents" >
+<app-modal [isModalOpenChild]="isModalOpen" [date1ToShow]="firstDateToShowOnModal" [date2ToShow]="lastDateToShowOnModal" [arrayOfEventsToShow]="arrayOfObjectsWithEvents" #myModalChild >
     
 </app-modal>
 

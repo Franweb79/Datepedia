@@ -12,9 +12,30 @@
           {{date1ToShow | date}}
           {{date2ToShow | date}}
 
-          <div *ngFor="let item of arrayOfEventsToShow">
+          <div *ngFor="let item of arrayOfEventsToShow ">
 
-            {{item}}
+            
+            <p></p>
+
+            {{item.date}}
+
+            <ul>
+              <li *ngFor="let event of item.events">
+                <p></p>
+               <p>On Year {{event.year}}, {{event.description}}</p>
+                <p>Related Links</p>
+                <ul>
+                  <li *ngFor="let link of event.wikipedia">
+
+                    <a href="{{link.wikipedia}}">{{link.title}}</a>
+
+                  </li>
+                </ul>
+              </li>
+            </ul>
+
+            
+
           </div>
 
           
