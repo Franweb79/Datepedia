@@ -237,6 +237,14 @@ export class ShowDaysComponent implements OnInit {
 
     this._callApi.getEvents(monthToSend1, dayToSend1);
 
+    //make the same with second date
+
+
+    const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
+
+    this._callApi.getEvents(monthToSend2, dayToSend2);
+
+
   }
 
 }
