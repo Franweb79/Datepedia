@@ -235,10 +235,28 @@ export class ShowDaysComponent implements OnInit {
 
     //now we call the callAPIService
 
-    this._callApi.getEvents(monthToSend1, dayToSend1);
+    this._callApi.getEvents(monthToSend1, dayToSend1).then(
+      ()=>{
+          //make the same with second date
+    console.log (this._callApi.dataToShow);
+      }
+    
+    );
+      
+
+    //with promise, not with async await
+
+    this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
+      console.log (this._callApi.dataToShow);
+      console.log ("ey");
+
+    });
+    
+    
+    
 
     //make the same with second date
-
+    console.log (this._callApi.dataToShow);
 
     const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
