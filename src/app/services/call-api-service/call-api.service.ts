@@ -58,7 +58,7 @@ export class CallApiService {
 
      
 
-    console.log (this.dataToShow);
+    //console.log (this.dataToShow);
     });
   }
 }

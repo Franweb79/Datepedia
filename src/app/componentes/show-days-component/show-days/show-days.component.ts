@@ -64,6 +64,7 @@ export class ShowDaysComponent implements OnInit {
   public arrayNumberWithLastDateToBeSentToApi: number[];
 
 
+  public arrayOfObjectsWithEvents:Object[];
   constructor(private _dates: DatesService, private _callApi:CallApiService) {
 
     this.valueTotalDays = 0;
@@ -77,6 +78,8 @@ export class ShowDaysComponent implements OnInit {
     this.arrayNumberWithFirstDateToBeSentToApi = [];
 
     this.arrayNumberWithLastDateToBeSentToApi = [];
+
+    this.arrayOfObjectsWithEvents=[];
   }
 
   ngOnInit(): void {
@@ -207,13 +210,13 @@ export class ShowDaysComponent implements OnInit {
     const d2 = new Date(stringWithLastDateToBeSentToApi);
 
 
-    console.log(d1);
+    /*console.log(d1);
 
-    console.log(d2);
+    console.log(d2);*/
 
     if (d1 > d2) {
 
-      console.log("es mayor la primera");
+    //  console.log("es mayor la primera");
       let aux = this.arrayNumberWithFirstDateToBeSentToApi;
 
       this.arrayNumberWithFirstDateToBeSentToApi = this.arrayNumberWithLastDateToBeSentToApi;
@@ -222,41 +225,67 @@ export class ShowDaysComponent implements OnInit {
     }
 
 
-    console.log("to send to api: ");
+   /* console.log("to send to api: ");
 
     console.log(this.arrayNumberWithFirstDateToBeSentToApi);
 
-    console.log(this.arrayNumberWithLastDateToBeSentToApi);
+    console.log(this.arrayNumberWithLastDateToBeSentToApi);*/
 
     //before sending to the api, we will destructure to get month and day easier
 
     //first position will be empty because we need 2nd and 3rd values of the array number
     const [, monthToSend1,dayToSend1]=this.arrayNumberWithFirstDateToBeSentToApi;
 
+
+    
     //now we call the callAPIService
 //TODO toda esta mierda de promesas y eso meterlo e apuntes de javascript donde he marcado
-    this._callApi.getEvents(monthToSend1, dayToSend1).then(
+   /* this._callApi.getEvents(monthToSend1, dayToSend1).then(
       ()=>{
           //make the same with second date
     console.log (this._callApi.dataToShow);
       }
     
-    );
+    );*/
       
 
     //with promise, not with async await
 
     this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
-      console.log (this._callApi.dataToShow);
-      console.log ("ey");
+      
+      //clear array first because maybe we made requests for 2 dates before
+
+      this.arrayOfObjectsWithEvents=[];
+      
+      this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+
+      
+
+      //once we have the first date events, we make the same for the second
+
+      this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
+        ()=>{
+          this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+
+          console.log ("array");
+
+          console.log (this.arrayOfObjectsWithEvents);
+
+        }
+      );
+
+
+
+      
+      //console.log (this._callApi.dataToShow);
 
     });
     
-    
+       
     
 
     //make the same with second date
-    console.log (this._callApi.dataToShow);
+    //console.log (this._callApi.dataToShow);
 
     const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
