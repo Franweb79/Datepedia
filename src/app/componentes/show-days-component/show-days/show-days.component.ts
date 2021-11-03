@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, HostBinding, APP_ID } from '@angular/core';
 import { DatesService } from '../../../services/dates-service/dates.service';
+import { CallApiService } from '../../../services/call-api-service/call-api.service';
 import {
   trigger,
   state,
@@ -63,7 +64,7 @@ export class ShowDaysComponent implements OnInit {
   public arrayNumberWithLastDateToBeSentToApi: number[];
 
 
-  constructor(private _dates: DatesService) {
+  constructor(private _dates: DatesService, private _callApi:CallApiService) {
 
     this.valueTotalDays = 0;
     this.isDivFlipped = false;
@@ -226,6 +227,15 @@ export class ShowDaysComponent implements OnInit {
     console.log(this.arrayNumberWithFirstDateToBeSentToApi);
 
     console.log(this.arrayNumberWithLastDateToBeSentToApi);
+
+    //before sending to the api, we will destructure to get month and day easier
+
+    //first position will be empty because we need 2nd and 3rd values of the array number
+    const [, monthToSend1,dayToSend1]=this.arrayNumberWithFirstDateToBeSentToApi;
+
+    //now we call the callAPIService
+
+    this._callApi.getEvents(monthToSend1, dayToSend1);
 
   }
 
