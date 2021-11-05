@@ -6,7 +6,7 @@
 - Used interfaces to create custom data type to be shown to the user, it makes data retrieved by the API easier to manipulate and ensure integrity and maintenance
 - Used angular animations
 - Reactive forms with built-in and custom validators. For example, custom validator is created to ensure, if user inputs same date, form will be invalid.
-- Basic testing.
+- Basic testing with karma and jasmine, maybe learn Protactor in the future if I find easier and faster to automate.
 
 //TODO ordena esto bien
 
