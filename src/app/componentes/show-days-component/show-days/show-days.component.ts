@@ -65,7 +65,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   public arrayNumberWithLastDateToBeSentToApi: number[];
 
 
-
+//TODO make this custom type, customEvent, so maybe export interface we already
+//have defined on call-api-service 
   public arrayOfObjectsWithEvents:Object[];
 
   

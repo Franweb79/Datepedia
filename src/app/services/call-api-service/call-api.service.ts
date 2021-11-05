@@ -18,59 +18,38 @@ export class CallApiService {
 
   public apiBaseURL:string="https://byabbe.se/on-this-day";
 
-  public dataToShow:customEvents;
-
-
   /*
-    we willñ store the random data to be shown on a property
+    we will store the random data to be shown on a property
     which will be an object with a defined interface at the beginning of code outside class,
     to make it easier to understand
     
   */
 
-    public customEvents:customEvents;
+  public dataToShow:customEvents;
 
-    
-
-  
 
   constructor(private _http:HttpClient) { 
 
     this.dataToShow={
       date:"",
       events:[]
-    };;
-
-    this.customEvents={
-      date:"",
-      events:[]
     };
+
+    
   }
 
-  
- /* async getEvents(pmonth:number,pday:number){
 
-    let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
+  /*
+    this promise will be used on show-days-component.
+    
+    PARAMETERS:month and day of the date to search
 
-    let data= await this._http.get(completeURL).toPromise();
+    We need it to make a promise or async/await to be sure
+    we have the data returned for the first date before requesting
+    for second date, and properly order them 
 
-    console.log (data);
-
-    this.dataToShow=data;
-
-    console.log (this.dataToShow);
-   
-    /*this._http.get(completeURL).subscribe(data=>{
-     // console.log (data);
-      this.dataToShow=data;
-      //return data;
-
-      console.log(this.dataToShow);
-
-    });
-
-  }*/
-
+    TODO handle reject
+  */
   getEventsPromise(pmonth:number,pday:number){
 
     return new Promise((resolve, reject)=>{
@@ -79,36 +58,27 @@ export class CallApiService {
       let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
 
       /*
-        TODO use an RXJS operator or something to catch only 5 random results
+        we can´t use an RXJS operator  to catch only 5 random results
+        of retrieved data, take() operator here doesnt work 
+        because values should be emitted by the api one by one, 
+        and all events for a date are all emitted together.
 
-        now we get the first 5 results
-
-        take() operator here doesnt work because values should be emitted
+        We will use dataToShow property, which is customEvents type, 
+        to store filtered data, then pass it to show-days-component's property called arrayOfObjectsWithEvents,
+        and though a viewchild, pass the value to modal child component and be able
+        to show it
         
-        by the api one by one, and they are all emitted together
-
-        with declaring data as any i can access to data.events, otherwise not
-
-        like happened on the modla template to show results
+        TODO for sure it maybe can be refactored or better done
       
       */
-      this._http.get(completeURL).subscribe((data:any)=>{
-       // console.log ("dentro del get");
-
-        //console.log (data.events.length);
-
-        //this.getRandomElementsOfArray(data);
+      this._http.get(completeURL).subscribe((data)=>{
+       
          resolve (this.dataToShow=this.getRandomElementsOfArray(data));
-         //return data;
+         
    
-         console.log ("data to show desde dentro get");
-        console.log(this.dataToShow);
    
        });
 
-     
-
-    //console.log (this.dataToShow);
     });
   }
 
@@ -117,28 +87,29 @@ export class CallApiService {
     parameter: the data object returned by the api, it contains, among others,
     an events property which is an array with events
 
+    return a randomEvents custom type
+
   */
   getRandomElementsOfArray(pobjectWithEvents:any){
 
-    //to store the index of random operation
+    //result, to store the index of random operation
 
     let result:number=0;
    
-   // let randomEvents:any={};
-
-    /*to catch is that event index has already been used, we will add here*/
-
-    let usedIndexes:number[]=[];
-
-    this.customEvents={
+  
+    let randomEvents:customEvents={
       date:"",
       events:[]
     };
+
+    /*
+      to catch is that event index has already been used, we will add here
+      
+    */
+
+    let usedIndexes:number[]=[];
+
     
-    //console.log ("dentro del getrandom");
-
-    //console.log (parray.events.length);
-
     /*
 
       https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
@@ -150,44 +121,37 @@ export class CallApiService {
       result=Math.floor(Math.random()*pobjectWithEvents.events.length);
 
       /*
-        search result index on already used indexes, if it is not there,
-        we push to the usedIndexes array, also add event to randomEvents
-        array
+        search if result index is on already used indexes, if it is not there,
+        we push to the usedIndexes array, also add the corresponding date and event 
+        to randomEvents
+  
       */
 
       if(this.isUsedIndex(result,usedIndexes)===false){
-        usedIndexes.push(result);
 
-        /*console.log ("evento a añadir");
-        console.log (pobjectWithEvents);*/
-       // console.log (pobjectWithEvents.events[i]);
-       this.customEvents.date=pobjectWithEvents.date;
-        this.customEvents.events.push(pobjectWithEvents.events[result]);
+        usedIndexes.push(result);
+        randomEvents.date=pobjectWithEvents.date;
+        randomEvents.events.push(pobjectWithEvents.events[result]);
 
       }
-     /* console.log (this.isUsedIndex(result,usedIndexes));
-
-      console.log (result);*/
-
-    
-
+     
 
     }
 
-   console.log(usedIndexes);
+    console.log(usedIndexes);
 
-  /* console.log ("events to be shown");
 
-   console.log (randomEvents);*/
-
-    return this.customEvents;
+    return randomEvents;
   }
 
   isUsedIndex(pindexToCheck:number, parrayWithUsedResults:number[]):boolean{
     
-    /*we assume is not used.
+    /*
+      We assume is not used.
     
-    name of variable to avoid confussions with this function name
+      Name of variable will be isUsedIndexVariable 
+      to avoid confussions with this function name isUsedIndex
+
     */
 
     let isUsedIndexVariable:boolean=false;
