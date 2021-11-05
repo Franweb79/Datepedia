@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
 
       this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
-      console.log (this._dates.totalDays);
+      //console.log (this._dates.totalDays);
 
       this.getTotalDays();
 

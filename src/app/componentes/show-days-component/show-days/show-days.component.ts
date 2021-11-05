@@ -264,7 +264,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     const [, monthToSend1,dayToSend1]=this.arrayNumberWithFirstDateToBeSentToApi;
 
-      
+    const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
     /*
       we use a promise to ensure we control the async request on
@@ -323,9 +323,9 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     //make the same with second date
     //console.log (this._callApi.dataToShow);
 
-    const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
+    /*const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
-    this._callApi.getEvents(monthToSend2, dayToSend2);
+    this._callApi.getEvents(monthToSend2, dayToSend2);*/
 
 
   }
