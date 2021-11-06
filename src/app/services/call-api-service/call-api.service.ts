@@ -3,10 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
-interface customEvents{
-  date:string,
-  events:any[]
-}
+import { customEvents } from '@interfaces/custom-event-interface';
+
 
 @Injectable({
   providedIn: 'root'

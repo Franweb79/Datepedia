@@ -21,7 +21,8 @@
       "dom"
     ],
     "paths": {//TODO investigar esto y como usarlo con import
-      "@images/*": ["src/app/assets/images/*"] 
+      "@images/*": ["src/app/assets/images/*"],
+      "@interfaces/*":["src/app/models/interfaces/*"]
     }
   },
   "angularCompilerOptions": {
