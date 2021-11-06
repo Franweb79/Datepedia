@@ -3,11 +3,7 @@ import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 
-interface month{
-  id:number,
-  name:string,
-  days:number
-}
+import { month } from '@interfaces/month-interface';
 
 
 @Injectable({
