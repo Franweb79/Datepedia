@@ -8,7 +8,7 @@
 - Reactive forms with built-in and custom validators. For example, custom validator is created to ensure, if user inputs same date, form will be invalid.
 - Basic testing with karma and jasmine, maybe learn Protactor in the future if I find easier and faster to automate.
 
-//TODO ordena esto bien
+//TODO ordena esto bien. apunta lo del interrogante del viewchild
 
 
 # days-between-dates-calculator

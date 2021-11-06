@@ -22,7 +22,7 @@
         <button type="submit" class="btn btn-primary" id="submitDatesButton" [disabled]="myDatesForm.invalid">Calculate</button>
       </form>
     
-      <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped"></app-show-days>
+      <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped" #showDaysComponentTemplateReference></app-show-days>
 
     </div><!--col2-->
 

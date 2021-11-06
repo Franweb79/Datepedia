@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
 import { DatesService } from 'src/app/services/dates-service/dates.service';
+import { ShowDaysComponent } from '../show-days-component/show-days/show-days.component';
 
 
 @Component({
@@ -16,27 +17,31 @@ export class HomeComponent implements OnInit {
 
   public isFlipped:boolean;
 
-  /*// TODO tone of these options:
-  -dates as a service to be passed directly to modal (propierties from service called date1 and date2)
 
-  -these 2 following properties are used to send to the modal which is actually a "·grandchild", so will be passes
-  first to show-days component, then to modal component*/
-
-  public firstDateToSendToModal:string;
-
-  public lastDateToSendToModal:string;
   
   /*
-  //TODO hacer igual que si es la misma fecha vuelva a 2select two different dates"
   
-  If want to set a date here, must be following format string: 'yyyy-mm-dd'
+    If want to set a date here, must be following format string: 'yyyy-mm-dd'
   */
   myDatesForm:FormGroup=new FormGroup({
     "firstYearToCheckDateString": new FormControl("", Validators.compose([Validators.required]) ),
     "lastYearToCheckDateString": new FormControl("", Validators.required),
   },this.validatorFields());
 
-  
+  /*
+    this way we bind two properties on the child components 
+    and will be changed each time they changed, other way is sending
+    on the template html template like with isDivFlipped property for example,
+    and the @Input() decorator on child.
+    
+  */
+  @ViewChild('showDaysComponentTemplateReference') showDays!:ShowDaysComponent;
+
+  ngAfterViewInit () {
+    // Now you can assign things on child components
+
+    
+  }
   
 
   constructor(private _dates:DatesService) {
@@ -45,13 +50,14 @@ export class HomeComponent implements OnInit {
 
     this.isFlipped=false;
 
-    this.firstDateToSendToModal="";
-    this.lastDateToSendToModal="";
+  
 
    }
 
   ngOnInit(): void {
   }
+
+ 
 
   onSubmit():void{
 
@@ -64,9 +70,17 @@ export class HomeComponent implements OnInit {
       //detrucutring the object with dates values into const, more usable
       const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
+      /*
+        we assign them to the properties to be shown when flipped on show-days child component
+      
+      */
+
+      this.showDays.firstDateToShowWhenFlipped=firstYearToCheckDateString;
+      this.showDays.lastDateToShowWhenFlipped=lastYearToCheckDateString;
 
       this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
+      console.log ("datt1"+firstYearToCheckDateString);
       //console.log (this._dates.totalDays);
 
       this.getTotalDays();

@@ -46,6 +46,24 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
   /*
+    These 2 string properties will be used to show dates when the component is flipped
+    for example: "total days between 2021-06-01 and 2021-07-02 are... "
+    //TODO I am sure maybe is a way to refactor and use same properties to be passes
+    and show on modals without creating the 2 other string properties I have declared here
+
+    firstDateToShowOnModal
+
+    lastDateToShowOnModal
+
+    But for now I let this way
+
+
+  */
+  @Input() firstDateToShowWhenFlipped:string;
+  @Input() lastDateToShowWhenFlipped:string;
+
+
+  /*
     We import dates service to be able to show two selected dates on modal
     remember as service is private we must create a getter to put date1 and date2 
     from service on public properties from this component.
@@ -80,7 +98,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   @ViewChild('myModalChild') modal!: ModalComponent;
 
   ngAfterViewInit () {
-    // Ahora puedes utilizar el componente hijo
+    // Now you can assign things on child components
 
     
   }
@@ -90,6 +108,11 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     this.valueTotalDays = 0;
     this.isDivFlipped = false;
     this.isModalOpen = false;
+
+
+
+    this.firstDateToShowWhenFlipped="";
+    this.lastDateToShowWhenFlipped="";
 
     this.firstDateToShowOnModal = "";
 
