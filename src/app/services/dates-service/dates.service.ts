@@ -24,7 +24,7 @@ export class DatesService  {
 
     As dates will be an wrray of numbers with year, month and day separated, we must declare this way
   */
-  public datesArray:number[][];
+  public orderedDatesArray:number[][];
   
   public arrayMonths:month[]=[
     {
@@ -99,7 +99,7 @@ export class DatesService  {
 
     this.totalDays=0;
 
-    this.datesArray=[];
+    this.orderedDatesArray=[];
    }
 
   //splits date and maps it to number array
@@ -355,18 +355,18 @@ export class DatesService  {
 
     //now we set the dates array, and change order if neccesary
 //TODO this ordering could be dome in a function and probably better
-    this.datesArray=[this.date1,this.date2];
+    this.orderedDatesArray=[this.date1,this.date2];
 
     if(date1Year>date2Year){
-      this.datesArray=[this.date2,this.date1];
+      this.orderedDatesArray=[this.date2,this.date1];
 
     }else if(date1Year===date2Year){
 
       if(date1Month>date2Month){
-        this.datesArray=[this.date2,this.date1]
+        this.orderedDatesArray=[this.date2,this.date1]
       }else if(date1Month===date2Month){
         if(date1Day>date2Day){
-          this.datesArray=[this.date2,this.date1];
+          this.orderedDatesArray=[this.date2,this.date1];
 
         }else if(date1Day===date2Day){
           console.log ("same date");
@@ -374,7 +374,7 @@ export class DatesService  {
       }
     }
 
-    //console.log(this.datesArray);
+    //console.log(this.orderedDatesArray);
 
     /*now,  we will calculate days between years and days passes on 2 fiven dates
       and we will add to totaldays:
@@ -382,10 +382,10 @@ export class DatesService  {
         -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
         -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
 
-       REMEMBER DATES ARE ORDERED
+       REMEMBER DATES ARE ORDERED NOW
     */ 
 
-       const [minorDate, highestDate]=this.datesArray;
+       const [minorDate, highestDate]=this.orderedDatesArray;
 
 
 
@@ -436,25 +436,7 @@ export class DatesService  {
 
   }
 
-  /*
-    TODO maybe all the ways I use to order dates could be refactored 
-    in one method, check it.
-
-    this will be called on show-days-component.ts on methods
-
-    convertDatesToModal()
-
-    and
-
-    callAPI()
-
-    to make available that dates can be shown chornologically despite user enters otherwise
-
-
-  */
-  orderTwoDatesObjects(pdate1:Date,pdate2:Date){
-
-  }
+  
 
   /*
     custom validator to add to Validators on the FormGroup oncomponente-home.ts

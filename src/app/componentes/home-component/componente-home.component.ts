@@ -70,17 +70,36 @@ export class HomeComponent implements OnInit {
       //detrucutring the object with dates values into const, more usable
       const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
-      /*
-        we assign them to the properties to be shown when flipped on show-days child component
       
-      */
 
-      this.showDays.firstDateToShowWhenFlipped=firstYearToCheckDateString;
-      this.showDays.lastDateToShowWhenFlipped=lastYearToCheckDateString;
+      
+      
 
       this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
-      console.log ("datt1"+firstYearToCheckDateString);
+      
+    /*
+      making the method calculateTotalDaysBetweenDates, one of the effects is we have an orderedDatesArray, so we use it
+    */
+      console.log (this._dates.orderedDatesArray);
+
+      /* 
+        first, destructure it
+      */
+
+      const [firstOrderedDate, lastOrderedDate]=this._dates.orderedDatesArray;
+
+      /*
+        now convert each date to string on the child components properties
+        which will be shown
+
+      */
+
+      this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
+
+      this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
+
+
       //console.log (this._dates.totalDays);
 
       this.getTotalDays();
