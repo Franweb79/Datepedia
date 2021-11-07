@@ -12,6 +12,7 @@
 #results-wrapper{
     position: relative; 
     margin-top:40px;
+    
 }
 
 /* TODO a ver como coño he hecho que vaya bien la posicion de los divds animados. con un relative del results-wrapper,

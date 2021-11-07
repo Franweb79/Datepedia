@@ -1,5 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+
+    #bodyId is used as a wrapper on app.component.html 
+    to set the global font.
+
+    If i use .body maybe it doesn´t work because it is a 
+    class and Ids are more specific,
+    so I used this way and works
+
+*/
+#bodyId{
+    font-family:"Lucida Console" !important;
+}
+
 button{
     margin: 0 auto !important;
     display: block !important;
 }
+
+
