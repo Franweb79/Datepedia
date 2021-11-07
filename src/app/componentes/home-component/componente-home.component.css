@@ -14,24 +14,18 @@ body {
   font-family: poppins;
 }
 
-.container {
+#myDatesFormId {
   position: relative;
   width: 350px;
   /*height: 550px;*/
   border-radius: 20px;
- padding: 40px;
+  padding: 60px !important;
   box-sizing: border-box;
   background: #ecf0f3;
   box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
 }
 
-.containerOfShowDaysComponent {
-  position: relative;
-  width: 350px;
-  height: 500px;
-  padding: 40px;
-  background: white;
-}
+
 
 
 .brand-logo {
