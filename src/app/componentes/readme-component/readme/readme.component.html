@@ -29,6 +29,10 @@
             It returns an Observable so I had to apply some Reactive Programming skills.
             As it also involves async requests, I used promises to manage results (Also checked with async/await), 
             to ensure I obtain and control data flow the way I need.
+            To obtain the random 5 results mentioned above I used vanilla JS methods like Math.random(),
+            because RXJS operators like <i>take</i> don´t work here. Reason is, the events
+            are emitted by the API all of them together, to be able to use the take() operator they should be emitted by the Observable one by one.
+
         </li>
         <li>
             Used interfaces to create custom data types to be manage the results shown to the user, 
