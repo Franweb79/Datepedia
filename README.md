@@ -9,6 +9,7 @@
 - Basic testing with karma and jasmine, maybe learn Protactor in the future if I find easier and faster to automate.
 - Form styles found here https://codepen.io/prathkum/pen/OJRvVzY
 - You can enter the dates in the order you want. It was kind of logic challenge
+- Customized 404 error page. Code snippet used available here https://codepen.io/Navedkhan012/pen/vrWQMY
 
 //TODO ordena esto bien. apunta lo del interrogante del viewchild
 

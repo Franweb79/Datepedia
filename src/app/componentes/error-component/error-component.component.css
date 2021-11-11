@@ -9,7 +9,9 @@
     font-family: 'Arvo', serif;
 }
 
-.page_404  img{ width:100%;}
+.page_404  img{ 
+    width:100%;
+}
 
 .four_zero_four_bg{
  
@@ -23,6 +25,7 @@
  
 .four_zero_four_bg h1{
     font-size:80px;
+    color:#0d6efd;
  }
  
 .four_zero_four_bg h3{
