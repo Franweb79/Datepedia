@@ -12,6 +12,7 @@ import { HeaderComponent } from './componentes/header-menu-component/header-menu
 import { ErrorComponent } from './componentes/error-component/error-component.component';
 import { ShowDaysComponent } from './componentes/show-days-component/show-days/show-days.component';
 import { ModalComponent } from './componentes/modal-component/modal/modal.component';
+import { ReadmeComponent } from './componentes/readme-component/readme/readme.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ModalComponent } from './componentes/modal-component/modal/modal.compon
     HomeComponent,
     ErrorComponent,
     ShowDaysComponent,
-    ModalComponent
+    ModalComponent,
+    ReadmeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,54 @@
+<div id="readMeId">
+    //TODO estilos para resaltar lo de negrita, color o algo pensarlo, szi pongo subrayados los links o no,
+    y lo que quiero en negrita subrayarlo o no, o sea al reves de como esta
+
+    //TODO sube al github esto cuando haya acabado
+    <p>
+        Hi there! I am Fran. This is a webapp made after sometime without programming
+        to refresh, update and get better coding, JS and Angular skills.
+        Here I will try to detail the things I practiced and/or learned.
+    </p>
+    <p>You can see the code on //TODO mete el link a github aqui GitHub, also don´t forget to follow me on <a href="https://www.linkedin.com/in/francisco-javier-prieto-gut/" target="_blank">LinkedIn</a> and <a href="https://twitter.com/home?lang=es" target="_blank">Twitter</a></p>
+    <ul id="readMeListId">
+        <li>
+            I used <b>reactive forms</b> -until now, I was more used to template driven ones-, with built-in and <b>custom validators</b>. For example, custom validator is created to ensure, if user inputs same exact date, form will be invalid.
+        </li>
+        <li>
+            You can enter the dates in the order you want. No choronological order required. 
+            For example you can set 24/06/2021 on the first box and 06/07/2009 on the second. 
+            It was kind of logic challenge to control it and make usability a little better
+            than forcing the user to set ordered dates or showing negative results, like I have seen on similar websites.    
+        </li>
+        <li>
+            I used <a href="https://byabbe.se/on-this-day/" target="_blank">an external API</a> to get the events occurred on each date. 
+            I managed to get 5 random results from the api for each date, 
+            also ensuring they can´t be repeated.
+        </li>
+        <li>
+            To get the results of those API, it was made with Angular´s httpClient.get() method.
+            It returns an Observable so I had to apply some Reactive Programming skills.
+            As it also involves async requests, I used promises to manage results (Also checked with async/await), 
+            to ensure I obtain and control data flow the way I need.
+        </li>
+        <li>
+            Used interfaces to create custom data types to be manage the results shown to the user, 
+            it makes data retrieved by the API easier to manipulate and ensures integrity and maintenance
+        </li>
+        <li>
+            Used basic angular animations to flip the box with the results and the button to show events ocurred on each date
+        </li>
+        
+        <li>
+            Basic testing with karma and jasmine, maybe learn Protactor in the future if I find easier and faster to automate.
+        </li>
+        <li>
+            Form styles found <a href="https://codepen.io/prathkum/pen/OJRvVzY" target="_blank">here</a>
+        </li>
+        <li>
+            Customized <a [routerLink]="['/thisiserrorpage']" >404 error page</a>. Used code available <a href="https://codepen.io/Navedkhan012/pen/vrWQMY" target="_blank">here</a> 
+        </li> 
+        <li>
+            Other libraries used are Bootstrap and Font Awesome.
+        </li>
+    </ul>
+</div>
