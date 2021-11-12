@@ -13,15 +13,37 @@ export class HomeComponent implements OnInit {
 
   title:string = 'Days between dates calculator';
 
+  /*
+    totalDays will be used by getTotalDays() method.
+    
+    Receives the value stored on a property on _dates service.
+
+    Will pass its value to another property on child component show-days-component, 
+    
+    on the HTML template.
+
+  */
   public totalDays:number;
 
+  /*
+    
+    isFlipped will pass its value to child component show-days-component.
+
+    Will be used on flip() method and on the validatorFields() custom validator
+
+  */
   public isFlipped:boolean;
 
 
   
   /*
   
-    If want to set a date here, must be following format string: 'yyyy-mm-dd'
+    If you want to set a date here on 1st argument of FormControl, 
+    
+    must be following format string: 'yyyy-mm-dd'
+
+    this.validatorFields() is my custom validator
+
   */
   myDatesForm:FormGroup=new FormGroup({
     "firstYearToCheckDateString": new FormControl("", Validators.compose([Validators.required]) ),
@@ -29,10 +51,31 @@ export class HomeComponent implements OnInit {
   },this.validatorFields());
 
   /*
-    this way we bind two properties on the child components 
-    and will be changed each time they changed, other way is sending
-    on the template html template like with isDivFlipped property for example,
-    and the @Input() decorator on child.
+    with Viewchild, we bind two properties on the child component
+
+    firstDateToShowWhenFlipped
+
+    lastDateToShowWhenFlipped
+
+    This are changed on each onSubmit() method like specified below
+
+    this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
+
+    this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
+
+    These way we ensure they will be properly changed and shown with correct values
+    each time they are changed.
+    
+    Other way of sending data to child components is like we did on the HTML template
+    this way, with valuetotalDays and isDivFlipped, which are properties on the
+    child component which receive data from totalDays and isFlipped, which are
+    properties on this current component.
+
+          <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped" #showDaysComponentTemplateReference></app-show-days>
+
+   
+    In both ways, the child component properties must be using the @Input() decorator
+    to "listen"
     
   */
   @ViewChild('showDaysComponentTemplateReference') showDays!:ShowDaysComponent;
@@ -63,12 +106,12 @@ export class HomeComponent implements OnInit {
 
     
 
-      //set totalDays to 0
+    //set totalDays to 0
 
-      this._dates.totalDays=0;
+    this._dates.totalDays=0;
 
-      //detrucutring the object with dates values into const, more usable
-      const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
+    //destructuring the object with dates values into const, more usable
+    const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
       
 
@@ -79,41 +122,43 @@ export class HomeComponent implements OnInit {
 
       
     /*
-      making the method calculateTotalDaysBetweenDates, one of the effects is we have an orderedDatesArray, so we use it
+      
+      after calling the method calculateTotalDaysBetweenDates, 
+      one of the effects is we have an orderedDatesArray, so we use it.
+
+      First, destructure it
+    
+
     */
-      console.log (this._dates.orderedDatesArray);
 
-      /* 
-        first, destructure it
-      */
+    const [firstOrderedDate, lastOrderedDate]=this._dates.orderedDatesArray;
 
-      const [firstOrderedDate, lastOrderedDate]=this._dates.orderedDatesArray;
+    /*
+      now convert each date to string on the child components properties
+      which will be shown
 
-      /*
-        now convert each date to string on the child components properties
-        which will be shown
+    */
 
-      */
+    this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
 
-      this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
-
-      this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
+    this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
 
 
-      //console.log (this._dates.totalDays);
 
-      this.getTotalDays();
+    this.getTotalDays();
 
 
-      this.flip();
+    this.flip();
     
     
   }
 
   /*
-    as service is private, we can show it on the template, so we create a property
-    calles "totaldays" here on this class to assign what the _dates.totalDays property
-    on that service has
+    as _dates service is injected as private, we can't show it 
+    on the template, so we created a property
+    called "totaldays" here on this class to assign the value that _dates.totalDays 
+    property on that service has
+
   */
 
   getTotalDays():number{
@@ -124,15 +169,14 @@ export class HomeComponent implements OnInit {
 
   }
 
-  //will be triggered when push calculñate along with ngsubmit
+  //will be triggered when push calculate along with ngsubmit
   flip(){
     this.isFlipped=!this.isFlipped;
   }
 
    /*
     TODO TEST esta funcion
-    //TODO cuando las fechas sean iguales, si esta mostrandose los resultados d ela op. anterior, que desaparezca el boton 
-    amarillo de sabias que y eso tb, que vuelva al "select 2 dates"
+    
 
   */
     validatorFields(): ValidatorFn  | null{
@@ -172,9 +216,12 @@ export class HomeComponent implements OnInit {
           console.log ("son mal");
        
           this.totalDays=0;
-          this.isFlipped=false;//to be sure that animation will be triggered next time we press calculate
-          //o sea que este objeto es el que hace que sea invaLIDO EL FORM, el null no hace nada
-         return {'areEqual':false}
+
+          /*
+             we set isFlipped to false to be sure that animation will be triggered again next time, when we press calculate
+          */
+          this.isFlipped=false;
+          return {'areEqual':false}
   
         }else{
   
