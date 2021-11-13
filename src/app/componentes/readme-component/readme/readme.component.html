@@ -1,12 +1,11 @@
 <div id="readMeId">
-    //TODO estilos para resaltar lo de negrita, color o algo pensarlo, szi pongo subrayados los links o no,
-    y lo que quiero en negrita subrayarlo o no, o sea al reves de como esta
+    
 
     //TODO sube al github esto cuando haya acabado
     <p>
         Hi there! I am Fran. This is a webapp made after sometime without programming
         to refresh, update and get better coding, JS and Angular skills.
-        Here I will try to detail the things I practiced and/or learned.
+        Here I will try to detail <span id="learned">the things I practiced and/or learned.</span>
 
     </p>
 
@@ -20,7 +19,7 @@
 
     <ul id="readMeListId">
         <li>
-            I used <b>reactive forms</b> -until now, I was more used to template driven ones-, with built-in and <b>custom validators</b>. For example, custom validator is created to ensure, if user inputs same exact date, form will be invalid.
+            I used <span id="learned">reactive forms</span> -until now, I was more used to template driven ones-, with built-in and <span id="learned">custom validators</span>. For example, custom validator is created to ensure, if user inputs same exact date, form will be invalid.
         </li>
         <li>
             You can enter the dates in the order you want. No choronological order required. 
@@ -29,30 +28,30 @@
             than forcing the user to set ordered dates or showing negative results, like I have seen on similar websites.    
         </li>
         <li>
-            I used <a href="https://byabbe.se/on-this-day/" target="_blank">an external API</a> to get the events occurred on each date. 
+            I  <span id="learned">used an external API</span><a href="https://byabbe.se/on-this-day/" target="_blank"> (visit here)</a> to get the events occurred on each date. 
             I managed to get 5 random results from the api for each date, 
             also ensuring they can´t be repeated.
         </li>
         <li>
-            To get the results of those API, it was made with Angular´s httpClient.get() method.
-            It returns an Observable so I had to apply some Reactive Programming skills.
-            As it also involves async requests, I used promises to manage results (Also checked with async/await), 
+            To get the results of those API, the <span id="learned"> async HTTP requests</span> were made with <span id="learned">Angular´s httpClient</span> get() method.
+            It returns an <span id="learned">Observable</span> so I had to apply some <span id="learned">Reactive Programming skills</span>.
+            As it also involves async requests, I used <span id="learned">promises</span> to manage results (Also checked with <span id="learned">async/await</span>), 
             to ensure I obtain and control data flow the way I need.
-            To obtain the random 5 results mentioned above I used vanilla JS methods like Math.random(),
-            because RXJS operators like <i>take</i> don´t work here. Reason is, the events
+            To obtain the random 5 results mentioned above I used <span id="learned">vanilla JS</span> methods like Math.random(),
+            because <span id="learned">RXJS operators</span> like <i>take</i> don´t work here. Reason is, the events
             are emitted by the API all of them together, to be able to use the take() operator they should be emitted by the Observable one by one.
 
         </li>
         <li>
-            Used interfaces to create custom data types to be manage the results shown to the user, 
+            Used <span id="learned">interfaces</span> to create <span id="learned">custom data types</span> to be manage the results shown to the user, 
             it makes data retrieved by the API easier to manipulate and ensures integrity and maintenance.
         </li>
         <li>
-            Used basic angular animations to flip the box with the results and the button to show events ocurred on each date.
+            Used basic <span id="learned">angular animations</span> to flip the box with the results and the button to show events ocurred on each date.
         </li>
         
         <li>
-            Basic testing with karma and jasmine, maybe learn Protactor in the future if I find easier and faster to automate.
+            Basic <span id="learned">testing with karma and jasmine</span>, maybe learn Protactor in the future if I find easier and faster to automate.
         </li>
         <li>
             Form styles found <a href="https://codepen.io/prathkum/pen/OJRvVzY" target="_blank">here</a>.
@@ -61,7 +60,7 @@
             Customized <a [routerLink]="['/thisiserrorpage']" >404 error page</a>. Used code available <a href="https://codepen.io/Navedkhan012/pen/vrWQMY" target="_blank">here</a>.
         </li> 
         <li>
-            Other libraries used are Bootstrap and Font Awesome.
+            Other libraries used are <span id="learned">Bootstrap</span> and Font Awesome.
         </li>
     </ul>
 </div>

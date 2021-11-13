@@ -5,3 +5,8 @@
 #readMeListId{
     border-left: 5px solid #0d6efd;
 }
+
+#learned{
+    color:red;
+    font-weight: bold;
+}
