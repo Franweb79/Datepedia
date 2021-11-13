@@ -9,23 +9,17 @@ import { CallApiService } from '../../../services/call-api-service/call-api.serv
 })
 export class ModalComponent implements OnInit {
 
-  /*
-    isModalOpenChild
 
-    receives its value from parent component show-days-component
-
-    through a propoerty called isModalOpen from parent component
-  
-  */
-
-  @Input() isModalOpenChild:boolean;
 
   /*
     date1ToShow and date2ToShow
 
     are used on the HTML to show the user the dates which events are referring to,
 
-    with a date pipe to format them
+    with a date pipe to format them.
+
+    They receive their values drom show days parent component,
+    from properties called firstDateToShowOnModal and lastDateToShowOnModal respectively  
   */
 
   @Input() date1ToShow:string;
@@ -51,48 +45,16 @@ export class ModalComponent implements OnInit {
   @Input() arrayOfEventsToShow:any;
 
 
-  /*
-      arrayOfEventsToShow will be destructured into 
-      events1Date and events2Date 
-      properties. Maybe I found them no more necessary since I haven´t
-      seen where else are they used, but at the moment won´t delete it, not before checking
-      //TODO check where else are they used and if can be deleted
-
-  */
-  public events1Date:Object;
   
-  public events2date:Object;
-
-  /*
-    eventObjectConvertedToArray
-  
-    To convert the objects inside array of objects into 
-    arrays, maybe easier 
-    to manipulate
-  */
-  public eventObjectConvertedToArray:any;
-
-  public arrayOfEventsAsArrays:any;
 
   constructor(private _dates:DatesService, private _callApi:CallApiService) { 
 
-    this.isModalOpenChild=false;
 
     this.date1ToShow="";
 
     this.date2ToShow="";
 
     this.arrayOfEventsToShow=[];
-
-    this.eventObjectConvertedToArray=[];
-
-    this.arrayOfEventsAsArrays=[];
-
-    
-
-    //destructure
-
-     [this.events1Date,this.events2date]=this.arrayOfEventsToShow;
 
   }
 
