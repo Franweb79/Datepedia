@@ -313,9 +313,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
         ()=>{
           this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
 
-          console.log ("array");
-
-          console.log (this.arrayOfObjectsWithEvents);
+          
 
           /*
             now that we have the 2 values, we assign to a modal property which will be shown
@@ -325,10 +323,6 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
             this.modal.arrayOfEventsToShow=this.arrayOfObjectsWithEvents;
 
-          
-            
-            console.log ("modal shit");
-            console.log (this.modal.arrayOfEventsToShow);
 
 
         }
