@@ -111,17 +111,26 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   public arrayNumberWithLastDateToBeSentToApi: number[];
 
 
-//TODO make this custom type, customEvent, so maybe export interface we already
-//have defined on call-api-service 
-  public arrayOfObjectsWithEvents:Object[];
+  /*
+   
+   Maybe this arrayOfObjectsWithEvents could have been declared as customEvent type, 
+   with our own interface we have created, but I need to use the push() method on it
+   so I find it better to be declared ar array of Object for now.
 
+   The value from this property will be sent to app-modal child component, 
+   to the property called arrayOfEventsToShow
   
 
+  */
+  public arrayOfObjectsWithEvents:Object[];
 
   /*
-  //TODO when this works, a apuntes rxjs o angular
-  to capture when arrayOfObjectsWithEvents changes (it gets events from api),
-  then child property will also change*/
+  
+   to listen when arrayOfObjectsWithEvents changes (it gets events from API),
+   si child component´s property arrayOfEventsToShow can also change,
+   we use the viewChild decorator
+  
+  */
 
   @ViewChild('myModalChild') modal!: ModalComponent;
 
@@ -161,7 +170,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   showModal() {
 
     this.isModalOpen = !this.isModalOpen;
-    // alert(this.isModalOpen);
+    
 
     this.convertDatesToModal();
 
@@ -169,45 +178,52 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   }
 
   /*
-    we will get the dates on an array of numbers format to send them to the wiki API
-    and inside convert to convertDatesToModal() them to strings and manipuñate them easier once moda is shown
+    we will get the dates provided by service properties date1 and date2 
+    as a a number[] format to send them to the API.
+    
+    Inside convertDatesToModal() we convert them to strings 
+    so they can be better manipulated on the modal template
   
   */
   getDates(): number[][] {
     return [this._dates.date1, this._dates.date2];
   }
 
-  /*we convert the dates to string and order them to be properly shown on the modal*/
 
   /*
+    Inside convertDatesToModal() we will not only convert dates to strings,
+    but order them to be chronologically shown on the modal
+  
     to order, we will do now with Date objects, following a bit the tricks of comparing dates as told here
 
     https://masteringjs.io/tutorials/fundamentals/compare-dates
+
   */
   convertDatesToModal(): void {
 
     /* 
-      array destructuration to make work easier
+      First, array destructuration to make work easier
     */
 
     const [date1, date2] = this.getDates();
 
+
+    /*
+    
+      assign to string properties that will be passed to app-modal child component
+
+    */
 
     this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
 
     this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
 
 
-
-
     /*
-      as we cant do
-
-        this.firstDateToShowOnModal=new Date(this.firstDateToShowOnModal);
-
-      because we can´t assign as Date Type was specified as a tring variable, we would do
-      with 2 local variables, and depending which date is higher, we will reassign
-      which will be the firstDate and which will be second, in terms to be shown on modal
+      
+      For the order operations, we will use  2 local variables, d1 and d2, 
+      and depending which date is higher, we will reassign values to d1 and d2
+      
 
 
     */
@@ -220,18 +236,15 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
     /*
-      if this is false, because second date is older, we reassign variables to be wshown on modals
-      with different order, the second date will be the first date and viceversa
-
-      //TODO As this piece of code will be also used on callApi() to order the dates,
-      but in that case would be array of numbers -we need number on the api, not strings-,
-       I could create a method for both cases but for now I let it so,
-       maybe a method which onyl uses local variables and then returning date strings properly ordered
-       and store them on properties if needed (in the case os having to show them on template)
-
+      
+      if d1 > d2 (example : 2021-04-06 > 2009-07-08), because user has introduced them that way,
+      we reassign variables to be shown on modal
+      with correct order. The second date will be the first date and vice versa
        
     */
+
     if (d1 > d2) {
+
       let aux = this.firstDateToShowOnModal;
 
       this.firstDateToShowOnModal = this.lastDateToShowOnModal;
@@ -245,19 +258,40 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     /*
     
-      here i decide to create local string variables to store the string dates,
-      and not use string class properties like the ones created to show dates 
-      on modal, because logic here
-      is different than on convertDatesToModal().
+      Here we also need to order dates, as on convertDatesToModal().
 
-      Here we dont need to show them on a template, just be used
-      to be converted to Dates objects and then be ordered
-      -original array numbers can`t be converted to Date objects,
-      and we need them to be numbers to be sent to the api-.
+      But here I decided to create local string variables to store the string dates,
+      despite using the same string class properties we created to send dates to modal.
 
-      Also using the same string class properties we have to control other things,
-      could cause flow not working fine. I am sure it can be more properly refactored, so //TODO
-      but now will let this way
+      These local variables are 
+
+      stringWithFirstDateToBeSentToAp
+
+      and 
+
+      stringWithLastDateToBeSentToApi
+
+      Reason is, logic here is similar but different than on convertDatesToModal().
+
+      Here we don't need to show them on a template, just be used
+      to be converted to Date objects and then be ordered, like also did on convertDatesToModal().
+
+      The array numbers we get from the service
+      can`t be converted to the Date objects we need to order dates,
+      but that can be done with string properties.
+
+      But using the same string properties we have to send Dates on modal,
+      could cause flow not working fine. So that is why I decided to create different local string properties
+
+
+      As said, we need Date objects to order dates,
+      but we also need dates with number type (dates come as an array of numbers from the service 
+      so that work is done) to be sent to the API because this API requires them to be that number type.
+
+      I am aware that the code used to order dates on this method 
+      and on convertDatesToModal() is almost the same, so it can be refactored
+      , but for now I let this way and with a //TODO to create a function that can be used
+      on both methods.
       
     */
 
@@ -282,14 +316,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     const d2 = new Date(stringWithLastDateToBeSentToApi);
 
-
-    /*console.log(d1);
-
-    console.log(d2);*/
-
     if (d1 > d2) {
 
-    //  console.log("es mayor la primera");
       let aux = this.arrayNumberWithFirstDateToBeSentToApi;
 
       this.arrayNumberWithFirstDateToBeSentToApi = this.arrayNumberWithLastDateToBeSentToApi;
@@ -298,19 +326,13 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     }
 
 
-   /* console.log("to send to api: ");
-
-    console.log(this.arrayNumberWithFirstDateToBeSentToApi);
-
-    console.log(this.arrayNumberWithLastDateToBeSentToApi);*/
-
     /*
     
-      before sending to the api, 
+      before sending to the API, 
       we will destructure to get month and day easier
 
-      first position will be empty because we need 2nd and 3rd values
-       of the array number
+      first position will be empty because we only need 2nd and 3rd values
+      of the array number (first position would be the year and we don´t need it)
 
     */
 
@@ -319,15 +341,19 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
     /*
-      we use a promise to ensure we control the async request on
-       _http:get() inside service.
+      we use a promise to ensure we control the async request done by
+       _http:get() method which is used inside _dates service.
 
-       So, once we have 1st result and added as first element of an array, we make the 2nd request
+       So, once we have 1st result with events corresponding to the 1st date,
+       and added them as first element of an array, we make the 2nd request
     */
 
     this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
       
-      //clear array first because maybe we have stored results for 2 dates before
+      /*
+        clear array first because maybe we have stored results 
+        for a previous 2 dates request before
+      */
 
       this.arrayOfObjectsWithEvents=[];
       
@@ -335,17 +361,17 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       
 
-      //once we have the first date events, we make the same for the second
+      //As said, once we have the first date events, we make the same for the second
 
       this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
         ()=>{
+
           this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
 
-          
-
+        
           /*
-            now that we have the 2 values, we assign to a modal property which will be shown
-            on that modal
+            now that we have the 2 events results from the 2 dates, we assign them 
+            to a modal property which will be shown on that modal
             
           */
 
@@ -356,23 +382,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
         }
       );
 
-
-
-      
-      //console.log (this._callApi.dataToShow);
-
-    });
-    
-       
-    
-
-    //make the same with second date
-    //console.log (this._callApi.dataToShow);
-
-    /*const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
-
-    this._callApi.getEvents(monthToSend2, dayToSend2);*/
-
+    });      
 
   }
 
