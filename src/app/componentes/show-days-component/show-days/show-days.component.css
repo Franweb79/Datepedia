@@ -15,15 +15,13 @@
     
 }
 
-/* TODO a ver como coño he hecho que vaya bien la posicion de los divds animados. con un relative del results-wrapper,
+/* TODO a ver como he hecho que vaya bien la posicion de los divds animados. con un relative del results-wrapper,
 y luego en absolute solo el que muestra los resultados, pero hay que quitar el absolute del background
 y por alguna razon asi se ajusta bien a la columna y todo...
 */
 #background-div{
 
-    /*background-image: url("../../../../assets/images/wall.jpg");
-    background-size: cover;
-    /*black color if image is not available*/
+    
     background-color: #000;
     /*position:absolute;*/
     z-index:0;
@@ -42,7 +40,7 @@ y por alguna razon asi se ajusta bien a la columna y todo...
     width:100%;
     height:200px;
     background-color: white;
-    /*background-color: yellow;*/
+   
 
 }
 

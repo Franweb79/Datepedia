@@ -24,7 +24,7 @@ import {
         transform: "rotateY(360deg)"
       })),
       state('notFlipped', style({
-        //backgroundColor:"aquamarine"
+        
       })),
       transition('* => *', [
         animate('1s')
@@ -36,17 +36,29 @@ import {
 })
 export class ShowDaysComponent implements OnInit,AfterViewInit {
 
+ /*
+    valueTotalDays and isDivFlipped receive their values from parent component
+    home.
+ */
+ 
   @Input() valueTotalDays: number;
 
   @Input() isDivFlipped: boolean;
 
 
-  /*will pass to child component app-modal*/
+  /*is ModalOpen will its value pass to child component app-modal*/
   public isModalOpen: boolean;
 
 
   /*
-    These 2 string properties will be used to show dates when the component is flipped
+    firstDateToShowWhenFlipped
+
+    and
+
+    lastDateToShowWhenFlipped
+  
+    These 2 string properties will be used to show dates when this component is flipped.
+
     for example: "total days between 2021-06-01 and 2021-07-02 are... "
     //TODO I am sure maybe is a way to refactor and use same properties to be passes
     and show on modals without creating the 2 other string properties I have declared here
@@ -64,19 +76,35 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
   /*
-    We import dates service to be able to show two selected dates on modal
-    remember as service is private we must create a getter to put date1 and date2 
-    from service on public properties from this component.
-    Remember they come being array of numbers
+    firstDateToShowOnModal
+
+    and 
+
+    lastDateToShowOnModal
+
+    are used to passe its values to child component app-modal, then
+    values can be shown on the modal.
+
+    These two properties receive their values from date1 and date2 properties from the _dates service.
+
+    We use them because service is private, so can´t use it on the template (outside the class), 
+    so we need properties with public visibility
+    in order to be used on component´s template
+
+    As date and date 2 have a number[] type, we will convert them to string with a method created on the service
   */
 
   public firstDateToShowOnModal: string;
   public lastDateToShowOnModal: string;
 
   /*
-    this two properties will be sent to the api on the proper order,
-    but we need it to be numbers so can´t use the properties used as string on modals,
-    and also array of numbers cant be piped on the template
+    this two properties will be sent to the API on the proper order.
+
+    We need them because the API requires them to be numbers,
+    so we can´t simply send the same string properties we declared above, to send dates to modals.
+
+    Also array of numbers can't be directly piped on the template as we can do with strings, so for the moment I find easier
+    to do this way: string properties with dates to be shown on modals, array of numbers with dates to be sent to API
   */
 
   public arrayNumberWithFirstDateToBeSentToApi: number[];

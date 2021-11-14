@@ -5,9 +5,9 @@ import { ShowDaysComponent } from '../show-days-component/show-days/show-days.co
 
 
 @Component({
-  selector: 'app-componente-home',
-  templateUrl: './componente-home.component.html',
-  styleUrls: ['./componente-home.component.css']
+  selector: 'home-component',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 

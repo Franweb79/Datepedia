@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './componentes/home-component/componente-home.component';
+import { HomeComponent } from './componentes/home-component/home.component';
 import { HeaderComponent } from './componentes/header-menu-component/header-menu-component.component';
 import { ErrorComponent } from './componentes/error-component/error-component.component';
 import { ShowDaysComponent } from './componentes/show-days-component/show-days/show-days.component';
