@@ -229,7 +229,7 @@ export class DatesService  {
     /*
       now we must add to DaysPassed the days of the current month;
       because until now, we had only the days passed 
-      of entirely passed months, so we will use the "day" constant created when destructuring pdate parameter
+      of entirely passed months, so we will use the "day" constant created when destructuring pdate PARAMETER
 
     */
 
@@ -257,7 +257,7 @@ export class DatesService  {
   calcDaysBetweenYears(pyear1:number,pyear2:number):number{
 
    /*
-      this variable will only change if parameteres (years) are different
+      this variable will only change if PARAMETERes (years) are different
       the name localTotalDays is to clarify between that and the totalDays property,
       naming the same could give problems and is better not making the method rely on a property
       which could not exist on another project, this way is more reusable 
