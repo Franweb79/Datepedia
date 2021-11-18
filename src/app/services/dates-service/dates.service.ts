@@ -1,8 +1,5 @@
-import { SafeMethodCall } from '@angular/compiler';
-import { ComponentFactoryResolver, Injectable } from '@angular/core';
-import { ValidatorFn, AbstractControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-
+import { Injectable } from '@angular/core';
+import {  AbstractControl } from '@angular/forms';
 import { month } from '@interfaces/month-interface';
 
 
@@ -11,6 +8,10 @@ import { month } from '@interfaces/month-interface';
 })
 export class DatesService  {
 
+  /*
+    date1 and date2 will store dates as an array of numbers, corresponding
+    [year.month,day]
+  */
   public date1:number[];
   public date2:number[];
 
@@ -22,10 +23,21 @@ export class DatesService  {
     Ordering them would be easier to calculate before forcing user 
     to set dates in a "correct" order (e.g "2nd date must be higher than 1st" I dont like that)
 
-    As dates will be an wrray of numbers with year, month and day separated, we must declare this way
+    As date1 and date2 will be an array of numbers with year, month and day separated, 
+    we will store both arrays on orderedDatesArray, and as it is an array of arrays,
+    we declare it is number[][]
   */
   public orderedDatesArray:number[][];
   
+  /*
+    arrayMonths
+    
+    this is an array of custom type "month" objects.
+
+    We need it to store specially the number of days for each month and calculate dates difference
+    in a real way -not every month has same days-
+
+  */
   public arrayMonths:month[]=[
     {
       id:1,
@@ -102,7 +114,14 @@ export class DatesService  {
     this.orderedDatesArray=[];
    }
 
-  //splits date and maps it to number array
+  /*
+    splitYearToCheckString
+
+    splits string date and maps it to number array
+
+    PARAMETERS: 
+
+  */
   splitYearToCheckString(ppyearToCheck:string):number[]{
 
     let newDateSplittedArray=ppyearToCheck.split("-");
