@@ -115,16 +115,19 @@ export class DatesService  {
    }
 
   /*
-    splitYearToCheckString
+    splitStringDateIntoArrayOfNumbers
 
-    splits string date and maps it to number array
+    splits string date and maps it to number array, will be used
+    to store dates on date1 and date2 properties
 
-    PARAMETERS: 
+    PARAMETERS: the string date to be splitted into array of numbers
+    
+    RETURNS: a local variable with splittedDate
 
   */
-  splitYearToCheckString(ppyearToCheck:string):number[]{
+  splitStringDateIntoArrayOfNumbers(pDateToCheck:string):number[]{
 
-    let newDateSplittedArray=ppyearToCheck.split("-");
+    let newDateSplittedArray=pDateToCheck.split("-");
 
     let newDateNumber:number[]=newDateSplittedArray.map(function(element){
       return parseInt(element);
@@ -133,24 +136,37 @@ export class DatesService  {
   }
 
   /*
-      this method does reverse operation of splitYearToCheckString.
+      
+    convertArrayOfNumbersIntoString()
+  
+    Tthis method does the reverse operation of splitStringDateIntoArrayOfNumbers.
       To show on modal and properly play with datepipes we need the dates as string,
       so we reverse the dates as array of numbers we have operated with, and revert back
       to strings.
+    
+      I realised perhaps it would have been a better idea to have the string
+      dates we get from the form at home-component, 
+      
+      firstYearToCheckDateString
 
-    
-    
-      I realised it would have been a better idea to have the string
-      dates we get from the form at home-component, as service properties
-      and not as home-component-properties. Now this would not have been maybe neccessary,
+      and 
+
+      lastYearToCheckDateString
+      
+      as properties of this service and not as home-component-properties. 
+      Now perhaps this method would not have been neccessary,
       and would be a better designed app. But I am here to learn :)
       Also maybe we would save some inherit of properties from parent to child components
+
+      PARAMETERS: The array of numbers to convert to String
+      RETURNS: the Date as string
 
 
   */
   convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
     let stringToReturn:string="";
 
+    //iterate ober each element of the array, convert to string and concatenate 
     stringToReturn+=parrayToConvert.map(function(element){
 
       return element.toString();
@@ -161,7 +177,18 @@ export class DatesService  {
   }
 
   //TODO TEST, how to test a service
-  //returns true or false
+  
+  /*
+
+    isLeapYearToCheck()
+
+    We need to know if year is Leap or not, to add one more day in that case
+
+    PARAMETERS: The year (only the year), to be checked
+
+    RETURNS: true if is Leap, otherwise false
+
+  */
   isLeapYearToCheck(pyearToCheck:number):boolean{
     
     if( (pyearToCheck%4===0) && (pyearToCheck%100!==0 || pyearToCheck%400 ===0) ){
@@ -174,81 +201,87 @@ export class DatesService  {
 
   /* 
     
-  PARAMETERES will be the full date given as array of numbers eith year, month and date
+  calcCurrentYearDays()
+
+  PARAMETERS will be the full date given as array of numbers with year, month and date
   
-  will return an array with thwo number:
-    -days from 01/01 to given value
-    -days from given value to 31/12
-    -If year is leap, we will add one day to the result
-    which frebruary is involved
+  RETURNS: an array of numbers, with two number elements:
+    -days from 01/01 to given value (for example, days between 01/01 from 04/07/2015)
+    -days from given value to 31/12 for example, days from 04/07/2015 to 31/12 same year).
+    -If year is leap, we will add one day to one of the two above results,
+     where february is involved and then must be counted
   */
   calcCurrentYearDays(pdate:number[]):number[]{
 
-    //by default, year wont we leap
+    //by default, year won't we leap
     let isYearLeap:boolean=false;
 
     //set to 365 but can be 366 if leap
-    let totalYearDays:number=365;
+    let totalDaysOfYear:number=365;
 
     //days from given date to 31-12
-    let daysToPass:number=0;
+    let daysRemaining:number=0;
+
     //days from 01-01 to given date
     let daysPassed:number=0;
     
     /*
-    destr again of thw whole date, better than haviong only parts 
+    destructure the whole date, better than having only parts 
     of the date like days and months (maybe the only ones we need here),
-    maskes it more flexible
+    makes it more flexible
     */
-   const [year,month, day]=pdate;
+   const [year,month,day]=pdate;
 
    /*check if year is leap*/
    isYearLeap=this.isLeapYearToCheck(year);
 
    /*
-      we have to take the part of arrayMonthsfrom 01-01 until the month prioi to our date, multiply days of each month,
-      and add the days to that result of multyplying. Those totalDaysPasses will ne rest to 365 or 366 if year is leap
-      also the difference of days still to pass until 31-12 , so would be:
+    First, we calculate daysPassed from 01-01 until selected Date, that will be daysPassed
 
-      365 or 366 -  daysPassed=daysToPass
+    Then, to get daysRemaining, we substract daysPassed to 365 or 366, 
+    depending if year is leap or not
 
-      and we will return an array with both values: daysPassed and daysToPass
+    365 or 366 - daysPassed = daysRemaining
+
+    We will return an array with both values: daysPassed and daysRemaining
 
     
    */
      
 
     /*
-        if year is leap, we set february days to 29, 
+        before operating, if year is leap, 
+        we set february days on the arrayMonths object to 29, 
         otherwise back to 28.
         Also with the days of a year, 365 or 366
     */
     if(isYearLeap===true){
       this.arrayMonths[1].days = 29;
-      totalYearDays=366;
+      totalDaysOfYear=366;
 
     }else{
       this.arrayMonths[1].days = 28;
-      totalYearDays=365;
+      totalDaysOfYear=365;
     }
-   // console.log (month);
 
     /*
-      Month -1 is because we want it to ierate, fopr example, 
-      is month is june (6) the for should go until may (5), but as array starts on index 0, may is on 
-      index 4, so the for will iterate while i < (month-1) which is 5, where june is due to index 0 array
+      On the iteration below,
+      limit is (Month -1) is because, for example, 
+      if our month is june (6), the loop should go until may (5); 
+      but as array starts on index 0, may is on 
+      index 4
 
     */
 
     for(let i=0;i<(month-1);++i){
-      //console.log ("mes"+this.arrayMonths[i].name);
       daysPassed+=this.arrayMonths[i].days;
     }
       
     /*
       now we must add to DaysPassed the days of the current month;
-      because until now, we had only the days passed 
-      of entirely passed months, so we will use the "day" constant created when destructuring pdate PARAMETER
+      (for example, if our date is 04-07 we have days between 01-01 and 30-06, but we still need
+      the days between 30-06 and 04-07).
+      so we will use the "day" constant created when destructuring pdate PARAMETER
 
     */
 
@@ -256,17 +289,17 @@ export class DatesService  {
   
    
 
-    daysToPass=totalYearDays-daysPassed;
+    daysRemaining=totalDaysOfYear-daysPassed;
 
    /* console.log ('año '+year);
     console.log("dias transcurridos "+daysPassed);
-    console.log("dias año "+totalYearDays);
+    console.log("dias año "+totalDaysOfYear);
 
-    console.log("dias que quedan "+daysToPass);
+    console.log("dias que quedan "+daysRemaining);
     
 */
 
-    return [daysPassed,daysToPass];
+    return [daysPassed,daysRemaining];
      
   }
   // calculate days between the years of 2 given dates
@@ -362,13 +395,13 @@ export class DatesService  {
     //date1 receives the date correctly splitted into a number array with year, month, and day 
 
     
-    this.date1=this.splitYearToCheckString(pdate1);
+    this.date1=this.splitStringDateIntoArrayOfNumbers(pdate1);
     //detructuring the string array with date year, month and day
     const [date1Year, date1Month, date1Day]=this.date1;
 
 
     //we do same steps for date 2
-    this.date2=this.splitYearToCheckString(pdate2);
+    this.date2=this.splitStringDateIntoArrayOfNumbers(pdate2);
 
     const [date2Year, date2Month, date2Day]=this.date2;
 
