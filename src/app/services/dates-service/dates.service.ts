@@ -462,7 +462,6 @@ export class DatesService  {
 
        //console.log ("total"+this.totalDaysBetweenDates);
 
-
     if(date1Year != date2Year){
      
       this.totalDaysBetweenDates=daysLeftDate1+daysBetweenYears+daysPassedDate2;
