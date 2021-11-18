@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
 
     //set totalDays to 0
 
-    this._dates.totalDays=0;
+    this._dates.totalDaysBetweenDates=0;
 
     //destructuring the object with dates values into const, more usable
     const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit {
 
   getTotalDays():number{
 
-    this.totalDays=this._dates.totalDays;
+    this.totalDays=this._dates.totalDaysBetweenDates;
 
     return this.totalDays;//for testing on spec
 

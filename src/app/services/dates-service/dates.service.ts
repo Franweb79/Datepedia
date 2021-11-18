@@ -15,7 +15,7 @@ export class DatesService  {
   public date1:number[];
   public date2:number[];
 
-  public totalDays:number;
+  public totalDaysBetweenDates:number;
 
   /*
     to order them. It could happen user sets the second date is lower
@@ -109,7 +109,7 @@ export class DatesService  {
     this.date1=[];
     this.date2=[];
 
-    this.totalDays=0;
+    this.totalDaysBetweenDates=0;
 
     this.orderedDatesArray=[];
    }
@@ -310,7 +310,7 @@ export class DatesService  {
 
    /*
       this variable will only change if PARAMETERes (years) are different
-      the name localTotalDays is to clarify between that and the totalDays property,
+      the name localTotalDays is to clarify between that and the totalDaysBetweenDates property,
       naming the same could give problems and is better not making the method rely on a property
       which could not exist on another project, this way is more reusable 
 
@@ -333,7 +333,7 @@ export class DatesService  {
     /*
       now we get the days betweeen minor year +1 and highest given year,
       that is so because each of the given years` total days will be calculated on
-      calcCurrentYearDays() and added to the result "totalDays" from this funtcion 
+      calcCurrentYearDays() and added to the result "totalDaysBetweenDates" from this funtcion 
       
        e.g: between 2004(minorYear) and 2018 (highestYear) would iterate between 2005 and 2017
     */
@@ -429,7 +429,7 @@ export class DatesService  {
     //console.log(this.orderedDatesArray);
 
     /*now,  we will calculate days between years and days passes on 2 fiven dates
-      and we will add to totaldays:
+      and we will add to totalDaysBetweenDates:
         -calculated days between years (0 if same year)
         -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
         -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
@@ -460,15 +460,15 @@ export class DatesService  {
        daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
 
-       //console.log ("total"+this.totalDays);
+       //console.log ("total"+this.totalDaysBetweenDates);
 
 
     if(date1Year != date2Year){
      
-      this.totalDays=daysLeftDate1+daysBetweenYears+daysPassedDate2;
+      this.totalDaysBetweenDates=daysLeftDate1+daysBetweenYears+daysPassedDate2;
 
       
-     // this.totalDays=this.calcDaysBetweenYears(date1Year,date2Year);
+     // this.totalDaysBetweenDates=this.calcDaysBetweenYears(date1Year,date2Year);
     }else{
 
       let isLeap:boolean=false;
@@ -482,7 +482,7 @@ export class DatesService  {
 
       }
 
-      this.totalDays=daysOfYear-(daysPassedDate1+daysLeftDate2);
+      this.totalDaysBetweenDates=daysOfYear-(daysPassedDate1+daysLeftDate2);
     }
 
 
