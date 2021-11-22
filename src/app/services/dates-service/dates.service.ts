@@ -9,12 +9,32 @@ import { month } from '@interfaces/month-interface';
 export class DatesService  {
 
   /*
+
+    OVERVIEW EXPLANATION:
+
+    On two given dates, for example, 2004-04-06 and 2018-05-09
+
+    we will calculate the days for first and last year with a method called calcFirstAndLastYearDays()
+
+    The days between 2005 and 2017 will be calculated on calcDaysBetweenYears()
+
+    The total days will be put together on calculateTotalDaysBetweenDates()
+
+
+
+  */
+
+  /*
     date1 and date2 will store dates as an array of numbers, corresponding
     [year.month,day]
   */
   public date1:number[];
   public date2:number[];
 
+  /*
+    totalDaysBetweenDates stores the final result, the number of total days between two given dates
+
+  */
   public totalDaysBetweenDates:number;
 
   /*
@@ -163,6 +183,7 @@ export class DatesService  {
 
 
   */
+
   convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
     let stringToReturn:string="";
 
@@ -180,7 +201,7 @@ export class DatesService  {
   
   /*
 
-    isLeapYearToCheck()
+    isLeapYearCheck()
 
     We need to know if year is Leap or not, to add one more day in that case
 
@@ -189,7 +210,8 @@ export class DatesService  {
     RETURNS: true if is Leap, otherwise false
 
   */
-  isLeapYearToCheck(pyearToCheck:number):boolean{
+
+  isLeapYearCheck(pyearToCheck:number):boolean{
     
     if( (pyearToCheck%4===0) && (pyearToCheck%100!==0 || pyearToCheck%400 ===0) ){
       return true;
@@ -201,7 +223,7 @@ export class DatesService  {
 
   /* 
     
-  calcCurrentYearDays()
+  calcFirstAndLastYearDays()
 
   PARAMETERS will be the full date given as array of numbers with year, month and date
   
@@ -211,13 +233,14 @@ export class DatesService  {
     -If year is leap, we will add one day to one of the two above results,
      where february is involved and then must be counted
   */
-  calcCurrentYearDays(pdate:number[]):number[]{
+
+  calcFirstAndLastYearDays(pdate:number[]):number[]{
 
     //by default, year won't we leap
     let isYearLeap:boolean=false;
 
     //set to 365 but can be 366 if leap
-    let totalDaysOfYear:number=365;
+    let totalDaysOfCurrentYear:number=365;
 
     //days from given date to 31-12
     let daysRemaining:number=0;
@@ -233,7 +256,7 @@ export class DatesService  {
    const [year,month,day]=pdate;
 
    /*check if year is leap*/
-   isYearLeap=this.isLeapYearToCheck(year);
+   isYearLeap=this.isLeapYearCheck(year);
 
    /*
     First, we calculate daysPassed from 01-01 until selected Date, that will be daysPassed
@@ -257,11 +280,11 @@ export class DatesService  {
     */
     if(isYearLeap===true){
       this.arrayMonths[1].days = 29;
-      totalDaysOfYear=366;
+      totalDaysOfCurrentYear=366;
 
     }else{
       this.arrayMonths[1].days = 28;
-      totalDaysOfYear=365;
+      totalDaysOfCurrentYear=365;
     }
 
     /*
@@ -289,68 +312,100 @@ export class DatesService  {
   
    
 
-    daysRemaining=totalDaysOfYear-daysPassed;
+    daysRemaining=totalDaysOfCurrentYear-daysPassed;
 
-   /* console.log ('año '+year);
-    console.log("dias transcurridos "+daysPassed);
-    console.log("dias año "+totalDaysOfYear);
-
-    console.log("dias que quedan "+daysRemaining);
-    
-*/
+  
 
     return [daysPassed,daysRemaining];
      
   }
-  // calculate days between the years of 2 given dates
+
+
   /*
-    taking into account if it is leap year or not
+    
+    calcDaysBetweenYears()
+  
+    calculate days between the years of 2 given years (only years),
+    taking into account if it is leap year or not.
+    Example: 2006-04-06 and 2018-05-09 this method
+    will calculate the days between 2005 and 2017.
+
+    2004 and 2018 days would be calculated by calcFirstAndLastYearDays()  
+
+
+    PARAMETERS:
+      the two years (as said, not dates, just the years).
+
+    RETURNS localTotalDaysBetweenYears, a number with the total days between the two given years
   */
+
   calcDaysBetweenYears(pyear1:number,pyear2:number):number{
 
    /*
-      this variable will only change if PARAMETERes (years) are different
-      the name localTotalDays is to clarify between that and the totalDaysBetweenDates property,
-      naming the same could give problems and is better not making the method rely on a property
-      which could not exist on another project, this way is more reusable 
+      
+      localTotalDaysBetweenYears variable
+
+      To the name localTotalDaysBetweenYears, I added "local" to clarify between that variable
+      and other variables or properties used on this service, 
+      for example the totalDaysBetweenDates property, 
+      or the daysBetweenYears variable which is used on calculateTotalDaysBetweenDates(),
+      to avoid name confussions because they are similar.
+      
+      localTotalDaysBetweenYears stores only the total days between two given years. 
+      For example between 2004 and 2018,
+      it will store total days between 2005 and 2017, 
+      and its value will be returned to a variable with similar name 
+      called daysBetweenYears inside the method calculateTotalDaysBetweenDates()  
+
+      totalDaysBetweenDates is a service property, and stores the TOTAL days between 
+      the two given dates, the final result.
+   
+      this local variable will only change if PARAMETERS (years) are different
+
+      Also I considered better to use a local variable and not a property which could not exist on another project, 
+      this way is more reusable 
+
+      
 
   */
-    let localTotalDays=0;
+    let localTotalDaysBetweenYears=0;
 
     let orderedYears:number[]=[pyear1,pyear2];
    
 
     orderedYears= this.orderNumbers(pyear1,pyear2);
 
-    /*desestr to make work easier. 
+    /*
+        desestructure to make work easier. 
         e.g:minorYear would be 2004 and higest 2018
     */
-
-       // console.log (orderedYears);
 
     const [ minorYear, highestYear]=orderedYears;
 
     /*
       now we get the days betweeen minor year +1 and highest given year,
       that is so because each of the given years` total days will be calculated on
-      calcCurrentYearDays() and added to the result "totalDaysBetweenDates" from this funtcion 
+      calcFirstAndLastYearDays()  
       
-       e.g: between 2004(minorYear) and 2018 (highestYear) would iterate between 2005 and 2017
+      e.g: between 2004(minorYear) and 2018 (highestYear) on this method we would iterate
+      between 2005 and 2017.
+      2004 and 2018 days would be calculated by calcFirstAndLastYearDays()  
+
     */
 
         
 
     for (let i=minorYear+1; i<highestYear;++i){
 
-      //on each item, we calculate if it is a leap year. in that case we add 366, otherwise 365
-      let isLeap=this.isLeapYearToCheck(i);
+      //on each item, we determine if it is a leap year. in that case we add 366, otherwise 365
+      let isLeap=this.isLeapYearCheck(i);
       console.log(i);
       console.log(isLeap);
 
       if(isLeap===true){
-        localTotalDays  +=366;
+        localTotalDaysBetweenYears  +=366;
       }else{
-        localTotalDays +=365;
+        localTotalDaysBetweenYears +=365;
       }
         
 
@@ -358,12 +413,18 @@ export class DatesService  {
 
     
 
-    return localTotalDays;
+    return localTotalDaysBetweenYears;
 
   }
 
   /*
-    return an array with lower number (e.g. 2004) on first position and higher (e.g.2006) on second
+
+    orderNumbers()
+
+    PARAMETERS two given numbers
+
+    RETURNS  an array with lower number (e.g. 2004) on first position 
+             and higher (e.g.2006) on second
   */
 
     //TODO TEST
@@ -376,18 +437,35 @@ export class DatesService  {
     return numbersArray;
   }
 
+  /*
+
+      calculateTotalDaysBetweenDates()
+
+      This is the method where final result will be produced and stored on the 
+      totalDaysBetweenDates property
+
+      PARAMETERS the two dates
+
+
+      RETURNS nothing, since the total result will be stored on a service property called 
+      totalDaysBetweenDates
+  */
+
   calculateTotalDaysBetweenDates(pdate1:string,pdate2:string):void{
 
     /*
-      days returned by calcCurrentYearDays, 
+      days returned by calcFirstAndLastYearDays, 
       will be an array with days passed and left
       
     */
 
-    let resultDate1:number[]=[];
+    let date1Result:number[]=[];
 
-    let resultDate2:number[]=[];
+    let date2Result:number[]=[];
 
+    /* 
+      daysBetweenYears, stores the value returned by calling the calcDaysBetweenYears() method
+    */
     let daysBetweenYears:number=0;
 
     
@@ -396,6 +474,7 @@ export class DatesService  {
 
     
     this.date1=this.splitStringDateIntoArrayOfNumbers(pdate1);
+
     //detructuring the string array with date year, month and day
     const [date1Year, date1Month, date1Day]=this.date1;
 
@@ -405,78 +484,96 @@ export class DatesService  {
 
     const [date2Year, date2Month, date2Day]=this.date2;
 
-    //now we set the dates array, and change order if neccesary
-//TODO this ordering could be dome in a function and probably better
+    //TODO maybe the steps above can be refactored
+
+    //now we set the ordered dates array, and change order if neccesary
+
     this.orderedDatesArray=[this.date1,this.date2];
 
     if(date1Year>date2Year){
+
       this.orderedDatesArray=[this.date2,this.date1];
 
     }else if(date1Year===date2Year){
 
       if(date1Month>date2Month){
-        this.orderedDatesArray=[this.date2,this.date1]
+
+        this.orderedDatesArray=[this.date2,this.date1];
+
       }else if(date1Month===date2Month){
         if(date1Day>date2Day){
+
           this.orderedDatesArray=[this.date2,this.date1];
 
         }else if(date1Day===date2Day){
+
           console.log ("same date");
+
         }
       }
     }
 
-    //console.log(this.orderedDatesArray);
 
-    /*now,  we will calculate days between years and days passes on 2 fiven dates
-      and we will add to totalDaysBetweenDates:
-        -calculated days between years (0 if same year)
-        -the days left until end of the year (31-12) since date1 (second result of the array returned by calcCurrentYearDays)
-        -the days passed since beginning of year (0101) on date 2 (first result of the array returned by calcCurrentYearDays)
-
-       REMEMBER DATES ARE ORDERED NOW
+    /*
+    
+      now,  we will calculate days between years and days passed for the first and last year
+      of our two given dates,
+      and we will add result to totalDaysBetweenDates.
+      
+      REMEMBER DATES ARE ORDERED NOW
     */ 
 
        const [minorDate, highestDate]=this.orderedDatesArray;
 
 
 
-       resultDate1=this.calcCurrentYearDays(minorDate);
+       date1Result=this.calcFirstAndLastYearDays(minorDate);
 
-       const [daysPassedDate1, daysLeftDate1]=resultDate1;
-
-       //console.log ("res date1 "+resultDate1);
+       const [daysPassedDate1, daysLeftDate1]=date1Result;
 
 
 
+       date2Result=this.calcFirstAndLastYearDays(highestDate);
 
-       resultDate2=this.calcCurrentYearDays(highestDate);
+       const [daysPassedDate2, daysLeftDate2]=date2Result;
 
-       const [daysPassedDate2, daysLeftDate2]=resultDate2;
-
-       //console.log ("res date2 "+resultDate2);
-
-      //console.log (date1Year);
+      
+       //TODO steps above maybe can be refactored
        daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
+    /*
+      if one year is different from the other, we add the results. 
+      For example, between 2004-04-06 and 2018-05-09:
+        - Days from 2004-04-06 to 2004-31-12 (daysLeftDate1)
+        - days between 2007 and 20197 (daysBetweenYears) 
+        - Days from 2018-01-01 to 2018-05-09 (daysPassedDate2)
 
-       //console.log ("total"+this.totalDaysBetweenDates);
+        Obviously always have checked if years are leap or not
 
+      If the year is the same.
+      For example, 2004-04-06 and 2004-08-09
+
+      We will check if that year is leap, and set the amount of total days accordingly to 365 or 366.
+      Then to obntain the difference (days passed between one date and another) we substract 
+      to 365 or 366 the results of days passed from 01-01 until first given date, 
+      +days remaning until 31-12 from second given date
+
+    */
     if(date1Year != date2Year){
      
       this.totalDaysBetweenDates=daysLeftDate1+daysBetweenYears+daysPassedDate2;
 
       
-     // this.totalDaysBetweenDates=this.calcDaysBetweenYears(date1Year,date2Year);
     }else{
 
       let isLeap:boolean=false;
       //will change if is leap to 366
       let daysOfYear:number=365;
 
-      isLeap=this.isLeapYearToCheck(date1Year);
+      isLeap=this.isLeapYearCheck(date1Year);
 
       if(isLeap===true){
+
        daysOfYear=366;
 
       }
@@ -490,11 +587,11 @@ export class DatesService  {
   
 
   /*
-    custom validator to add to Validators on the FormGroup oncomponente-home.ts
-    if date fields are the same, we set form to invalid then the submit button
+    
+    custom validator to add to Validators on the FormGroup on home-component.ts
+    if date fields are the same (date is exactly the same), we set form to invalid then the submit button
     is disabled
 
-   
   */
   validatorTest1(control1: AbstractControl):{[key: string]: boolean} | null{
 

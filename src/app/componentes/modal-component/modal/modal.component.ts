@@ -45,7 +45,7 @@ export class ModalComponent implements OnInit {
   @Input() arrayOfEventsToShow:any;
 
 
-      //TODO IS DAY AND MONTH IS THE SAME BUT YEAR IS DIFFERENT, SHOW ON MODAL ONLY ONCE the name, i mean,
+      //TODO IF DAY AND MONTH IS THE SAME BUT YEAR IS DIFFERENT, SHOW ON MODAL ONLY ONCE the name, i mean,
       //not "things happened on february 08 and february 08" and add it to read me when completed
 
 
