@@ -399,8 +399,7 @@ export class DatesService  {
 
       //on each item, we determine if it is a leap year. in that case we add 366, otherwise 365
       let isLeap=this.isLeapYearCheck(i);
-      console.log(i);
-      console.log(isLeap);
+      
 
       if(isLeap===true){
         localTotalDaysBetweenYears  +=366;
@@ -595,7 +594,7 @@ export class DatesService  {
   */
   validatorTest1(control1: AbstractControl):{[key: string]: boolean} | null{
 
-    console.log(control1.value);
+    
     return {'result':false};
 
   }

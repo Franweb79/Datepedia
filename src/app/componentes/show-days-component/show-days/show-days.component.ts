@@ -60,7 +60,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     These 2 string properties will be used to show dates when this component is flipped.
 
     for example: "total days between 2021-06-01 and 2021-07-02 are... "
-    //TODO I am sure maybe is a way to refactor and use same properties to be passes
+    //TODO I am sure maybe is a way to refactor and use same properties to be passed
     and show on modals without creating the 2 other string properties I have declared here
 
     firstDateToShowOnModal
@@ -127,7 +127,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   /*
   
    to listen when arrayOfObjectsWithEvents changes (it gets events from API),
-   si child component´s property arrayOfEventsToShow can also change,
+   so child component´s property arrayOfEventsToShow can also change,
    we use the viewChild decorator
   
   */
@@ -289,9 +289,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
       so that work is done) to be sent to the API because this API requires them to be that number type.
 
       I am aware that the code used to order dates on this method 
-      and on convertDatesToModal() is almost the same, so it can be refactored
-      , but for now I let this way and with a //TODO to create a function that can be used
-      on both methods.
+      and on convertDatesToModal() is almost the same, so it can be refactored,
+      but for now I let this way 
       
     */
 

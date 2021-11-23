@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 import { ShowDaysComponent } from './show-days.component';
 
@@ -8,7 +10,9 @@ describe('ShowDaysComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowDaysComponent ]
+      declarations: [ ShowDaysComponent ],
+      imports: [ HttpClientTestingModule ]
+
     })
     .compileComponents();
   });

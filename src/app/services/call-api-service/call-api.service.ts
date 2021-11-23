@@ -71,7 +71,6 @@ export class CallApiService {
         and though a viewchild, pass the value to modal child component 
         and be able to show it
         
-        TODO for sure it maybe can be refactored or better done
       
       */
       this._http.get(completeURL).subscribe((data)=>{
@@ -160,7 +159,6 @@ export class CallApiService {
     return randomEvents;
   }
 
-//TODO delete console logs
 
 
  /*

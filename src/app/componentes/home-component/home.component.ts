@@ -9,7 +9,7 @@ import { ShowDaysComponent } from '../show-days-component/show-days/show-days.co
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnChanges {
 
   title:string = 'Days between dates calculator';
 
@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
     "lastYearToCheckDateString": new FormControl("", Validators.required),
   },this.validatorFields());
 
+  
   /*
     with Viewchild, we bind two properties on the child component
 
@@ -98,6 +99,11 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+  }
+
+  ngOnChanges():void{
+
   }
 
  
@@ -113,12 +119,7 @@ export class HomeComponent implements OnInit {
     //destructuring the object with dates values into const, more usable
     const {firstYearToCheckDateString, lastYearToCheckDateString}=this.myDatesForm.value;
 
-      
-
-      
-      
-
-      this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
+    this._dates.calculateTotalDaysBetweenDates(firstYearToCheckDateString,lastYearToCheckDateString)
 
       
     /*
@@ -174,67 +175,60 @@ export class HomeComponent implements OnInit {
     this.isFlipped=!this.isFlipped;
   }
 
-   /*
-    TODO TEST esta funcion
+  /*
+    validatorFields()
+
+    is a custom validator to make the form invalid (can´t be sent),
+    in case the date is the same on both fields of the form.
+
     
+    if dates on the form -the control-, are exact the same,
+    (that means, there was an error on the validation).
+    we return an object; otherwise, when everything was ok and form is valid,
+    we return null 
 
   */
-    validatorFields(): ValidatorFn  | null{
+  validatorFields(): ValidatorFn  | null{
 
-      return (control:AbstractControl):{[key: string]: boolean} | null=>{
+    
+    return (control:AbstractControl):{[key: string]: boolean} | null=>{
   
   
-        const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
+      const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
         
     
+      /*
+        
+        the ==="" works because by some reason, if we delete some field by hand on the input,
+        -for example the days on a valid date we already introduced, control goes to "", so we checked that way
+        
+      */
+
+          
+      if( (firstYearToCheckDateString===lastYearToCheckDateString) || firstYearToCheckDateString==="" || lastYearToCheckDateString===""){
+  
+          
+       
+        this.totalDays=0;
+
         /*
-        
-          the ==="" works because by some reason, if we delete some field by hand on the input,
-          -for example the days on a valid date we already introduced, control goes to "", so we checked that way
-        
+           we set isFlipped to false to be sure that animation will be triggered again next time, when we press calculate
         */
-
-          /*
-          TODO ask on SO why I can access the formgroup with console.log(control) but when 
-          I try to access a property like status it fires the formcontrol´s property (for example status)
-          and not the formgroups
-
-          for example if I do now console.log (control) appears the formgroup but
-          if i do console.log(control.valid) gets the valid property of one of the inputs, which
-          also had that valid property as well as formgroup
-
-          it only seems to work with control.value with gets all the controls like shown on detructuration 
-
-                  const {firstYearToCheckDateString,lastYearToCheckDateString}=control.value;
-
-                  but it doenst work with any other property. If formgroup has VALID set to false, for example,
-                  when i get control.valid it gets a valid, maybe because the controls are valid?
-                  
-          */
-        if( (firstYearToCheckDateString===lastYearToCheckDateString) || firstYearToCheckDateString==="" || lastYearToCheckDateString===""){
+        this.isFlipped=false;
+        return {'areEqual':true}
   
-          console.log ("son mal");
-       
-          this.totalDays=0;
-
-          /*
-             we set isFlipped to false to be sure that animation will be triggered again next time, when we press calculate
-          */
-          this.isFlipped=false;
-          return {'areEqual':false}
+      }else{
   
-        }else{
-  
-          return null;
+        return null;
           
           
   
-        }
-       
       }
+       
+    }
       
   
-    }
+  }
   
 
 }

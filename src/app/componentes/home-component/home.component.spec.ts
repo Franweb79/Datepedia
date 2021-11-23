@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 import { HomeComponent } from './home.component';
 
@@ -30,87 +30,87 @@ describe('HomeComponent', () => {
     DATES MUST ALWAYS BE PATTERN YYYY-MM-DD, NOW WITH DD-MM-YYYY
   */
 
-    it('same year. same month. same day-> 1st date: 14-10-2012, 2nd date:14-10-2012',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2012-10-14",
-        lastYearToCheckDateString:"2012-10-14"
-      });
-  
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
-  
-  
-      expect(component.totalDays).toBe(0);
+  it('same year. same month. same day-> 1st date: 14-10-2012, 2nd date:14-10-2012',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2012-10-14",
+      lastYearToCheckDateString:"2012-10-14"
     });
+  
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
+  
+  
+    expect(component.totalDays).toBe(0);
+  });
 
     
 
-    it('same year. same month. day higher-> 1st date: 12-04-2004, 2nd date:06-04-2004',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2004-04-12",
-        lastYearToCheckDateString:"2004-04-06"
-      });
-  
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
-  
-  
-      expect(component.totalDays).toBe(6);
+  it('same year. same month. day higher-> 1st date: 12-04-2004, 2nd date:06-04-2004',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2004-04-12",
+      lastYearToCheckDateString:"2004-04-06"
     });
-
-    it('same year. same month. day lower-> 1st date: 06-04-2004, 2nd date:08-04-2004',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2004-04-06",
-        lastYearToCheckDateString:"2004-04-08"
-      });
   
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
+  
+  
+    expect(component.totalDays).toBe(6);
+  });
+
+  it('same year. same month. day lower-> 1st date: 06-04-2004, 2nd date:08-04-2004',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2004-04-06",
+      lastYearToCheckDateString:"2004-04-08"
+    });
+  
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
   
       
-      expect(component.totalDays).toBe(2);
-    });
+    expect(component.totalDays).toBe(2);
+  });
 
-    it('same year. month lower. day lower-> 1st date: 06-04-2004, 2nd date:11-06-2004',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2004-04-06",
-        lastYearToCheckDateString:"2004-06-11"
-      });
-  
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
-  
-  
-      expect(component.totalDays).toBe(66);
+  it('same year. month lower. day lower-> 1st date: 06-04-2004, 2nd date:11-06-2004',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2004-04-06",
+      lastYearToCheckDateString:"2004-06-11"
     });
+  
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
+  
+  
+    expect(component.totalDays).toBe(66);
+  });
 
-    it('same year. month higher, day lower-> 1st date: 06-10-2012, 2nd date:06-04-2012',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2012-10-06",
-        lastYearToCheckDateString:"2012-04-06"
-      });
-  
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
-  
-  
-      expect(component.totalDays).toBe(183);
+  it('same year. month higher, day lower-> 1st date: 06-10-2012, 2nd date:06-04-2012',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2012-10-06",
+      lastYearToCheckDateString:"2012-04-06"
     });
+  
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
+  
+  
+    expect(component.totalDays).toBe(183);
+  });
   
     
   
-    it('same year. same month. day higer-> 1st date: 14-10-2012, 2nd date:06-10-2012',()=>{
-      component.myDatesForm=myFormBuilder.group({
-        firstYearToCheckDateString:"2012-10-14",
-        lastYearToCheckDateString:"2012-10-06"
-      });
-  
-      fixture.nativeElement.querySelector("#submitDatesButton");
-      component.onSubmit();
-  
-  
-      expect(component.totalDays).toBe(8);
+  it('same year. same month. day higer-> 1st date: 14-10-2012, 2nd date:06-10-2012',()=>{
+    component.myDatesForm=myFormBuilder.group({
+      firstYearToCheckDateString:"2012-10-14",
+      lastYearToCheckDateString:"2012-10-06"
     });
+  
+    fixture.nativeElement.querySelector("#submitDatesButton");
+    component.onSubmit();
+  
+  
+    expect(component.totalDays).toBe(8);
+  });
   
   
 
@@ -233,6 +233,6 @@ describe('HomeComponent', () => {
     expect(component.totalDays).toBe(1398);
   });
   
-
+  
   
 });

@@ -20,7 +20,7 @@
       "es2018",
       "dom"
     ],
-    "paths": {//TODO investigar esto y como usarlo con import
+    "paths": {
       "@images/*": ["src/app/assets/images/*"],
       "@interfaces/*":["src/app/models/interfaces/*"]
     }

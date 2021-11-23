@@ -15,10 +15,7 @@
     
 }
 
-/* TODO a ver como he hecho que vaya bien la posicion de los divds animados. con un relative del results-wrapper,
-y luego en absolute solo el que muestra los resultados, pero hay que quitar el absolute del background
-y por alguna razon asi se ajusta bien a la columna y todo...
-*/
+
 #background-div{
 
     
