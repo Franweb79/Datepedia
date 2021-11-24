@@ -204,8 +204,8 @@ export class DatesService  {
 
   On 2021-06-08 and 2020-11-06 also goes wrong on modal
 
-  MAYBE ON MODAL, IF FIRST DATE MONTH IS HIGHER, THEN TURN ORDER
-
+HAPPENS WHEN SECOND YEAR IS higeR AND secomnd MONTH IS lower (SEE CAPTURA3)
+OR IF SECOND YEAR LOWER AND SECOND MONTH HIGHER
   //TODO TEST, how to test a service
 
   */
@@ -504,9 +504,7 @@ export class DatesService  {
 
       this.orderedDatesArray=[this.date2,this.date1];
 
-      //TODO igual es aqui lo del orden del todo de mas arriba, pa que se muestre
-      //en orden en ese caso, hacer un else al final para ordenar las fechas si date1year<date2year,
-      //que si el mes de la date 1 es mayor que el de la date 2, reordenar fechas
+      
 
     }else if(date1Year===date2Year){
 
