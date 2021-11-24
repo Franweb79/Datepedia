@@ -320,6 +320,12 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
       //the events on proper order, now is opposite because it takes year into account 
       //to retrieve results from api. maybe on the api we should order dates too before making request
 
+      //TODO also wrong if i put 2021-11-04 and 2020-11-06, show first 6th november. because take into account the year
+
+      //with same or more year on second date works fine
+
+      //with 2021-11-06 and 2022-11-04 works wrong. with less or same year on second date, ok
+
         if(d1.getDate()>d2.getDate()){
 
           let aux = this.firstDateToShowOnModal;
