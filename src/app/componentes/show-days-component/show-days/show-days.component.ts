@@ -222,28 +222,122 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     
       assign to string properties that will be passed to app-modal child component
 
+      Here we need a different logic than the one we use to order the complete dates.
+      Here we have no year. we will only show month and day, so a valid order for
+
+      2021-06-04 (second date to be shown)
+
+      and
+
+      2020-08-02 (first date to be shown)
+
+      is not a valid order if we want to show
+
+      06-04 (first date to be shown)
+
+      and
+
+      08-02 (second date to be shown)
+
+      Order is different because we don´t take the year into accouht and that changes everything
+
+      So we can´t simply do
+
+      this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
+
+      this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
+
+       Note that we can´t either show on modal complete dates because we are not showing events from
+       e.g. 2021-06-04, but events from what ahppened on any 06-04
+
+      We must take month and day from each date and then order then having only those values in mind
+
+      We will first convert to Dates but order onlt yaking into account month and day
+
+      
     */
 
-    this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
+    
 
-    this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
-
+    //now we order and assing to the properties which will be shown on modal
+    
+    
 
     /*
       
-      For the order operations, we will use  2 local variables, d1 and d2, 
-      and depending which date is higher, we will reassign values to d1 and d2
-      
+     
+//TODO los textos de arriba repasar cvuendo esto funcione
 
+  We need dates to be string before converting to Date types
 
     */
 
-    const d1 = new Date(this.firstDateToShowOnModal);
+      this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
+
+      this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
+
+      /*
+         For the order operations, we will use  2 local variables, d1 and d2, 
+      and depending which date is higher, we will reassign values to d1 and d2
+      
+
+      */
+
+      const d1 = new Date(this.firstDateToShowOnModal);
 
 
-    const d2 = new Date(this.lastDateToShowOnModal);
+      const d2 = new Date(this.lastDateToShowOnModal);
 
 
+    if(d1.getMonth()>d2.getMonth()){
+
+      //e.g. 09-04 and 08-04, order will be changed
+
+      let aux = this.firstDateToShowOnModal;
+
+      this.firstDateToShowOnModal = this.lastDateToShowOnModal;
+
+      this.lastDateToShowOnModal = aux;
+
+
+
+    }else if(d1.getMonth()<d2.getMonth()){
+
+      //e.g. 08-04 and 09-04,
+      //niothing //TODO delete if works
+
+    }else{
+      /*
+        if month is the same, we will compare with days
+        e.g. 06-12 and 06-08
+      */
+
+      // e.g. 06-12 and 06-08, order will be changed 
+      
+      //warning, to get date of the month is get date,not getday()
+
+      //TODO when second year is higer e.g. 2021-09-06 and 2022-05-04 we must show also
+      //the events on proper order, now is opposite because it takes year into account 
+      //to retrieve results from api. maybe on the api we should order dates too before making request
+
+        if(d1.getDate()>d2.getDate()){
+
+          let aux = this.firstDateToShowOnModal;
+
+          this.firstDateToShowOnModal = this.lastDateToShowOnModal;
+    
+          this.lastDateToShowOnModal = aux;
+
+        }
+
+        /*
+          if dates have same month and day, in order to be shown on the modal, that is handled
+          on getEventsPromise() from the call-api-service, because we don´t need to request 2 results
+          in that case
+
+        */
+
+    }
 
     /*
       
@@ -253,14 +347,14 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
        
     */
 
-    if (d1 > d2) {
+    /*if (d1 > d2) {
 
       let aux = this.firstDateToShowOnModal;
 
       this.firstDateToShowOnModal = this.lastDateToShowOnModal;
 
       this.lastDateToShowOnModal = aux;
-    }
+    }*/
   }
 
   callAPI() {
