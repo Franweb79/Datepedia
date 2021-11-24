@@ -197,7 +197,18 @@ export class DatesService  {
 
   }
 
+  /*
+  //TODO if I set 2021-12-03 and 2022-11-03 no se muestra en orden en el modal
+  
+  If I set 2021-12-03 and 2019-11-03 (second year lower. second month lower) it goes ok
+
+  On 2021-06-08 and 2020-11-06 also goes wrong on modal
+
+  MAYBE ON MODAL, IF FIRST DATE MONTH IS HIGHER, THEN TURN ORDER
+
   //TODO TEST, how to test a service
+
+  */
   
   /*
 
@@ -492,6 +503,10 @@ export class DatesService  {
     if(date1Year>date2Year){
 
       this.orderedDatesArray=[this.date2,this.date1];
+
+      //TODO igual es aqui lo del orden del todo de mas arriba, pa que se muestre
+      //en orden en ese caso, hacer un else al final para ordenar las fechas si date1year<date2year,
+      //que si el mes de la date 1 es mayor que el de la date 2, reordenar fechas
 
     }else if(date1Year===date2Year){
 
