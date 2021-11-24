@@ -124,6 +124,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   */
   public arrayOfObjectsWithEvents:Object[];
 
+
   /*
   
    to listen when arrayOfObjectsWithEvents changes (it gets events from API),
@@ -160,6 +161,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     this.arrayNumberWithLastDateToBeSentToApi = [];
 
     this.arrayOfObjectsWithEvents=[];
+
 
   }
 
@@ -206,7 +208,15 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     */
 
     const [date1, date2] = this.getDates();
+    console.log (date1);
 
+    if((date1[1]===date2[1]) && (date1[2]===date2[2])){
+      this.modal.isMonthAndDayTheSame=true;
+    }else
+    {
+      this.modal.isMonthAndDayTheSame=false;
+
+    }
 
     /*
     
@@ -345,6 +355,14 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
        So, once we have 1st result with events corresponding to the 1st date,
        and added them as first element of an array, we make the 2nd request
+       (if month or day are different,otherwise we need to show results only one time).
+
+       Why? 
+
+       e.g. "results for november 05" it has no sense to show
+       -5 results for november 05 (first request)
+       -and 5 results for november 05 (another request, which will be done only if
+        date or month are different)
     */
 
     this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
@@ -360,26 +378,35 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       
 
-      //As said, once we have the first date events, we make the same for the second
+      /*
+        As said, once we have the first date events, we make the same for the second
+        but ONLY if day is different or month is different. 
 
-      this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
-        ()=>{
-
-          this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
-
-        
-          /*
-            now that we have the 2 events results from the 2 dates, we assign them 
-            to a modal property which will be shown on that modal
-            
-          */
-
-            this.modal.arrayOfEventsToShow=this.arrayOfObjectsWithEvents;
+      */
 
 
-
-        }
-      );
+      if((monthToSend1 !== monthToSend2) || (dayToSend1 !== dayToSend2))
+      {
+        this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
+          ()=>{
+  
+            this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+  
+          
+            /*
+              now that we have the 2 events results from the 2 dates, we assign them 
+              to a modal property which will be shown on that modal
+              
+            */
+  
+              this.modal.arrayOfEventsToShow=this.arrayOfObjectsWithEvents;
+  
+  
+  
+          }
+        );
+      }
+      
 
     });      
 

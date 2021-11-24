@@ -522,23 +522,23 @@ export class DatesService  {
       REMEMBER DATES ARE ORDERED NOW
     */ 
 
-       const [minorDate, highestDate]=this.orderedDatesArray;
+    const [minorDate, highestDate]=this.orderedDatesArray;
 
 
 
-       date1Result=this.calcFirstAndLastYearDays(minorDate);
+    date1Result=this.calcFirstAndLastYearDays(minorDate);
 
-       const [daysPassedDate1, daysLeftDate1]=date1Result;
+    const [daysPassedDate1, daysLeftDate1]=date1Result;
 
 
 
-       date2Result=this.calcFirstAndLastYearDays(highestDate);
+    date2Result=this.calcFirstAndLastYearDays(highestDate);
 
-       const [daysPassedDate2, daysLeftDate2]=date2Result;
+    const [daysPassedDate2, daysLeftDate2]=date2Result;
 
       
-       //TODO steps above maybe can be refactored
-       daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
+    //TODO steps above maybe can be refactored
+    daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
     /*
       if one year is different from the other, we add the results. 

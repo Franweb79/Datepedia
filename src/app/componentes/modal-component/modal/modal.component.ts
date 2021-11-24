@@ -45,11 +45,18 @@ export class ModalComponent implements OnInit {
   @Input() arrayOfEventsToShow:any;
 
 
-      //TODO IF DAY AND MONTH IS THE SAME BUT YEAR IS DIFFERENT, SHOW ON MODAL ONLY ONCE the name, i mean,
-      //not "things happened on february 08 and february 08" and add it to read me when completed
+  /*
+    If day and month is the same but year, show on modal the date only once.
+    i mean, e.g. "things happened on febreary 08" instead of 
+    "things happened on february 08 and february 08".
 
+    To do that we use isMonthAndDayTheSame property.
 
-  constructor(private _dates:DatesService, private _callApi:CallApiService) { 
+  */
+
+  @Input() isMonthAndDayTheSame:boolean;
+
+  constructor() { 
 
 
     this.date1ToShow="";
@@ -57,6 +64,8 @@ export class ModalComponent implements OnInit {
     this.date2ToShow="";
 
     this.arrayOfEventsToShow=[];
+
+    this.isMonthAndDayTheSame=false;
 
   }
 

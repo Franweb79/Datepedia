@@ -4,8 +4,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Some events happened on  {{date1ToShow | date: 'MMMM dd'}} and 
-            {{date2ToShow | date:'MMMM dd'}} </h5>
+          <h5 *ngIf="isMonthAndDayTheSame==true;else showTwoDates" class="modal-title" id="exampleModalLabel">
+            Some events happened on  {{date1ToShow | date: 'MMMM dd'}}
+
+          </h5>
+          <ng-template #showTwoDates>
+            <h5 class="modal-title" id="exampleModalLabel">
+              Some events happened on  {{date1ToShow | date: 'MMMM dd'}} and {{date2ToShow | date:'MMMM dd'}} 
+
+            </h5>
+          </ng-template>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -17,7 +25,7 @@
             
             <p></p>
 
-            {{item.date}}
+            <h3>{{item.date}}</h3>
 
             <ul>
               <li *ngFor="let event of item.events">
