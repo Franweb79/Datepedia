@@ -18,11 +18,25 @@
         </div>
         <div class="modal-body">
           
-         
+          <div *ngFor="let item of myErrorObjList ">
+           
+            <ul>
+              <li> {{item.message}}</li>
+              <li>
+                {{item.status}}
+              </li>
+              <li>
+                {{item.reason}}
+              </li>
+            </ul>
+            
+            
+          </div>
+
 
           <div *ngFor="let item of arrayOfEventsToShow ">
-
             
+
             <p></p>
 
             <h3>{{item.date}}</h3>

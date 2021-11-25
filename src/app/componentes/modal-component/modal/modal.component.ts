@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { DatesService } from '../../../services/dates-service/dates.service';
 import { CallApiService } from '../../../services/call-api-service/call-api.service';
+import { customError } from '@interfaces/modal-error-interface';
 
 @Component({
   selector: 'app-modal',
@@ -8,7 +9,6 @@ import { CallApiService } from '../../../services/call-api-service/call-api.serv
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit {
-
 
 
   /*
@@ -56,6 +56,31 @@ export class ModalComponent implements OnInit {
 
   @Input() isMonthAndDayTheSame:boolean;
 
+  //TODO mete el set en typescript aprende pa wque es https://medium.com/ramsatt/map-set-in-typescript-angular-643e506e6c3c
+  
+  /*
+    TODO check on production what happens with errors through some requests, to see if it
+    properly reinitializes error variables, like myErrorObjList and showError
+    or modalError on call-api-service
+
+  */
+  /*
+    must declare myErrorObjList as any if i want to be able to iterate over it on hteml template with ngfor
+  */
+
+public myErrorObjList:any=new Set();
+
+  /*
+    showError:
+
+    a public property which will receive the customError created by getEventsPromise()
+    an call-api-service in case of error.
+
+
+  */
+
+    public showError:customError;
+
   constructor() { 
 
 
@@ -66,6 +91,12 @@ export class ModalComponent implements OnInit {
     this.arrayOfEventsToShow=[];
 
     this.isMonthAndDayTheSame=false;
+
+    this.showError={
+      status:0,
+      message:"Sorry, something went wrong, please try again",
+      reason:""
+    }
 
   }
 

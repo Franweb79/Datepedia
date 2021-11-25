@@ -7,6 +7,12 @@ import { HttpClient } from '@angular/common/http';
 */
 import { customEvents } from '@interfaces/custom-event-interface';
 
+/*
+  another custom type to show errors in case something went wrong
+
+*/
+
+import { customError } from '@interfaces/modal-error-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +35,8 @@ export class CallApiService {
 
   public dataToShow:customEvents;
 
+  public modalError:customError;
+
 
   constructor(private _http:HttpClient) { 
 
@@ -36,6 +44,12 @@ export class CallApiService {
       date:"",
       events:[]
     };
+
+    this.modalError={
+      status:0,
+      message:"Sorry, something went wrong, please try again",
+      reason:""
+    }
 
     
   }
@@ -50,7 +64,6 @@ export class CallApiService {
     we have the data returned for the first date before requesting
     for second date, and properly order them 
 
-    TODO handle reject
   */
   getEventsPromise(pmonth:number,pday:number){
 
@@ -70,6 +83,11 @@ export class CallApiService {
         property called arrayOfObjectsWithEvents,
         and though a viewchild, pass the value to modal child component 
         and be able to show it
+
+        To handle error, we use a property called modalError with custom type error called customError,
+        on that error we set the error response values we are interested in.
+        Also use the reject() keyword which, like resolve() is like a return.
+        It is used to handle errors, resolve() is to handle sucessful request 
         
       
       */
@@ -79,6 +97,11 @@ export class CallApiService {
          
    
    
+       },(error)=>{
+
+        this.modalError.status=error.status;
+        this.modalError.reason=error.message;
+        reject(this.modalError);
        });
 
     });
