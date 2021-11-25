@@ -316,15 +316,15 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
       
       //warning, to get date of the month is get date,not getday()
 
-      //TODO when second year is higer e.g. 2021-09-06 and 2022-05-04 we must show also
+      //TODO WORKS NOW, MAKE TEST WITH SUCH DATESwhen second year is higer e.g. 2021-09-06 and 2022-05-04 we must show also
       //the events on proper order, now is opposite because it takes year into account 
       //to retrieve results from api. maybe on the api we should order dates too before making request
 
-      //TODO also wrong if i put 2021-11-04 and 2020-11-06, show first 6th november. because take into account the year
+      //TODO WORKS NOW, MAKE TEST WITH SUCH DATES also wrong if i put 2021-11-04 and 2020-11-06, show first 6th november. because take into account the year
 
       //with same or more year on second date works fine
 
-      //with 2021-11-06 and 2022-11-04 works wrong. with less or same year on second date, ok
+      //TODO WORKS NOW, MAKE TEST WITH SUCH DATES with 2021-11-06 and 2022-11-04 works wrong. with less or same year on second date, ok
 
         if(d1.getDate()>d2.getDate()){
 
@@ -368,6 +368,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     /*
     
+    //TODO review this text 
       Here we also need to order dates, as on convertDatesToModal().
 
       But here I decided to create local string variables to store the string dates,
@@ -425,7 +426,38 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     const d2 = new Date(stringWithLastDateToBeSentToApi);
 
-    if (d1 > d2) {
+    if(d1.getMonth()>d2.getMonth()){
+
+      //e.g. 09-04 and 08-04, order will be changed
+
+      let aux = this.arrayNumberWithFirstDateToBeSentToApi;;
+
+      this.arrayNumberWithFirstDateToBeSentToApi = this.arrayNumberWithLastDateToBeSentToApi;
+
+      this.arrayNumberWithLastDateToBeSentToApi = aux;
+
+
+    }else if(d1.getMonth()<d2.getMonth()){
+
+      //e.g. 08-04 and 09-04,
+      //niothing //TODO delete if works
+
+    }else{
+
+      if(d1.getDate()>d2.getDate()){
+
+        let aux = this.arrayNumberWithFirstDateToBeSentToApi;;
+
+        this.arrayNumberWithFirstDateToBeSentToApi = this.arrayNumberWithLastDateToBeSentToApi;
+
+        this.arrayNumberWithLastDateToBeSentToApi = aux;
+
+      }
+
+
+    }
+
+    /*if (d1 > d2) {
 
       let aux = this.arrayNumberWithFirstDateToBeSentToApi;
 
@@ -433,7 +465,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       this.arrayNumberWithLastDateToBeSentToApi = aux;
     }
-
+*/
 
     /*
     
