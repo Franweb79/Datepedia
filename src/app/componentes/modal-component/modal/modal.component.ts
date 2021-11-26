@@ -27,7 +27,9 @@ export class ModalComponent implements OnInit {
   @Input() date2ToShow:string;
 
   /*
-    arrayOfEventsToShow is used here on modal component HTML template
+    
+  //TODO al blog, y apuntes de git, hay que sacar las carpetas del proyecto y actualizar el git con add y eso, antes de meterlas a gitignore y actualizar otra vez el git con add y todo eso
+  arrayOfEventsToShow is used here on modal component HTML template
     to show the events on a certain date.
 
     I have declared it as 'any' because in order to use it on the template
