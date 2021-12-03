@@ -322,12 +322,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
       //warning, to get date of the month is get date,not getday()
 
       //TODO WORKS NOW, MAKE TEST WITH SUCH DATES when second year is higer e.g. 2021-09-06 and 2022-05-04 we must show also
-      //the events on proper order, now is opposite because it takes year into account 
-      //to retrieve results from api. maybe on the api we should order dates too before making request
 
       //TODO WORKS NOW, MAKE TEST WITH SUCH DATES also wrong if i put 2021-11-04 and 2020-11-06, show first 6th november. because take into account the year
-
-      //with same or more year on second date works fine
 
       //TODO WORKS NOW, MAKE TEST WITH SUCH DATES with 2021-11-06 and 2022-11-04 works wrong. with less or same year on second date, ok
 
