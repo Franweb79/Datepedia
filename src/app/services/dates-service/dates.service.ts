@@ -187,7 +187,7 @@ export class DatesService  {
   convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
     let stringToReturn:string="";
 
-    //iterate ober each element of the array, convert to string and concatenate 
+    //iterate over each element of the array, convert to string and concatenate 
     stringToReturn+=parrayToConvert.map(function(element){
 
       return element.toString();
@@ -197,17 +197,6 @@ export class DatesService  {
 
   }
 
-  /*
-  
-  //TODO WORKS. DO TEST If I set 2021-12-03 and 2019-11-03 (second year lower. second month lower) it goes ok
-
-  // TODO WORKS. DO TEST On 2021-06-08 and 2020-11-06 also goes wrong on modal
-
-HAPPENS WHEN SECOND YEAR IS higeR AND secomnd MONTH IS lower (SEE CAPTURA3)
-OR IF SECOND YEAR LOWER AND SECOND MONTH HIGHER
-  //TODO TEST, how to test a service
-
-  */
   
   /*
 

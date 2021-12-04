@@ -40,6 +40,9 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     valueTotalDays and isDivFlipped receive their values from parent component
     home.
  */
+
+    //TODO CHECK Again comments and code of this component, of test names, and dates service
+    //TODO apuntes de test servicio como lo hemos hecho
  
   @Input() valueTotalDays: number;
 
@@ -212,6 +215,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     const [date1, date2] = this.getDates();
 
+    console.log (date1);
+
     /*
 
       This condition is used because if month and day is the same on both dates,
@@ -288,6 +293,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
 
+      console.log(this.firstDateToShowOnModal);
+
       /*
         For the order operations, we will use 2 local variables, d1 and d2, 
         and depending which date is higher, we will reassign values to d1 and d2
@@ -309,7 +316,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       this.lastDateToShowOnModal = aux;
 
-      //we don´t need to compare id de1 month < d2 month, then nothing changes or is re-assigned
+      //we don´t need to compare if d1.getMonth() < d2.getMonth(), then nothing changes or is re-assigned
 
     }else if(d1.getMonth()===d2.getMonth()){
       /*
@@ -319,13 +326,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
       // e.g. 06-12 and 06-08, order will be changed 
       
-      //warning, to get date of the month is get date,not getday()
+      //warning, to get date of the month is getDate(),not getday()
 
-      //TODO WORKS NOW, MAKE TEST WITH SUCH DATES when second year is higer e.g. 2021-09-06 and 2022-05-04 we must show also
-
-      //TODO WORKS NOW, MAKE TEST WITH SUCH DATES also wrong if i put 2021-11-04 and 2020-11-06, show first 6th november. because take into account the year
-
-      //TODO WORKS NOW, MAKE TEST WITH SUCH DATES with 2021-11-06 and 2022-11-04 works wrong. with less or same year on second date, ok
 
         if(d1.getDate()>d2.getDate()){
 
