@@ -57,19 +57,22 @@ export class ModalComponent implements OnInit {
 
   @Input() isMonthAndDayTheSame:boolean;
 
-  //TODO mete el set en typescript aprende pa wque es https://medium.com/ramsatt/map-set-in-typescript-angular-643e506e6c3c
-  
   /*
     TODO check on production what happens with errors through some requests, to see if it
     properly reinitializes error variables, like myErrorObjList and showError
     or modalError on call-api-service
 
   */
+
   /*
     must declare myErrorObjList as any if i want to be able to iterate over it on hteml template with ngfor
+
+    We declare as a Set because an object is not iterable, but the Set is iterable,
+    so we can add the object with the add() method, and then iterate over it if needed
+    (for example, on a template, actually we will iterate over myErrorObjList on the modal template)
   */
 
-public myErrorObjList:any=new Set();
+  public myErrorObjList:any=new Set();
 
   /*
     showError:
@@ -80,7 +83,7 @@ public myErrorObjList:any=new Set();
 
   */
 
-    public showError:customError;
+  public showError:customError;
 
   constructor() { 
 
