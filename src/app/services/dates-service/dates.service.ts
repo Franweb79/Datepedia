@@ -9,39 +9,39 @@ import { month } from '@interfaces/month-interface';
 export class DatesService  {
 
   /*
-
     OVERVIEW EXPLANATION:
 
     On two given dates, for example, 2004-04-06 and 2018-05-09
 
-    we will calculate the days for first and last year with a method called calcFirstAndLastYearDays()
+    we will calculate this way_
+    
+    - The days for first and last year with a method called calcFirstAndLastYearDays()
 
-    The days between 2005 and 2017 will be calculated on calcDaysBetweenYears()
+    - The days between 2005 and 2017 will be calculated on calcDaysBetweenYears()
 
-    The total days will be put together on calculateTotalDaysBetweenDates()
-
-
-
+    - The total days will be put together on calculateTotalDaysBetweenDates()
   */
 
   /*
     date1 and date2 will store dates as an array of numbers, corresponding
-    [year.month,day]
+    [year,month,day]
   */
   public date1:number[];
   public date2:number[];
 
   /*
-    totalDaysBetweenDates stores the final result, the number of total days between two given dates
-
+    totalDaysBetweenDates stores the final result, 
+    that means, the number of total days between two given dates
   */
   public totalDaysBetweenDates:number;
 
   /*
-    to order them. It could happen user sets the second date is lower
+    to order dates, we must prevent it could happen user sets the second date is older
     (e.g. first date 2018 and second date 2004).
-    Ordering them would be easier to calculate before forcing user 
-    to set dates in a "correct" order (e.g "2nd date must be higher than 1st" I dont like that)
+
+    We will allow that, we will properly order and calculate them. 
+    I find it better than forcing user to set dates in a "correct" order 
+    (e.g "2nd date must be higher than 1st" I dont like that)
 
     As date1 and date2 will be an array of numbers with year, month and day separated, 
     we will store both arrays on orderedDatesArray, and as it is an array of arrays,
@@ -54,8 +54,8 @@ export class DatesService  {
     
     this is an array of custom type "month" objects.
 
-    We need it to store specially the number of days for each month and calculate dates difference
-    in a real way -not every month has same days-
+    We need it to store specially the number of days for each month 
+    and calculate dates difference correctly -not every month has same days-
 
   */
   public arrayMonths:month[]=[
@@ -159,27 +159,30 @@ export class DatesService  {
       
     convertArrayOfNumbersIntoString()
   
-    Tthis method does the reverse operation of splitStringDateIntoArrayOfNumbers.
-      To show on modal and properly play with datepipes we need the dates as string,
-      so we reverse the dates as array of numbers we have operated with, and revert back
-      to strings.
+    This method does the reverse operation of splitStringDateIntoArrayOfNumbers.
+
+    To show on modal and properly play with datepipes we need the dates as string,
+    so we reverse the dates as array of numbers we have operated with, and revert back
+    to strings.
     
-      I realised perhaps it would have been a better idea to have the string
-      dates we get from the form at home-component, 
+    I realised perhaps it would have been a better idea to have the string
+    dates we get from the form at home-component, 
       
-      firstYearToCheckDateString
+    firstYearToCheckDateString
 
-      and 
+    and 
 
-      lastYearToCheckDateString
+    lastYearToCheckDateString
       
-      as properties of this service and not as home-component-properties. 
-      Now perhaps this method would not have been neccessary,
-      and would be a better designed app. But I am here to learn :)
-      Also maybe we would save some inherit of properties from parent to child components
+    as properties of this service and not as home-component-properties.
 
-      PARAMETERS: The array of numbers to convert to String
-      RETURNS: the Date as string
+    Now perhaps this method would not have been neccessary,
+    and would be a better designed app. But I am here to learn :)
+
+    Also maybe we would save some inherit of properties from parent to child components
+
+    PARAMETERS: The array of numbers to convert to String
+    RETURNS: the Date as string
 
 
   */
@@ -202,7 +205,7 @@ export class DatesService  {
 
     isLeapYearCheck()
 
-    We need to know if year is Leap or not, to add one more day in that case
+    We need to know if year is Leap or not, to add one more day to the year in that case
 
     PARAMETERS: The year (only the year), to be checked
 
@@ -258,24 +261,24 @@ export class DatesService  {
    isYearLeap=this.isLeapYearCheck(year);
 
    /*
-    First, we calculate daysPassed from 01-01 until selected Date, that will be daysPassed
+      First, we calculate daysPassed from 01-01 until selected Date, that will be daysPassed
 
-    Then, to get daysRemaining, we substract daysPassed to 365 or 366, 
-    depending if year is leap or not
+      Then, to get daysRemaining, we substract daysPassed to 365 or 366, 
+      depending if year is leap or not
 
-    365 or 366 - daysPassed = daysRemaining
+      365 or 366 - daysPassed = daysRemaining
 
-    We will return an array with both values: daysPassed and daysRemaining
+      We will return an array with both values: daysPassed and daysRemaining
 
     
    */
      
 
     /*
-        before operating, if year is leap, 
-        we set february days on the arrayMonths object to 29, 
-        otherwise back to 28.
-        Also with the days of a year, 365 or 366
+      before operating, if year is leap, 
+      we set february days on the arrayMonths object to 29, 
+      otherwise back to 28.
+      Also with the days of a year, 365 or 366
     */
     if(isYearLeap===true){
       this.arrayMonths[1].days = 29;
@@ -288,7 +291,7 @@ export class DatesService  {
 
     /*
       On the iteration below,
-      limit is (Month -1) is because, for example, 
+      limit is (Month -1) because, for example, 
       if our month is june (6), the loop should go until may (5); 
       but as array starts on index 0, may is on 
       index 4
@@ -335,7 +338,8 @@ export class DatesService  {
     PARAMETERS:
       the two years (as said, not dates, just the years).
 
-    RETURNS localTotalDaysBetweenYears, a number with the total days between the two given years
+    RETURNS localTotalDaysBetweenYears, a number with the total days 
+    between the two given years
   */
 
   calcDaysBetweenYears(pyear1:number,pyear2:number):number{
@@ -361,10 +365,9 @@ export class DatesService  {
    
       this local variable will only change if PARAMETERS (years) are different
 
-      Also I considered better to use a local variable and not a property which could not exist on another project, 
-      this way is more reusable 
-
-      
+      Also I considered better to use a local variable and not a property
+      which could not exist on another project, 
+      this way is more reusable     
 
   */
     let localTotalDaysBetweenYears=0;
@@ -437,16 +440,15 @@ export class DatesService  {
 
   /*
 
-      calculateTotalDaysBetweenDates()
+    calculateTotalDaysBetweenDates()
 
-      This is the method where final result will be produced and stored on the 
-      totalDaysBetweenDates property
+    This is the method where final result will be produced and stored on the 
+    totalDaysBetweenDates property
 
-      PARAMETERS the two dates
+    PARAMETERS the two dates
 
-
-      RETURNS nothing, since the total result will be stored on a service property called 
-      totalDaysBetweenDates
+    RETURNS nothing, since the total result will be stored on a service property called 
+    totalDaysBetweenDates
   */
 
   calculateTotalDaysBetweenDates(pdate1:string,pdate2:string):void{
@@ -507,6 +509,11 @@ export class DatesService  {
 
         }else if(date1Day===date2Day){
 
+          /*
+            in this case, a a custom validator called validatorFields()
+            will be used on the form to make it invalid. 
+            That validator in defined on the home-component.ts
+          */ 
           console.log ("same date");
 
         }
@@ -545,10 +552,10 @@ export class DatesService  {
       if one year is different from the other, we add the results. 
       For example, between 2004-04-06 and 2018-05-09:
         - Days from 2004-04-06 to 2004-31-12 (daysLeftDate1)
-        - days between 2007 and 20197 (daysBetweenYears) 
+        - days between 2007 and 2017 (daysBetweenYears) 
         - Days from 2018-01-01 to 2018-05-09 (daysPassedDate2)
 
-        Obviously always have checked if years are leap or not
+        Obviously we always have checked if years are leap or not
 
       If the year is the same.
       For example, 2004-04-06 and 2004-08-09
@@ -583,24 +590,5 @@ export class DatesService  {
 
 
   }
-
-  
-
-  /*
-    
-    custom validator to add to Validators on the FormGroup on home-component.ts
-    if date fields are the same (date is exactly the same), we set form to invalid then the submit button
-    is disabled
-
-  */
-  validatorTest1(control1: AbstractControl):{[key: string]: boolean} | null{
-
-    
-    return {'result':false};
-
-  }
-
- 
-
 
 }
