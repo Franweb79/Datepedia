@@ -41,7 +41,6 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     home-component.
  */
 
-    //TODO apuntes de test servicio como lo hemos hecho
  
   @Input() valueTotalDays: number;
 

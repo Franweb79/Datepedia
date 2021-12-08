@@ -57,12 +57,7 @@ export class ModalComponent implements OnInit {
 
   @Input() isMonthAndDayTheSame:boolean;
 
-  /*
-    TODO check on production what happens with errors through some requests, to see if it
-    properly reinitializes error variables, like myErrorObjList and showError
-    or modalError on call-api-service
-
-  */
+  
 
   /*
     must declare myErrorObjList as any if i want to be able to iterate over it on hteml template with ngfor
