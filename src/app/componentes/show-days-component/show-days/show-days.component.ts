@@ -352,7 +352,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
   }
 
-  callAPI() {
+  async callAPI() {
 
 
     /*
@@ -535,8 +535,64 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
         this.modal.myErrorObjList.add(this.modal.showError);
 
         console.log(this.modal.myErrorObjList);
-    });      
+    });    
+    
+    await this._callApi.getEventsAsyncAwait(monthToSend1, dayToSend1).then(()=>{
 
+      /*
+        clear array first because maybe we have stored results 
+        for a previous 2 dates request before
+      */
+
+        this.arrayOfObjectsWithEvents=[];
+      
+
+        console.log("events from date 1 with async await");
+
+        console.log (this._callApi.dataToShow);
+
+        
+
+    }).catch(()=>{
+
+       /*
+        we set showError first to default values because maybe we have stored results 
+        for a previous  request before
+      */
+
+        this.modal.showError={
+          status:0,
+          message:"Sorry, something went wrong, please try again",
+          reason:""
+        }
+        
+      
+        this.modal.showError=this._callApi.modalError;
+
+        this.modal.myErrorObjList.add(this.modal.showError);
+
+        console.log(this.modal.myErrorObjList);
+
+    });
+//       
+
+    this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+
+    console.log ("array events1");
+    console.log (this.arrayOfObjectsWithEvents);
+
+    await this._callApi.getEventsAsyncAwait(monthToSend2, dayToSend2).then(()=>{
+
+      console.log("events from date 2 with async await");
+      console.log (this._callApi.dataToShow);
+
+
+
+    }).catch();
+    
+    this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+    console.log ("array events2");
+    console.log (this.arrayOfObjectsWithEvents);
   }
 
 }

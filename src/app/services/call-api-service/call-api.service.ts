@@ -65,7 +65,7 @@ export class CallApiService {
     for second date, and properly order them 
 
   */
-  getEventsPromise(pmonth:number,pday:number){
+  getEventsPromise(pmonth:number,pday:number):Promise<customEvents|customError>{
 
     return new Promise((resolve, reject)=>{
 
@@ -105,6 +105,30 @@ export class CallApiService {
        });
 
     });
+  }
+
+  getEventsAsyncAwait(pmonth:number,pday:number){
+
+    let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
+
+
+    return new Promise((resolve, reject)=>{
+
+      this._http.get(completeURL).subscribe((data)=>{
+       
+        resolve(this.dataToShow=this.getFiveRandomElementsOfArray(data)) ;
+        
+  
+  
+      },(error)=>{
+  
+       this.modalError.status=error.status;
+       this.modalError.reason=error.message;
+       reject(this.modalError);
+      });
+
+    })
+
   }
 
   /*
