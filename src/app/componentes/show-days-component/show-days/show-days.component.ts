@@ -221,7 +221,6 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     const [date1, date2] = this.getDates();
 
-    console.log (date1);
 
     /*
 
