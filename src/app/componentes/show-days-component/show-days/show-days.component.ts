@@ -352,6 +352,16 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
   }
 
+  /* we will declare as async to be able to use the await keyword; that means, be able to cut
+  execution of callAPI() until promise resolves. Then we can safely use the values 
+  returned by the promise.
+
+  If we don´t manage with promises or async await, the sync code would execute before async code
+  and could lead to unexpected behavior, e.g. if we need the results of the async code first
+  to be used on the sync code
+
+  */
+
   async callAPI() {
 
 
@@ -458,84 +468,12 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
     /*
-       we use a promise to ensure we control the async request done by
-       _http:get() method which is called inside _dates service.
+       with await, until this promise is not resolved, 
+       the code after promise (which is sync code) won´t take place.
 
-       So, once we have 1st result with events corresponding to the 1st date,
-       and added them as first element of an array to store the events of the 2 dates,
-       we make the 2nd request
-       (if month or day are different,otherwise we need to show results only one time).
+       With no await or proper control, that sync code would be executed before the async code
 
-       Why do we only 2 requests if month or day are different? 
-
-       e.g. if we have "results for november 05" ,it has no sense to show
-       -5 results for november 05 (first request)
-       -and another 5 results again for november 05 (another request, which will be done only if
-        date or month are different)
-    */
-
-    this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{
-      
-      /*
-        clear array first because maybe we have stored results 
-        for a previous 2 dates request before
-      */
-
-      this.arrayOfObjectsWithEvents=[];
-      
-      this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
-
-      
-
-      /*
-        As said, once we have the first date events, we make the same for the second
-        but ONLY if day is different or month is different. 
-
-      */
-
-
-      if((monthToSend1 !== monthToSend2) || (dayToSend1 !== dayToSend2))
-      {
-        this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
-          ()=>{
-  
-            this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
-  
-          
-            /*
-              now that we have the 2 events results from the 2 dates, we assign them 
-              to a modal property which will be shown on that modal
-              
-            */
-  
-              this.modal.arrayOfEventsToShow=this.arrayOfObjectsWithEvents;
-  
-  
-  
-          }
-        );
-      }
-      
-
-    }).catch(()=>{
-      /*
-        we set showError first to default values because maybe we have stored results 
-        for a previous  request before
-      */
-
-        this.modal.showError={
-          status:0,
-          message:"Sorry, something went wrong, please try again",
-          reason:""
-        }
-        
-      
-        this.modal.showError=this._callApi.modalError;
-
-        this.modal.myErrorObjList.add(this.modal.showError);
-
-        console.log(this.modal.myErrorObjList);
-    });    
+    */ 
     
     await this._callApi.getEventsAsyncAwait(monthToSend1, dayToSend1).then(()=>{
 
@@ -588,11 +526,32 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
 
-    }).catch();
-    
+    }).catch(()=>{
+
+      /*
+       we set showError first to default values because maybe we have stored results 
+       for a previous  request before
+     */
+
+       this.modal.showError={
+         status:0,
+         message:"Sorry, something went wrong, please try again",
+         reason:""
+       }
+       
+     
+       this.modal.showError=this._callApi.modalError;
+
+       this.modal.myErrorObjList.add(this.modal.showError);
+
+       console.log(this.modal.myErrorObjList);
+    });
+
     this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
     console.log ("array events2");
     console.log (this.arrayOfObjectsWithEvents);
-  }
+  
 
-}
+  }//callAPI
+
+}//end of class

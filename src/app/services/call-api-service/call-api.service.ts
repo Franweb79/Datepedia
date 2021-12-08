@@ -56,56 +56,23 @@ export class CallApiService {
 
 
   /*
-    getEventsPromise() will be used on show-days-component.
+    getEventsAsyncAwait() will be used on show-days-component.
     
     PARAMETERS:month and day of the date to search
 
-    We need it to make a promise -or with async/await-, to be sure
+    We use async/await, to be sure
     we have the data returned for the first date before requesting
-    for second date, and properly order them 
+    for second date, and properly order them.
+    
+    This method will be used on the callAPI() method of show-days-component
+    , so the callAPI() method will be declared as async.
+    That way, we can use the await to cut the execution of callAPI() until the
+    promise returned inside getEventsAsyncAwait() gets executed
+    Async await is a way to ensure we will have the desired results given by the promise
+    on a more synchonous behavior approach.
 
   */
-  getEventsPromise(pmonth:number,pday:number):Promise<customEvents|customError>{
-
-    return new Promise((resolve, reject)=>{
-
-      
-      let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
-
-      /*
-        we can´t use an RXJS operator  to catch only 5 random results
-        of retrieved data, take() operator here doesn't work 
-        because values should be emitted by the API one by one, 
-        and all events for a date are all emitted together.
-
-        As said, we will use dataToShow property, which is customEvents type, 
-        to store filtered data, then pass it to show-days-component's 
-        property called arrayOfObjectsWithEvents,
-        and though a viewchild, pass the value to modal child component 
-        and be able to show it
-
-        To handle error, we use a property called modalError with custom type error called customError,
-        on that error we set the error response values we are interested in.
-        Also use the reject() keyword which, like resolve() is like a return.
-        It is used to handle errors, resolve() is to handle sucessful request 
-        
-      
-      */
-      this._http.get(completeURL).subscribe((data)=>{
-       
-         resolve (this.dataToShow=this.getFiveRandomElementsOfArray(data));
-         
-   
-   
-       },(error)=>{
-
-        this.modalError.status=error.status;
-        this.modalError.reason=error.message;
-        reject(this.modalError);
-       });
-
-    });
-  }
+  
 
   getEventsAsyncAwait(pmonth:number,pday:number){
 
