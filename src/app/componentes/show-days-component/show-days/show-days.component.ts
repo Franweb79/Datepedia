@@ -53,22 +53,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
   /*
-    firstDateToShowWhenFlipped
-
-    and
-
-    lastDateToShowWhenFlipped
-  
-    These 2 string properties will be used to show dates when this component is flipped.
-
-    for example: "total days between 2021-06-01 and 2021-07-02 are... "
-
-    As the order to show dates can be different on this component than on modal,
-    because year is not present, I also will declare 2 new properties:
-
-    firstDateToShowOnModal
-
-    lastDateToShowOnModal
+    check README Notes for developers 3
 
   */
 
@@ -77,23 +62,10 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
   /*
-    firstDateToShowOnModal
+    
+    check README Notes for developers 4
 
-    and 
-
-    lastDateToShowOnModal
-
-    are used to pass its values to child component app-modal, then
-    values can be shown on the modal.
-
-    These two properties receive their values from date1 and date2 properties from the _dates service.
-
-    We use them because service is private, so can´t use it on the template (outside the class), 
-    so we need properties with public visibility
-    in order to be used on component´s HTML template
-
-    As date and date 2 have a number[] type, we will convert them to string with a custom method 
-    created on the service
+  
   */
 
   public firstDateToShowOnModal: string;
@@ -101,21 +73,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
   /*
     
-    arrayNumberWithFirstDateToBeSentToApi
+    check README Notes for developers 5
 
-    and
-
-    arrayNumberWithLastDateToBeSentToApi
-  
-    This two properties will be sent to the API on the proper order.
-
-    We need them because the API requires them to be numbers,
-    so we can´t simply send the same string properties we declared above, to send dates to modals.
-
-    Also array of numbers can't be directly piped on the template as we can do with strings, 
-    so for the moment I find easier to do this way: 
-      -string properties with dates to be shown on modals, 
-      -array of numbers with dates to be sent to API
   */
 
   public arrayNumberWithFirstDateToBeSentToApi: number[];
@@ -123,14 +82,9 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
   /*
-   
-   Maybe this arrayOfObjectsWithEvents could have been declared as customEvent type, 
-   with our own interface we have created, but I need to use the push() method on it
-   so I find it better to be declared as array of Objects for now.
+    check README Notes for developers 6
 
-   The value from this property will be sent to app-modal child component, 
-   to the property called arrayOfEventsToShow
-  
+   
 
   */
   public arrayOfObjectsWithEvents:Object[];

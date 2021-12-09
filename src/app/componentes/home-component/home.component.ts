@@ -52,32 +52,10 @@ export class HomeComponent implements OnInit,OnChanges {
 
   
   /*
-    with Viewchild, we bind two properties on the child component
-
-    firstDateToShowWhenFlipped
-
-    lastDateToShowWhenFlipped
-
-    This are changed on each onSubmit() method like specified below
-
-    this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
-
-    this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
-
-    These way we ensure they will be properly changed and shown with correct values
-    each time they are changed.
     
-    Other way of sending data to child components is like we did on the HTML template
-    this way, with valuetotalDays and isDivFlipped, which are properties on the
-    child component which receive data from totalDays and isFlipped, which are
-    properties on this current component.
-
-          <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped" #showDaysComponentTemplateReference></app-show-days>
+    check README Notes for developers 1
 
    
-    In both ways, the child component properties must be using the @Input() decorator
-    to "listen"
-    
   */
   @ViewChild('showDaysComponentTemplateReference') showDays!:ShowDaysComponent;
 

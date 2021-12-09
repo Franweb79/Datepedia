@@ -27,20 +27,9 @@ export class ModalComponent implements OnInit {
   @Input() date2ToShow:string;
 
   /*
+    check README Notes for developers 2
+
     
-    arrayOfEventsToShow is used here on modal component HTML template
-    to show the events on a certain date.
-
-    I have declared it as 'any' because in order to use it on the template
-    is easier to access properties. With a more strict type was giving problems.
-    //TODO look for a better solution
-
-    It receives its value from parent component show-days-component,
-    through a property of parent component called arrayOfObjectsWithEvents
-
-    Both are binded on show-days-component HTML template
-    and also value is assigned inside that component´s .ts code
-    on the _callApi service´s getEventsPromise() method
     
   */
   @Input() arrayOfEventsToShow:any;
