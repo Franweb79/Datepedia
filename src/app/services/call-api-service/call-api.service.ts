@@ -56,13 +56,7 @@ export class CallApiService {
 
 
   /*
-    getEventsPromise() will be used on show-days-component.
-    
-    PARAMETERS:month and day of the date to search
-
-    We need it to make a promise -or with async/await-, to be sure
-    we have the data returned for the first date before requesting
-    for second date, and properly order them 
+    check README Notes for developers 10
 
   */
   getEventsPromise(pmonth:number,pday:number){
@@ -73,22 +67,7 @@ export class CallApiService {
       let completeURL:string=`${this.apiBaseURL}/${pmonth}/${pday}/events.json`;
 
       /*
-        we can´t use an RXJS operator  to catch only 5 random results
-        of retrieved data, take() operator here doesn't work 
-        because values should be emitted by the API one by one, 
-        and all events for a date are all emitted together.
-
-        As said, we will use dataToShow property, which is customEvents type, 
-        to store filtered data, then pass it to show-days-component's 
-        property called arrayOfObjectsWithEvents,
-        and though a viewchild, pass the value to modal child component 
-        and be able to show it
-
-        To handle error, we use a property called modalError with custom type error called customError,
-        on that error we set the error response values we are interested in.
-        Also use the reject() keyword which, like resolve() is like a return.
-        It is used to handle errors, resolve() is to handle sucessful request 
-        
+        check README Notes for developers 11  
       
       */
       this._http.get(completeURL).subscribe((data)=>{
@@ -109,19 +88,7 @@ export class CallApiService {
 
   /*
 
-    getFiveRandomElementsOfArray() will implement the logic to get 
-    5 random events once all results of the API are requested 
-    
-    OTHER METHODS CALLED: 
-
-      -isUsedIndex
-    
-    PARAMETERS: 
-    
-      -the data object returned by the api, it contains, among others,
-      an events property which is an array with events
-
-    RETURNS a randomEvents custom type
+    check README Notes for developers 12  
 
   */
   getFiveRandomElementsOfArray(pobjectWithEvents:any){

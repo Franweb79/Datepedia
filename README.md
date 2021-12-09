@@ -186,4 +186,36 @@
     e.g. if we have "results for november 05" ,it has no sense to show
         -5 results for november 05 (first request)
         -and another 5 results again for november 05 (another request, which will be done only if date or month are different)
+
+10 -
+
+    getEventsPromise() will be used on show-days-component.
+    
+    PARAMETERS:month and day of the date to search
+
+    We need it to make a promise -or with async/await, check branch async-await-, to be sure we have the data returned for the first date before requesting for second date, and properly order them 
   
+11 - 
+
+    we can´t use an RXJS operator  to catch only 5 random results of retrieved data, take() operator here doesn't work because values should be emitted by the API one by one, and all events for a date are all emitted together.
+
+    As said, we will use dataToShow property, which is customEvents type, to store filtered data, then pass it to show-days-component's property called arrayOfObjectsWithEvents, and through a viewchild, pass the value to modal child component and be able to show it.
+
+    To handle error, we use a property called modalError with custom type error interface called customError, on that error we set the error response values we are interested in.
+
+    Also use the reject() keyword which, like resolve() is like a return. It is used to handle errors, resolve() is to handle sucessful request 
+
+12 -
+
+    getFiveRandomElementsOfArray() will implement the logic to get 5 random events once all results of the API are requested 
+    
+    OTHER METHODS CALLED: 
+
+      -isUsedIndex
+    
+    PARAMETERS: 
+    
+      -the data object returned by the api, it contains, among others,
+      an events property which is an array with events
+
+    RETURNS a randomEvents custom type
