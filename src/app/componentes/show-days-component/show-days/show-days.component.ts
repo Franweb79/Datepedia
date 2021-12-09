@@ -84,8 +84,6 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
   /*
     check README Notes for developers 6
 
-   
-
   */
   public arrayOfObjectsWithEvents:Object[];
 
@@ -196,44 +194,9 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     }
 
     /*
-    
-
-      To show dates on modal, we need a different logic than the one we use to order 
-      the complete dates.
-
-      Why? On modal we show no year. We will only show month and day, so a valid order for:
-
-      2021-06-04 (second date to be shown)
-
-      and
-
-      2020-08-02 (first date to be shown)
-
-      would not be a valid order for
-
-      06-04 (first date to be shown)
-
-      and
-
-      08-02 (second date to be shown)
-
-
-      We can see order is different because we don´t take the year into account and that changes everything
-
-
-      So we can´t simply do
-
-      this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
-
-      this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
-
-      Also note that we can´t either show on modal the complete dates 
-      because we are not showing events from
-      e.g. 2021-06-04, but events from what happened on any 06-04 from any year
-
-      We must take month and day from each date and then order then 
-      having only those values of month and day in mind
       
+      check README Notes for developers 7
+
     */
 
     /*  
@@ -244,36 +207,36 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
     */
 
-      this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
+    this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
 
-      this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
-
-
-      /*
-        For the order operations, we will use 2 local variables, d1 and d2, 
-        and depending which date is higher, we will reassign values to d1 and d2
-      */
-
-      const d1 = new Date(this.firstDateToShowOnModal);
+    this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
 
 
-      const d2 = new Date(this.lastDateToShowOnModal);
+    /*
+      For the order operations, we will use 2 local variables, d1 and d2, 
+      and depending which date is higher, we will reassign values to d1 and d2
+    */
+
+    const d1 = new Date(this.firstDateToShowOnModal);
+
+
+    const d2 = new Date(this.lastDateToShowOnModal);
 
 
     if(d1.getMonth()>d2.getMonth()){
 
-      //e.g. 09-04 and 08-04, order will be changed
+    //e.g. 09-04 and 08-04, order will be changed
 
-      let aux = this.firstDateToShowOnModal;
+    let aux = this.firstDateToShowOnModal;
 
-      this.firstDateToShowOnModal = this.lastDateToShowOnModal;
+    this.firstDateToShowOnModal = this.lastDateToShowOnModal;
 
-      this.lastDateToShowOnModal = aux;
+    this.lastDateToShowOnModal = aux;
 
-      /*
-        we don´t need to compare if d1.getMonth() < d2.getMonth(), 
-        then nothing changes or is re-assigned
-      */
+    /*
+      we don´t need to compare if d1.getMonth() < d2.getMonth(), 
+      then nothing changes or is re-assigned
+    */
 
     }else if(d1.getMonth()===d2.getMonth()){
       /*
@@ -283,22 +246,22 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
       */
       
       
-        if(d1.getDate()>d2.getDate()){
+      if(d1.getDate()>d2.getDate()){
 
-          let aux = this.firstDateToShowOnModal;
+        let aux = this.firstDateToShowOnModal;
 
-          this.firstDateToShowOnModal = this.lastDateToShowOnModal;
+        this.firstDateToShowOnModal = this.lastDateToShowOnModal;
     
-          this.lastDateToShowOnModal = aux;
+        this.lastDateToShowOnModal = aux;
 
-        }
+      }
 
-        /*
-          if dates have same month and day, in order to be shown on the modal, that is handled
-          on getEventsPromise() from the call-api-service, because we don´t need to request 
-          2 results in that case. This way we will save resources.
+      /*
+        if dates have same month and day, in order to be shown on the modal, that is handled
+        on getEventsPromise() from the call-api-service, because we don´t need to request 
+        2 results in that case. This way we will save resources.
 
-        */
+      */
 
     }
 
@@ -308,43 +271,7 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
 
 
     /*
-    
-      Here we also need to order dates, as on convertDatesToModal().
-
-      But here I decided to create two new local string variables to store the string dates
-      to send dates to the API,
-      despite using the same string class properties we created to send dates to modal.
-
-      These local variables are 
-
-      stringWithFirstDateToBeSentToApi
-
-      and 
-
-      stringWithLastDateToBeSentToApi
-
-      Reason is, logic here is similar but different than on convertDatesToModal().
-
-      Here we don't need to show them on a template, just be used
-      to be converted to Date objects and then be ordered, like also did on convertDatesToModal().
-
-      The array numbers we get from the _dates service
-      can`t be converted to the Date objects we need to order dates,
-      but that can be done with string properties.
-
-      But using the same string properties we have to show dates on modal,
-      could cause flow not working fine. So that is why I decided to create 
-      different local string properties
-
-
-      As said, we need Date objects to order dates,
-      but we also need dates as number type (dates come as an array of numbers from the service 
-      so that work is done) to be sent to the API because this API requires 
-      them to be number type.
-
-      I am aware that the code used to order dates on this method 
-      and on convertDatesToModal() is almost the same, so it can be refactored,
-      but for now I let this way 
+      check README Notes for developers 8
       
     */
 
@@ -410,20 +337,8 @@ export class ShowDaysComponent implements OnInit,AfterViewInit {
     const [, monthToSend2,dayToSend2]=this.arrayNumberWithLastDateToBeSentToApi;
 
     /*
-       we use a promise to ensure we control the async request done by
-       _http:get() method which is called inside _dates service.
+      check README Notes for developers 9
 
-       So, once we have 1st result with events corresponding to the 1st date,
-       and added them as first element of an array to store the events of the 2 dates,
-       we make the 2nd request
-       (if month or day are different,otherwise we need to show results only one time).
-
-       Why do we only 2 requests if month or day are different? 
-
-       e.g. if we have "results for november 05" ,it has no sense to show
-       -5 results for november 05 (first request)
-       -and another 5 results again for november 05 (another request, which will be done only if
-        date or month are different)
     */
 
     this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()=>{

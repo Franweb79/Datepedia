@@ -20,29 +20,24 @@
 
     with Viewchild, we bind two properties on the child component
 
-    firstDateToShowWhenFlipped
+     firstDateToShowWhenFlipped
 
-    lastDateToShowWhenFlipped
+     lastDateToShowWhenFlipped
 
     This are changed on each onSubmit() method like specified below
 
-    this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
+     this.showDays.firstDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(firstOrderedDate);
 
-    this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
+     this.showDays.lastDateToShowWhenFlipped=this._dates.convertArrayOfNumbersIntoString(lastOrderedDate);
 
-    These way we ensure they will be properly changed and shown with correct values
-    each time they are changed.
+    These way we ensure they will be properly changed and shown with correct values each time they are changed.
     
-    Other way of sending data to child components is like we did on the HTML template
-    this way, with valuetotalDays and isDivFlipped, which are properties on the
-    child component which receive data from totalDays and isFlipped, which are
-    properties on this current component.
+    Other way of sending data to child components is like we did on the HTML template this way, with valuetotalDays and isDivFlipped, which are properties on the child component which receive data from totalDays and isFlipped, which are properties on this current component.
 
-          <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped" #showDaysComponentTemplateReference></app-show-days>
+        <app-show-days [valueTotalDays]=totalDays [isDivFlipped]="isFlipped" #showDaysComponentTemplateReference></app-show-days>
 
    
-    In both ways, the child component properties must be using the @Input() decorator
-    to "listen"
+    In both ways, the child component properties must be using the @Input() decorator to "listen".
     
 2 - 
 
@@ -62,11 +57,11 @@
 
 3 - 
 
-    firstDateToShowWhenFlipped
+     firstDateToShowWhenFlipped
 
     and
 
-    lastDateToShowWhenFlipped
+     lastDateToShowWhenFlipped
   
     These 2 string properties will be used to show dates when this component is flipped.
 
@@ -75,46 +70,41 @@
     As the order to show dates can be different on this component than on modal,
     because year is not present, I also will declare 2 new properties:
 
-    firstDateToShowOnModal
+     firstDateToShowOnModal
 
-    lastDateToShowOnModal
+     lastDateToShowOnModal
 
 
 4 - 
 
-    firstDateToShowOnModal
+     firstDateToShowOnModal
 
     and 
 
-    lastDateToShowOnModal
+     lastDateToShowOnModal
 
-    are used to pass its values to child component app-modal, then
-    values can be shown on the modal.
+    are used to pass its values to child component app-modal, then values can be shown on the modal.
 
     These two properties receive their values from date1 and date2 properties from the _dates service.
 
-    We use them because service is private, so can´t use it on the template (outside the class), 
-    so we need properties with public visibility
-    in order to be used on component´s HTML template
+    We use them because service is private, so can´t use it on the template (outside the class), so we need properties with public visibility in order to be used on component´s HTML template.
 
-    As date and date 2 have a number[] type, we will convert them to string with a custom method 
-    created on the service
+    As date and date 2 have a number[] type, we will convert them to string with a custom method created on the service
 
 5 - 
 
-    arrayNumberWithFirstDateToBeSentToApi
+     arrayNumberWithFirstDateToBeSentToApi
 
     and
 
-    arrayNumberWithLastDateToBeSentToApi
+     arrayNumberWithLastDateToBeSentToApi
   
     This two properties will be sent to the API on the proper order.
 
-    We need them because the API requires them to be numbers,
-    so we can´t simply send the same string properties we declared above, to send dates to modals.
+    We need them because the API requires them to be numbers, so we can´t simply send the same string properties we declared above, to send dates to modals.
 
-    Also array of numbers can't be directly piped on the template as we can do with strings, 
-    so for the moment I find easier to do this way: 
+    Also array of numbers can't be directly piped on the template as we can do with strings, so for the moment I find easier to do this way: 
+
       -string properties with dates to be shown on modals, 
       -array of numbers with dates to be sent to API
 
@@ -124,4 +114,76 @@
 
     The value from this property will be sent to app-modal child component, 
     to the property called arrayOfEventsToShow
+
+7 - 
+
+    To show dates on modal, we need a different logic than the one we use to order the complete dates.
+
+    Why? On modal we show no year. We will only show month and day, so a valid order for:
+
+      2021-06-04 (second date to be shown)
+
+    and
+
+      2020-08-02 (first date to be shown)
+
+    would not be a valid order for
+
+      06-04 (first date to be shown)
+
+    and
+
+      08-02 (second date to be shown)
+
+    We can see order is different because we don´t take the year into account and that changes everything.
+
+    So we can´t simply do
+
+      this.firstDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date1);
+
+      this.lastDateToShowOnModal = this._dates.convertArrayOfNumbersIntoString(date2);
+
+    Also note that we can´t either show on modal the complete dates 
+    because we are not showing events from e.g. 2021-06-04, but events from what happened on any 06-04 from any year.
+
+    We must take month and day from each date and then order then 
+    having only those values of month and day in mind.
+
+8 -
+
+    Here we also need to order dates, as on convertDatesToModal().
+
+    But here I decided to create two new local string variables to store the string dates to send dates to the API, despite using the same string class properties we created to send dates to modal.
+
+    These local variables are 
+
+      stringWithFirstDateToBeSentToApi
+
+    and 
+
+      stringWithLastDateToBeSentToApi
+
+    Reason is, logic here is similar but different than on convertDatesToModal().
+
+    Here we don't need to show them on a template, just be used to be converted to Date objects and then be ordered, like also did on convertDatesToModal().
+
+    The array numbers we get from the _dates service can`t be converted to the Date objects we need to order dates, but that can be done with string properties.
+
+    But using the same string properties we have to show dates on modal, could cause flow not working fine. So that is why I decided to create different local string properties.
+
+    As said, we need Date objects to order dates, but we also need dates as number type (dates come as an array of numbers from the service so that work is done) to be sent to the API because this API requires them to be number type.
+
+    I am aware that the code used to order dates on this method and on convertDatesToModal() is almost the same, so it can be refactored, but for now I let this way.
+
+9 - 
+
+    we use a promise to ensure we control the async request done by _http:get() method which is called inside _dates service.
+
+    So, once we have 1st result with events corresponding to the 1st date, and added them as first element of an array to store the events of the 2 dates,we make the 2nd request (if month or day are different,otherwise we need to show results only one time).
+
+    Why do we only 2 requests if month or day are different? 
+
+    e.g. if we have "results for november 05" ,it has no sense to show
+        -5 results for november 05 (first request)
+        -and another 5 results again for november 05 (another request, which will be done only if date or month are different)
   
