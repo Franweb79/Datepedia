@@ -9,17 +9,8 @@ import { month } from '@interfaces/month-interface';
 export class DatesService  {
 
   /*
-    OVERVIEW EXPLANATION:
-
-    On two given dates, for example, 2004-04-06 and 2018-05-09
-
-    we will calculate this way_
+    check README Notes for developers 13
     
-    - The days for first and last year with a method called calcFirstAndLastYearDays()
-
-    - The days between 2005 and 2017 will be calculated on calcDaysBetweenYears()
-
-    - The total days will be put together on calculateTotalDaysBetweenDates()
   */
 
   /*
@@ -36,16 +27,7 @@ export class DatesService  {
   public totalDaysBetweenDates:number;
 
   /*
-    to order dates, we must prevent it could happen user sets the second date is older
-    (e.g. first date 2018 and second date 2004).
-
-    We will allow that, we will properly order and calculate them. 
-    I find it better than forcing user to set dates in a "correct" order 
-    (e.g "2nd date must be higher than 1st" I dont like that)
-
-    As date1 and date2 will be an array of numbers with year, month and day separated, 
-    we will store both arrays on orderedDatesArray, and as it is an array of arrays,
-    we declare it is number[][]
+    check README Notes for developers 14
   */
   public orderedDatesArray:number[][];
   
@@ -156,35 +138,10 @@ export class DatesService  {
   }
 
   /*
-      
-    convertArrayOfNumbersIntoString()
-  
-    This method does the reverse operation of splitStringDateIntoArrayOfNumbers.
+     
+    check README Notes for developers 15
 
-    To show on modal and properly play with datepipes we need the dates as string,
-    so we reverse the dates as array of numbers we have operated with, and revert back
-    to strings.
     
-    I realised perhaps it would have been a better idea to have the string
-    dates we get from the form at home-component, 
-      
-    firstYearToCheckDateString
-
-    and 
-
-    lastYearToCheckDateString
-      
-    as properties of this service and not as home-component-properties.
-
-    Now perhaps this method would not have been neccessary,
-    and would be a better designed app. But I am here to learn :)
-
-    Also maybe we would save some inherit of properties from parent to child components
-
-    PARAMETERS: The array of numbers to convert to String
-    RETURNS: the Date as string
-
-
   */
 
   convertArrayOfNumbersIntoString(parrayToConvert:number[]):string{
@@ -202,15 +159,7 @@ export class DatesService  {
 
   
   /*
-
-    isLeapYearCheck()
-
-    We need to know if year is Leap or not, to add one more day to the year in that case
-
-    PARAMETERS: The year (only the year), to be checked
-
-    RETURNS: true if is Leap, otherwise false
-
+    check README Notes for developers 16
   */
 
   isLeapYearCheck(pyearToCheck:number):boolean{
@@ -224,16 +173,7 @@ export class DatesService  {
   }
 
   /* 
-    
-  calcFirstAndLastYearDays()
-
-  PARAMETERS will be the full date given as array of numbers with year, month and date
-  
-  RETURNS: an array of numbers, with two number elements:
-    -days from 01/01 to given value (for example, days between 01/01 from 04/07/2015)
-    -days from given value to 31/12 for example, days from 04/07/2015 to 31/12 same year).
-    -If year is leap, we will add one day to one of the two above results,
-     where february is involved and then must be counted
+    check README Notes for developers 17
   */
 
   calcFirstAndLastYearDays(pdate:number[]):number[]{
@@ -261,15 +201,8 @@ export class DatesService  {
    isYearLeap=this.isLeapYearCheck(year);
 
    /*
-      First, we calculate daysPassed from 01-01 until selected Date, that will be daysPassed
-
-      Then, to get daysRemaining, we substract daysPassed to 365 or 366, 
-      depending if year is leap or not
-
-      365 or 366 - daysPassed = daysRemaining
-
-      We will return an array with both values: daysPassed and daysRemaining
-
+      
+      check README Notes for developers 18
     
    */
      
@@ -324,51 +257,13 @@ export class DatesService  {
 
 
   /*
-    
-    calcDaysBetweenYears()
-  
-    calculate days between the years of 2 given years (only years),
-    taking into account if it is leap year or not.
-    Example: 2006-04-06 and 2018-05-09 this method
-    will calculate the days between 2005 and 2017.
-
-    2004 and 2018 days would be calculated by calcFirstAndLastYearDays()  
-
-
-    PARAMETERS:
-      the two years (as said, not dates, just the years).
-
-    RETURNS localTotalDaysBetweenYears, a number with the total days 
-    between the two given years
+    check README Notes for developers 19
   */
 
   calcDaysBetweenYears(pyear1:number,pyear2:number):number{
 
    /*
-      
-      localTotalDaysBetweenYears variable
-
-      To the name localTotalDaysBetweenYears, I added "local" to clarify between that variable
-      and other variables or properties used on this service, 
-      for example the totalDaysBetweenDates property, 
-      or the daysBetweenYears variable which is used on calculateTotalDaysBetweenDates(),
-      to avoid name confussions because they are similar.
-      
-      localTotalDaysBetweenYears stores only the total days between two given years. 
-      For example between 2004 and 2018,
-      it will store total days between 2005 and 2017, 
-      and its value will be returned to a variable with similar name 
-      called daysBetweenYears inside the method calculateTotalDaysBetweenDates()  
-
-      totalDaysBetweenDates is a service property, and stores the TOTAL days between 
-      the two given dates, the final result.
-   
-      this local variable will only change if PARAMETERS (years) are different
-
-      Also I considered better to use a local variable and not a property
-      which could not exist on another project, 
-      this way is more reusable     
-
+      check README Notes for developers 20   
   */
     let localTotalDaysBetweenYears=0;
 
@@ -384,14 +279,8 @@ export class DatesService  {
 
     const [ minorYear, highestYear]=orderedYears;
 
-    /*
-      now we get the days betweeen minor year +1 and highest given year,
-      that is so because each of the given years` total days will be calculated on
-      calcFirstAndLastYearDays()  
-      
-      e.g: between 2004(minorYear) and 2018 (highestYear) on this method we would iterate
-      between 2005 and 2017.
-      2004 and 2018 days would be calculated by calcFirstAndLastYearDays()  
+    /* 
+      check README Notes for developers 21  
 
     */
 
@@ -439,16 +328,7 @@ export class DatesService  {
   }
 
   /*
-
-    calculateTotalDaysBetweenDates()
-
-    This is the method where final result will be produced and stored on the 
-    totalDaysBetweenDates property
-
-    PARAMETERS the two dates
-
-    RETURNS nothing, since the total result will be stored on a service property called 
-    totalDaysBetweenDates
+    check README Notes for developers 22  
   */
 
   calculateTotalDaysBetweenDates(pdate1:string,pdate2:string):void{
@@ -475,7 +355,7 @@ export class DatesService  {
     
     this.date1=this.splitStringDateIntoArrayOfNumbers(pdate1);
 
-    //detructuring the string array with date year, month and day
+    //destructuring the string array with date year, month and day
     const [date1Year, date1Month, date1Day]=this.date1;
 
 
@@ -549,21 +429,10 @@ export class DatesService  {
     daysBetweenYears=this.calcDaysBetweenYears(date1Year,date2Year);
 
     /*
-      if one year is different from the other, we add the results. 
-      For example, between 2004-04-06 and 2018-05-09:
-        - Days from 2004-04-06 to 2004-31-12 (daysLeftDate1)
-        - days between 2007 and 2017 (daysBetweenYears) 
-        - Days from 2018-01-01 to 2018-05-09 (daysPassedDate2)
+      check README Notes for developers 23  
 
-        Obviously we always have checked if years are leap or not
-
-      If the year is the same.
-      For example, 2004-04-06 and 2004-08-09
-
-      We will check if that year is leap, and set the amount of total days accordingly to 365 or 366.
-      Then to obntain the difference (days passed between one date and another) we substract 
-      to 365 or 366 the results of days passed from 01-01 until first given date, 
-      +days remaning until 31-12 from second given date
+    
+    
 
     */
     if(date1Year != date2Year){
