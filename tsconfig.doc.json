@@ -1,0 +1,4 @@
+{
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules","errors","dist","bootstrap-codes", "tests","src/test.ts", "src/**/*.spec.ts", "src/app/file-to-exclude.ts"]
+}
