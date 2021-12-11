@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "days-between-dates-calculator": {
+    "datepedia": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/days-between-dates-calculator",
+            "outputPath": "dist/datepedia",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "days-between-dates-calculator:build:production"
+              "browserTarget": "datepedia:build:production"
             },
             "development": {
-              "browserTarget": "days-between-dates-calculator:build:development"
+              "browserTarget": "datepedia:build:development"
             }
           },
           "options":{
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "days-between-dates-calculator:build"
+            "browserTarget": "datepedia:build"
           }
         },
         "test": {
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "days-between-dates-calculator"
+  "defaultProject": "datepedia"
 }

@@ -1,4 +1,12 @@
-# what does this program?
+- <b>EY! I provided some documentation which you can check on this same project, under folder "documentation"</b>
+
+
+
+# What does DATEPEDIA do? 
+
+- You can set two different dates, then calculate how many days have passed between them. But also you will be able to know what happenned on such days and month through History
+
+# what have I learned or implemented while developing DATEPEDIA?
 
 - Used promises to get used to async programming. As Angular´s httpClient get() method provides async request, I used Promises to ensure I obtain and control data flow the way I need.
 - I also provide a branch with the same code below, but using async/await to see the differences. Async await provides a cleaner code since the behavior is more similar to what we see on synchronous code

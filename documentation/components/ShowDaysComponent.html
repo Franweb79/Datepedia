@@ -1,0 +1,1416 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>datepedia documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">datepedia documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ShowDaysComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/componentes/show-days-component/show-days/show-days.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/AfterViewInit" target="_blank" >AfterViewInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-show-days</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./show-days.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./show-days.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#arrayNumberWithFirstDateToBeSentToApi" >arrayNumberWithFirstDateToBeSentToApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#arrayNumberWithLastDateToBeSentToApi" >arrayNumberWithLastDateToBeSentToApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#arrayOfObjectsWithEvents" >arrayOfObjectsWithEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#firstDateToShowOnModal" >firstDateToShowOnModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#isModalOpen" >isModalOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#lastDateToShowOnModal" >lastDateToShowOnModal</a>
+                            </li>
+                            <li>
+                                <a href="#modal" >modal</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#callAPI" >callAPI</a>
+                            </li>
+                            <li>
+                                <a href="#convertDatesToModal" >convertDatesToModal</a>
+                            </li>
+                            <li>
+                                <a href="#getDates" >getDates</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#showModal" >showModal</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#firstDateToShowWhenFlipped" >firstDateToShowWhenFlipped</a>
+                            </li>
+                            <li>
+                                <a href="#isDivFlipped" >isDivFlipped</a>
+                            </li>
+                            <li>
+                                <a href="#lastDateToShowWhenFlipped" >lastDateToShowWhenFlipped</a>
+                            </li>
+                            <li>
+                                <a href="#valueTotalDays" >valueTotalDays</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_dates: <a href="../injectables/DatesService.html" target="_self">DatesService</a>, _callApi: <a href="../injectables/CallApiService.html" target="_self">CallApiService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:105</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_dates</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DatesService.html" target="_self" >DatesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_callApi</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CallApiService.html" target="_self" >CallApiService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="firstDateToShowWhenFlipped"></a>
+                        <b>firstDateToShowWhenFlipped</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:60</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isDivFlipped"></a>
+                        <b>isDivFlipped</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:47</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastDateToShowWhenFlipped"></a>
+                        <b>lastDateToShowWhenFlipped</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:61</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="valueTotalDays"></a>
+                        <b>valueTotalDays</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:45</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="callAPI"></a>
+                    <span class="name">
+                        <span ><b>callAPI</b></span>
+                        <a href="#callAPI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>callAPI()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="270"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:270</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertDatesToModal"></a>
+                    <span class="name">
+                        <span ><b>convertDatesToModal</b></span>
+                        <a href="#convertDatesToModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertDatesToModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="167"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:167</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDates"></a>
+                    <span class="name">
+                        <span ><b>getDates</b></span>
+                        <a href="#getDates"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDates()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:152</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>[][]</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showModal"></a>
+                    <span class="name">
+                        <span ><b>showModal</b></span>
+                        <a href="#showModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrayNumberWithFirstDateToBeSentToApi"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>arrayNumberWithFirstDateToBeSentToApi</b></span>
+                        <a href="#arrayNumberWithFirstDateToBeSentToApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrayNumberWithLastDateToBeSentToApi"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>arrayNumberWithLastDateToBeSentToApi</b></span>
+                        <a href="#arrayNumberWithLastDateToBeSentToApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrayOfObjectsWithEvents"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>arrayOfObjectsWithEvents</b></span>
+                        <a href="#arrayOfObjectsWithEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Object[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstDateToShowOnModal"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>firstDateToShowOnModal</b></span>
+                        <a href="#firstDateToShowOnModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isModalOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>isModalOpen</b></span>
+                        <a href="#isModalOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="lastDateToShowOnModal"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>lastDateToShowOnModal</b></span>
+                        <a href="#lastDateToShowOnModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modal"></a>
+                    <span class="name">
+                        <span ><b>modal</b></span>
+                        <a href="#modal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/ModalComponent.html" target="_self" >ModalComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;myModalChild&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/componentes/show-days-component/show-days/show-days.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit, ViewChild, AfterViewInit } from &#x27;@angular/core&#x27;;
+import { DatesService } from &#x27;../../../services/dates-service/dates.service&#x27;;
+import { CallApiService } from &#x27;../../../services/call-api-service/call-api.service&#x27;;
+import { ModalComponent } from &#x27;../../modal-component/modal/modal.component&#x27;;
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from &#x27;@angular/animations&#x27;;
+
+@Component({
+  selector: &#x27;app-show-days&#x27;,
+  templateUrl: &#x27;./show-days.component.html&#x27;,
+  styleUrls: [&#x27;./show-days.component.css&#x27;],
+  animations: [
+
+    trigger(&#x27;flipUnflip&#x27;, [
+
+      state(&#x27;flipped&#x27;, style({
+
+        transform: &quot;rotateY(360deg)&quot;
+      })),
+      state(&#x27;notFlipped&#x27;, style({
+        
+      })),
+      transition(&#x27;* &#x3D;&gt; *&#x27;, [
+        animate(&#x27;1s&#x27;)
+      ]),
+    ]
+
+    )
+  ]
+})
+export class ShowDaysComponent implements OnInit,AfterViewInit {
+
+ /*
+    valueTotalDays and isDivFlipped receive their values from parent component
+    home-component.
+ */
+
+ 
+  @Input() valueTotalDays: number;
+
+  @Input() isDivFlipped: boolean;
+
+
+  /*isModalOpen will pass its value to child component app-modal*/
+
+  public isModalOpen: boolean;
+
+
+  /*
+    check README Notes for developers 3
+
+  */
+
+  @Input() firstDateToShowWhenFlipped:string;
+  @Input() lastDateToShowWhenFlipped:string;
+
+
+  /*
+    
+    check README Notes for developers 4
+
+  
+  */
+
+  public firstDateToShowOnModal: string;
+  public lastDateToShowOnModal: string;
+
+  /*
+    
+    check README Notes for developers 5
+
+  */
+
+  public arrayNumberWithFirstDateToBeSentToApi: number[];
+  public arrayNumberWithLastDateToBeSentToApi: number[];
+
+
+  /*
+    check README Notes for developers 6
+
+  */
+  public arrayOfObjectsWithEvents:Object[];
+
+
+  /*
+  
+   to listen when arrayOfObjectsWithEvents changes (it gets events from API),
+   so child component´s property arrayOfEventsToShow can also change,
+   we use the viewChild decorator
+  
+  */
+
+  @ViewChild(&#x27;myModalChild&#x27;) modal!: ModalComponent;
+
+  ngAfterViewInit () {
+    // Now you can assign things on child components
+
+    
+  }
+
+  
+
+  constructor(private _dates: DatesService, private _callApi:CallApiService) {
+
+    this.valueTotalDays &#x3D; 0;
+
+    this.isDivFlipped &#x3D; false;
+
+    this.isModalOpen &#x3D; false;
+
+    this.firstDateToShowWhenFlipped&#x3D;&quot;&quot;;
+    this.lastDateToShowWhenFlipped&#x3D;&quot;&quot;;
+
+    this.firstDateToShowOnModal &#x3D; &quot;&quot;;
+    this.lastDateToShowOnModal &#x3D; &quot;&quot;;
+
+    this.arrayNumberWithFirstDateToBeSentToApi &#x3D; [];
+
+    this.arrayNumberWithLastDateToBeSentToApi &#x3D; [];
+
+    this.arrayOfObjectsWithEvents&#x3D;[];
+
+  }
+
+  ngOnInit(): void {
+  }
+
+
+  showModal() {
+
+    this.isModalOpen &#x3D; !this.isModalOpen;
+    
+    this.convertDatesToModal();
+
+    this.callAPI();
+  }
+
+  /*
+    we will get the dates provided by service properties date1 and date2 
+    as a a number[] format to send them to the API.
+    
+    Inside convertDatesToModal() we convert them to strings 
+    so they can be better manipulated on the modal template
+  
+  */
+  getDates(): number[][] {
+    return [this._dates.date1, this._dates.date2];
+  }
+
+
+  /*
+    Inside convertDatesToModal() we will not only convert dates to strings,
+    but order them to be chronologically shown on the modal
+  
+    to order, we will do now with Date objects, 
+    following a bit the tricks of comparing dates as told here
+
+    https://masteringjs.io/tutorials/fundamentals/compare-dates
+
+  */
+  convertDatesToModal(): void {
+
+    /* 
+      First, array destructuration to make work easier
+    */
+
+    const [date1, date2] &#x3D; this.getDates();
+
+
+    /*
+
+      This condition is used because if month and day is the same on both dates,
+      we will set a property on the child modal component.
+
+      If that property is true, we will only show date one time
+      e.h. &quot;events happened on Nomvember 03&quot;. 
+
+      If we don´t create this logic, &quot;events happened on november 03 and november 03&quot; 
+      would be shown. It has no sense and is a worse user experience.
+
+    */
+    if((date1[1]&#x3D;&#x3D;&#x3D;date2[1]) &amp;&amp; (date1[2]&#x3D;&#x3D;&#x3D;date2[2])){
+      this.modal.isMonthAndDayTheSame&#x3D;true;
+    }else
+    {
+      this.modal.isMonthAndDayTheSame&#x3D;false;
+
+    }
+
+    /*
+      
+      check README Notes for developers 7
+
+    */
+
+    /*  
+
+     We will first convert to Date type
+
+     We need dates to be string before converting to Date types
+
+    */
+
+    this.firstDateToShowOnModal &#x3D; this._dates.convertArrayOfNumbersIntoString(date1);
+
+    this.lastDateToShowOnModal &#x3D; this._dates.convertArrayOfNumbersIntoString(date2);
+
+
+    /*
+      For the order operations, we will use 2 local variables, d1 and d2, 
+      and depending which date is higher, we will reassign values to d1 and d2
+    */
+
+    const d1 &#x3D; new Date(this.firstDateToShowOnModal);
+
+
+    const d2 &#x3D; new Date(this.lastDateToShowOnModal);
+
+
+    if(d1.getMonth()&gt;d2.getMonth()){
+
+    //e.g. 09-04 and 08-04, order will be changed
+
+    let aux &#x3D; this.firstDateToShowOnModal;
+
+    this.firstDateToShowOnModal &#x3D; this.lastDateToShowOnModal;
+
+    this.lastDateToShowOnModal &#x3D; aux;
+
+    /*
+      we don´t need to compare if d1.getMonth() &lt; d2.getMonth(), 
+      then nothing changes or is re-assigned
+    */
+
+    }else if(d1.getMonth()&#x3D;&#x3D;&#x3D;d2.getMonth()){
+      /*
+        if month is the same, we will compare with days
+        e.g. 06-12 and 06-08 order will be changed. 
+        NOTE, to get day of the month is getDate(),not getDay()
+      */
+      
+      
+      if(d1.getDate()&gt;d2.getDate()){
+
+        let aux &#x3D; this.firstDateToShowOnModal;
+
+        this.firstDateToShowOnModal &#x3D; this.lastDateToShowOnModal;
+    
+        this.lastDateToShowOnModal &#x3D; aux;
+
+      }
+
+      /*
+        if dates have same month and day, in order to be shown on the modal, that is handled
+        on getEventsPromise() from the call-api-service, because we don´t need to request 
+        2 results in that case. This way we will save resources.
+
+      */
+
+    }
+
+  }
+
+  callAPI() {
+
+
+    /*
+      check README Notes for developers 8
+      
+    */
+
+    let stringWithFirstDateToBeSentToApi: string &#x3D; &quot;&quot;;
+    let stringWithLastDateToBeSentToApi: string &#x3D; &quot;&quot;;
+
+
+
+
+    const [date1, date2] &#x3D; this.getDates();
+
+    stringWithFirstDateToBeSentToApi &#x3D; this._dates.convertArrayOfNumbersIntoString(date1);
+
+    stringWithLastDateToBeSentToApi &#x3D; this._dates.convertArrayOfNumbersIntoString(date2);
+
+    this.arrayNumberWithFirstDateToBeSentToApi &#x3D; date1;
+    this.arrayNumberWithLastDateToBeSentToApi &#x3D; date2;
+
+
+    const d1 &#x3D; new Date(stringWithFirstDateToBeSentToApi);
+
+
+    const d2 &#x3D; new Date(stringWithLastDateToBeSentToApi);
+
+    if(d1.getMonth()&gt;d2.getMonth()){
+
+      //e.g. 09-04 and 08-04, order will be changed
+
+      let aux &#x3D; this.arrayNumberWithFirstDateToBeSentToApi;;
+
+      this.arrayNumberWithFirstDateToBeSentToApi &#x3D; this.arrayNumberWithLastDateToBeSentToApi;
+
+      this.arrayNumberWithLastDateToBeSentToApi &#x3D; aux;
+
+
+    }else if(d1.getMonth()&#x3D;&#x3D;&#x3D;d2.getMonth()){
+
+      if(d1.getDate()&gt;d2.getDate()){
+
+        let aux &#x3D; this.arrayNumberWithFirstDateToBeSentToApi;;
+
+        this.arrayNumberWithFirstDateToBeSentToApi &#x3D; this.arrayNumberWithLastDateToBeSentToApi;
+
+        this.arrayNumberWithLastDateToBeSentToApi &#x3D; aux;
+
+      }
+
+
+    }
+
+    /*
+    
+      before sending to the API, 
+      we will destructure to get month and day easier
+
+      first position will be empty because we only need 2nd and 3rd values
+      of the array number (first position would be the year and we don´t need it)
+
+    */
+
+    const [, monthToSend1,dayToSend1]&#x3D;this.arrayNumberWithFirstDateToBeSentToApi;
+
+    const [, monthToSend2,dayToSend2]&#x3D;this.arrayNumberWithLastDateToBeSentToApi;
+
+    /*
+      check README Notes for developers 9
+
+    */
+
+    this._callApi.getEventsPromise(monthToSend1, dayToSend1).then(()&#x3D;&gt;{
+      
+      /*
+        clear array first because maybe we have stored results 
+        for a previous 2 dates request before
+      */
+
+      this.arrayOfObjectsWithEvents&#x3D;[];
+      
+      this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+
+      
+
+      /*
+        As said, once we have the first date events, we make the same for the second
+        but ONLY if day is different or month is different. 
+
+      */
+
+
+      if((monthToSend1 !&#x3D;&#x3D; monthToSend2) || (dayToSend1 !&#x3D;&#x3D; dayToSend2))
+      {
+        this._callApi.getEventsPromise(monthToSend2,dayToSend2).then(
+          ()&#x3D;&gt;{
+  
+            this.arrayOfObjectsWithEvents.push(this._callApi.dataToShow);
+  
+          
+            /*
+              now that we have the 2 events results from the 2 dates, we assign them 
+              to a modal property which will be shown on that modal
+              
+            */
+  
+              this.modal.arrayOfEventsToShow&#x3D;this.arrayOfObjectsWithEvents;
+  
+  
+  
+          }
+        );
+      }
+      
+
+    }).catch(()&#x3D;&gt;{
+      /*
+        we set showError first to default values because maybe we have stored results 
+        for a previous  request before
+      */
+
+        this.modal.showError&#x3D;{
+          status:0,
+          message:&quot;Sorry, something went wrong, please try again&quot;,
+          reason:&quot;&quot;
+        }
+        
+      
+        this.modal.showError&#x3D;this._callApi.modalError;
+
+        this.modal.myErrorObjList.add(this.modal.showError);
+
+        console.log(this.modal.myErrorObjList);
+    });      
+
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;div id&#x3D;&quot;results-wrapper&quot;&gt;
+    
+    
+    &lt;div [@flipUnflip]&#x3D;&quot;isDivFlipped ? &#x27;flipped&#x27; : &#x27;notFlipped&#x27; &quot; *ngIf&#x3D;&quot;valueTotalDays&gt;0;else choose&quot; id&#x3D;&quot;total-results&quot;&gt;
+        
+        &lt;p&gt;Total days between {{firstDateToShowWhenFlipped | date}} and {{lastDateToShowWhenFlipped | date}}&lt;/p&gt;
+
+        &lt;p&gt;{{valueTotalDays}} days&lt;/p&gt;
+
+        &lt;button type&#x3D;&quot;button&quot; (click)&#x3D;&quot;showModal()&quot; class&#x3D;&quot;btn btn-warning&quot; id&#x3D;&quot;didYouKnowButton&quot; data-bs-toggle&#x3D;&quot;modal&quot; data-bs-target&#x3D;&quot;#dataModal&quot;&gt;Did you know what happened on these dates?&lt;/button&gt;
+
+
+    &lt;/div&gt;
+
+    &lt;div id&#x3D;&quot;background-div&quot;&gt;&lt;/div&gt;
+
+    &lt;ng-template #choose&gt;
+        &lt;div id&#x3D;&quot;choose-div&quot;&gt;
+            &lt;p&gt; Please, choose two different dates &lt;/p&gt;
+
+        &lt;/div&gt;
+     
+    &lt;/ng-template&gt;
+&lt;/div&gt;
+&lt;app-modal [date1ToShow]&#x3D;&quot;firstDateToShowOnModal&quot; [date2ToShow]&#x3D;&quot;lastDateToShowOnModal&quot; [arrayOfEventsToShow]&#x3D;&quot;arrayOfObjectsWithEvents&quot; #myModalChild &gt;
+    
+&lt;/app-modal&gt;
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./show-days.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+/* this makes the .modal visible*/
+.modal-show {
+    display: block;
+}
+
+/* this makes the element hidden/invisible*/
+.modal-hidden {
+    display: none;
+}
+
+#results-wrapper{
+    position: relative; 
+    margin-top:40px;
+    
+}
+
+
+#background-div{
+
+    
+    background-color: #000;
+    /*position:absolute;*/
+    z-index:0;
+    border-radius: 0.25rem;
+    width:100%;
+    height:200px;
+    -webkit-box-shadow: inset 5px 5px 29px 5px rgba(255,255,255,0.75); 
+    box-shadow: inset 5px 5px 29px 5px rgba(255,255,255,0.75);
+}
+
+#total-results,#choose-div{
+   position:absolute;
+   border-radius: 0.25rem;
+
+    z-index:1;
+    width:100%;
+    height:200px;
+    background-color: white;
+   
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="results-wrapper">            <div [@flipUnflip]="isDivFlipped ? \'flipped\' : \'notFlipped\' " *ngIf="valueTotalDays>0;else choose" id="total-results">                <p>Total days between {{firstDateToShowWhenFlipped | date}} and {{lastDateToShowWhenFlipped | date}}</p>        <p>{{valueTotalDays}} days</p>        <button type="button" (click)="showModal()" class="btn btn-warning" id="didYouKnowButton" data-bs-toggle="modal" data-bs-target="#dataModal">Did you know what happened on these dates?</button>    </div>    <div id="background-div"></div>    <ng-template #choose>        <div id="choose-div">            <p> Please, choose two different dates </p>        </div>         </ng-template></div><app-modal [date1ToShow]="firstDateToShowOnModal" [date2ToShow]="lastDateToShowOnModal" [arrayOfEventsToShow]="arrayOfObjectsWithEvents" #myModalChild >    </app-modal></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ErrorComponent', 'selector': 'app-error-component'},{'name': 'HeaderComponent', 'selector': 'app-header-menu-component'},{'name': 'HomeComponent', 'selector': 'home-component'},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'ReadmeComponent', 'selector': 'app-readme'},{'name': 'ShowDaysComponent', 'selector': 'app-show-days'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'ShowDaysComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ShowDaysComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

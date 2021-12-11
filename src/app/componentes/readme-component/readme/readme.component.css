@@ -10,3 +10,9 @@
     color:red;
     font-weight: bold;
 }
+
+.h2header{
+    color:#0D6EFD;
+    display:inline-block;
+    padding-top:20px;
+}
