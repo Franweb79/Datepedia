@@ -1,6 +1,3 @@
-- <b>EY! I provided some documentation which you can check on this same project, under folder "documentation"</b>
-
-
 
 # What does DATEPEDIA do? 
 

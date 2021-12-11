@@ -256,9 +256,9 @@ export class HeaderComponent implements OnInit {
         
         &lt;a routerLink&#x3D;&quot;/home&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Home&lt;/a&gt;
         
-        &lt;a routerLink&#x3D;&quot;/readme&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Read Me&lt;/a&gt;
+        &lt;a routerLink&#x3D;&quot;/readme&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Read-Me&lt;/a&gt;
 
-        &lt;a href&#x3D;&quot;https://datepedia.avanzartewebs.com/documentation&quot; routerLinkActive&#x3D;&quot;active&quot;&gt;Docs&lt;/a&gt;
+        &lt;a href&#x3D;&quot;./documentation&quot; routerLinkActive&#x3D;&quot;active&quot; target&#x3D;&quot;_blank&quot;&gt;Docs&lt;/a&gt;
 
 
        
@@ -325,7 +325,7 @@ export class HeaderComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light bg-light" id="headerNavMenuId">  <div class="container-fluid">    <a class="navbar-brand" href="https://www.linkedin.com/in/francisco-javier-prieto-gut/" target="_blank">      <i class="fab fa-linkedin"></i>    </a>    <a class="navbar-brand" href="https://twitter.com/home?lang=es" target="_blank">      <i class="fab fa-twitter"></i>    </a>    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">      <div class="navbar-nav" id="header-menu">                <a routerLink="/home" routerLinkActive="active">Home</a>                <a routerLink="/readme" routerLinkActive="active">Read Me</a>        <a href="https://datepedia.avanzartewebs.com/documentation" routerLinkActive="active">Docs</a>             </div>    </div>  </div></nav>    </div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-lg navbar-light bg-light" id="headerNavMenuId">  <div class="container-fluid">    <a class="navbar-brand" href="https://www.linkedin.com/in/francisco-javier-prieto-gut/" target="_blank">      <i class="fab fa-linkedin"></i>    </a>    <a class="navbar-brand" href="https://twitter.com/home?lang=es" target="_blank">      <i class="fab fa-twitter"></i>    </a>    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">      <span class="navbar-toggler-icon"></span>    </button>    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">      <div class="navbar-nav" id="header-menu">                <a routerLink="/home" routerLinkActive="active">Home</a>                <a routerLink="/readme" routerLinkActive="active">Read-Me</a>        <a href="./documentation" routerLinkActive="active" target="_blank">Docs</a>             </div>    </div>  </div></nav>    </div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ErrorComponent', 'selector': 'app-error-component'},{'name': 'HeaderComponent', 'selector': 'app-header-menu-component'},{'name': 'HomeComponent', 'selector': 'home-component'},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'ReadmeComponent', 'selector': 'app-readme'},{'name': 'ShowDaysComponent', 'selector': 'app-show-days'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'HeaderComponent'};
